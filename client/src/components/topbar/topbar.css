@@ -1,0 +1,27 @@
+.containersz {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 150px;
+  background: 'white';
+  font-family: arial;
+}
+
+.logo {
+  flex: 3;
+  text-align: left;
+}
+
+.logoImg {
+  height: 150px; 
+  width: auto; 
+  margin-left: 50px;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex: 2;
+  font-size: 17px;
+}

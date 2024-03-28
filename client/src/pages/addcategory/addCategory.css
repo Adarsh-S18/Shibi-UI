@@ -1,0 +1,53 @@
+
+  /* Style for the table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  /* Style for table headers */
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  /* Style for alternate row background color */
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Style for table header background and text color */
+  thead th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+
+  /* AddCategory.css (or your preferred CSS file) */
+
+/* ... existing styles ... */
+
+/* Additional style for the custom table */
+.custom-table-container {
+    margin-top: 10px; /* Adjust as needed */
+  }
+  
+  /* Additional styles for table cells */
+  .custom-table-container table th,
+  .custom-table-container table td {
+    padding: 5px; /* Adjust as needed */
+  }
+  
+  /* Additional styles for alternate row background color */
+  .custom-table-container table tbody tr:nth-child(even) {
+    background-color: #e6e6e6; /* Adjust as needed */
+  }
+  
+  /* Additional styles for table header background and text color */
+  .custom-table-container table thead th {
+    background-color: #006400; /* Adjust as needed */
+    color: #fff; /* Adjust as needed */
+  }
+  

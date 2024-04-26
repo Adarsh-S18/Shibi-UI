@@ -57,7 +57,7 @@ const Footer = () => {
               </Typography>
               <DownloadList>
                 {['Home', 'About', 'Services', 'Workshops', 'Testimonials','Contact'].map((item, index) => (
-                  <ListItem style={{fontFamily: 'arial'}} key={index}>{item}</ListItem>
+                  <ListItem style={{fontFamily: "sans-serif"}} key={index}>{item}</ListItem>
                 ))}
               </DownloadList>
             </FooterSection>
@@ -70,7 +70,7 @@ const Footer = () => {
               </Typography>
               <List>
                 {['Home', 'About', 'Services', 'Workshops', 'Testimonials','Contact'].map((item, index) => (
-                  <ListItem  style={{fontFamily: 'arial'}} key={index}>{item}</ListItem>
+                  <ListItem  style={{fontFamily: "sans-serif"}} key={index}>{item}</ListItem>
                 ))}
               </List>
             </FooterSection>

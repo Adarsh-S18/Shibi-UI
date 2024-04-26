@@ -1,13 +1,13 @@
 import React from 'react'
 import TopBar from '../../components/topbar/TopBar'
-import Testimonials from '../../components/Testimonials/Testimonials'
 import Footer from '../../components/footer/Footer'
+import Testimonials from '../TestimonialsManagement/containers/Testimonials'
 
 const TestimonialPage = () => {
   return (
     <div>
       <Testimonials />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }

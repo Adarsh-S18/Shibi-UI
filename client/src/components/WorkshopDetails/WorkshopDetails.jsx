@@ -69,7 +69,7 @@ const WorkshopDetails = () => {
               marginRight: "150px",
             }}
           >
-            <Typography fontSize={18} fontFamily="arial">
+            <Typography fontSize={18} fontFamily= "sans-serif">
               In this day-long instructor-led workshop, participants will be
               introduced to the fundamentals of data science theory, tools, and
               practice. This course is suitable for anyone with basic computer
@@ -100,7 +100,7 @@ const WorkshopDetails = () => {
                 {" "}
                 Here are some additional points covered in the workshop:
               </Typography>
-              <Typography fontSize={18} fontFamily="arial" mt={6}>
+              <Typography fontSize={18} fontFamily= "sans-serif" mt={6}>
                 <ol style={{ columns: "2" }}>
                   <li>Introduction to AI concepts and terminology.</li>
                   <li>Understanding the role of data in AI applications.</li>
@@ -131,7 +131,7 @@ const WorkshopDetails = () => {
           mt={2}
           mb={4}
           sx={{ textAlign: "center" }}
-          fontFamily="arial"
+          fontFamily= "sans-serif"
         >
           Gallery
         </Typography>

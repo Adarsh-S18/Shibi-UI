@@ -1,15 +1,6 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import {
-  Card,
-  CardContent,
-  Typography,
-  Button,
-  Container,
-  Grid,
-  Paper,
-} from "@mui/material";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import { Typography, Container, Grid, Paper } from "@mui/material";
 
 const testimonialsData = [
   {
@@ -39,25 +30,24 @@ const testimonialsData = [
 ];
 
 const Testimonials = () => {
-  const [currentIndex, setCurrentIndex] = React.useState(0);
+  //   const [currentIndex, setCurrentIndex] = React.useState(0);
 
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonialsData.length);
-  };
+  //   const handleNext = () => {
+  //     setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonialsData.length);
+  //   };
 
-  const handlePrev = () => {
-    setCurrentIndex(
-      (prevIndex) =>
-        (prevIndex - 1 + testimonialsData.length) % testimonialsData.length
-    );
-  };
+  //   const handlePrev = () => {
+  //     setCurrentIndex(
+  //       (prevIndex) =>
+  //         (prevIndex - 1 + testimonialsData.length) % testimonialsData.length
+  //     );
+  //   };
 
   return (
     <Container>
       <h1
         style={{ textAlign: "center", marginTop: "30px", marginBottom: "30px" }}
       >
-        {" "}
         Testimonials
       </h1>
       <Grid container justifyContent="center" sx={12} mb={5}>
@@ -80,7 +70,7 @@ const Testimonials = () => {
             <Typography variant="h6" gutterBottom>
               {testimonialsData[0].name}
             </Typography>
-            <Typography variant="body1" color="textSecondary" paragraph>
+            <Typography variant="body1" color="black" paragraph>
               {testimonialsData[0].text}
             </Typography>
           </Paper>
@@ -104,7 +94,7 @@ const Testimonials = () => {
             <Typography variant="h6" gutterBottom>
               {testimonialsData[1].name}
             </Typography>
-            <Typography variant="body1" color="textSecondary" paragraph>
+            <Typography variant="body1" color="black" paragraph>
               {testimonialsData[1].text}
             </Typography>
           </Paper>
@@ -130,7 +120,7 @@ const Testimonials = () => {
             <Typography variant="h6" gutterBottom>
               {testimonialsData[2].name}
             </Typography>
-            <Typography variant="body1" color="textSecondary" paragraph>
+            <Typography variant="body1" color="black" paragraph>
               {testimonialsData[2].text}
             </Typography>
           </Paper>
@@ -154,7 +144,7 @@ const Testimonials = () => {
             <Typography variant="h6" gutterBottom>
               {testimonialsData[3].name}
             </Typography>
-            <Typography variant="body1" color="textSecondary" paragraph>
+            <Typography variant="body1" color="black" paragraph>
               {testimonialsData[3].text}
             </Typography>
           </Paper>

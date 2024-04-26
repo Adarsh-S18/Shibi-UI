@@ -12,10 +12,10 @@ const Contact = () => {
     <>
       <Grid container spacing={3} justifyContent="center" alignItems="center" mt={3} mb={5} pb={5}>
         <Grid item xs={12} md={4} textAlign="center" pb={5} sx={{ border: '1px solid #ccc',    boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.1)',  borderRadius: '30px', transition: 'box-shadow 0.3s', '&:hover': { boxShadow: '0px 0px 10px 0px #000000' } }}>
-          <Typography variant="h4" sx={{ fontWeight: 'bold', fontFamily: 'arial', color: '#0066cc', marginTop: '20px' }}>
+          <Typography variant="h4" sx={{ fontWeight: 'bold',fontFamily: "sans-serif",color: '#0066cc', marginTop: '20px' }}>
             Contact Us
           </Typography>
-          <Typography paragraph sx={{ fontFamily: 'arial', fontSize: '16px', color: '#333', marginTop: '10px' }}>
+          <Typography paragraph sx={{fontFamily: "sans-serif", fontSize: '16px', color: '#333', marginTop: '10px' }}>
             Feel free to reach out to us using the contact form below.
           </Typography>
           <form onSubmit={handleSubmit} style={{ margin: '20px' }}>
@@ -28,7 +28,7 @@ const Contact = () => {
           </form>
         </Grid>
       </Grid>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

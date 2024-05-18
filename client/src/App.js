@@ -17,6 +17,7 @@ import AppManagement from "./pages/AppManagement";
 import Footer from "./components/footer/Footer";
 import AboutSectionPage from "./pages/AboutManagement";
 import ServiceMangement from "./pages/ServicesManagement";
+import './App.css'
 
 function App() {
   const { user } = useContext(Context);

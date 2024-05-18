@@ -31,7 +31,6 @@ export default function HeaderSection() {
               sx={{
                 marginBottom: "10px",
                 color: "#333",
-                fontFamily: "sans-serif",
                 fontWeight: "bold",
                 letterSpacing: "0.05em",
               }}
@@ -44,7 +43,6 @@ export default function HeaderSection() {
                 color: "black",
                 fontSize: "20px",
                 marginBottom: "18px",
-                fontFamily: "sans-serif",
                 letterSpacing: "0.03em",
               }}
             >
@@ -56,7 +54,6 @@ export default function HeaderSection() {
                 color: "#333",
                 fontSize: "22px",
                 marginBottom: "20px",
-                fontFamily: "sans-serif",
                 letterSpacing: "0.03em",
                 lineHeight: "1.5",
               }}
@@ -149,7 +146,10 @@ export default function HeaderSection() {
                   },
                 }}
               >
-                <a href="https://podcasters.spotify.com/pod/show/shibi-anand3" target="_blank">
+                <a
+                  href="https://podcasters.spotify.com/pod/show/shibi-anand3"
+                  target="_blank"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="0.9em"

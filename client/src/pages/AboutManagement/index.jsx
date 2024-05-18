@@ -63,11 +63,11 @@ const AboutSectionPage = () => {
           >
             <Box sx={{ flex: 2, textAlign: "center" }}>
               <Typography
+                style={{ fontFamily: "Montserrat, sans-serif" }}
                 variant="h3"
                 sx={{
                   marginBottom: "10px",
                   color: "#333",
-                  fontFamily: "sans-serif",
                   fontWeight: "bold",
                   letterSpacing: "0.05em",
                 }}
@@ -75,13 +75,12 @@ const AboutSectionPage = () => {
                 Shibi Anand
               </Typography>
               <Typography
+                style={{ fontFamily: "Montserrat, sans-serif" }}
                 variant="body1"
                 sx={{
                   color: "darkgoldenrod",
                   fontSize: "24px",
                   marginBottom: "18px",
-                  fontFamily: "sans-serif",
-                  letterSpacing: "0.03em",
                   fontWeight: 600,
                 }}
               >
@@ -103,7 +102,7 @@ const AboutSectionPage = () => {
                     variant="outlined"
                     color="primary"
                     style={{
-                      fontFamily: "sans-serif",
+                      fontFamily: "Montserrat, sans-serif",
                       margin: "5px",
                       fontSize: "16px",
                       backgroundColor: "#f0f0f0",
@@ -115,13 +114,13 @@ const AboutSectionPage = () => {
                 ))}
               </div>
               <Typography
+                style={{ fontFamily: "Montserrat, sans-serif" }}
                 variant="body1"
                 sx={{
                   color: "#333",
                   fontSize: "22px",
                   marginTop: "50px",
                   marginBottom: "20px",
-                  fontFamily: "sans-serif",
                   letterSpacing: "0.03em",
                   lineHeight: "1.5",
                 }}
@@ -136,7 +135,7 @@ const AboutSectionPage = () => {
       </Grid>
 
       <Container>
-        <Grid container spacing={2} mt={6} mb={6} sx={{ marginTop: "180px" }}>
+        <Grid container spacing={2} mt={6} mb={6} sx={{ marginTop: "250px" }}>
           <Grid item xs={12}>
             <Paper
               elevation={3}
@@ -151,6 +150,7 @@ const AboutSectionPage = () => {
                 variant="h4"
                 gutterBottom
                 style={{
+                  fontFamily: "Montserrat, sans-serif",
                   fontWeight: "bold",
                   color: "#1976D2", // Material Design Primary Color
                   marginBottom: "30px",
@@ -163,7 +163,7 @@ const AboutSectionPage = () => {
               <Typography
                 paragraph
                 style={{
-                  fontFamily: "Georgia, serif",
+                  fontFamily: "Montserrat, sans-serif",
                   fontSize: "18px",
                   color: "#333333", // Material Design Text Color
                   lineHeight: "1.8",

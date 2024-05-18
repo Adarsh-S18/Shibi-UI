@@ -44,7 +44,7 @@
   
   ul {
     font-weight: normal;
-    font-family: arial;
+    /* font-family: arial; */
     list-style: none;
     padding: 0;
   }

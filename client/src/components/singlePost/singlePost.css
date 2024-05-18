@@ -19,13 +19,13 @@
 .singlePostTitle {
   text-align: center;
   margin: 10px;
-  font-family:arial;
+  /* font-family:arial; */
   font-size: 28px;
 }
 
 .singlePostTitleInput {
   margin: 10px;
-  font-family:arial;
+  /* font-family:arial; */
   font-size: 28px;
   text-align: center;
   border: none;
@@ -60,7 +60,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 16px;
-  font-family: arial;
+  /* font-family: arial; */
   color: #b39656;
 }
 

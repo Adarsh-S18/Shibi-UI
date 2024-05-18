@@ -21,7 +21,6 @@ const ServiceSection = () => {
           textAlign: "center",
           marginTop: "70px",
           marginBottom: "60px",
-          fontFamily: "sans-serif",
         }}
       >
         What do we provide?
@@ -30,17 +29,20 @@ const ServiceSection = () => {
         <Grid item xs={6}>
           <Item>
             <Typography
+              style={{ fontFamily: "Montserrat, sans-serif" }}
               sx={{
                 fontSize: "21px",
                 fontWeight: "600",
                 color: "goldenrod",
-                fontFamily: "sans-serif",
               }}
               mb={3}
             >
               WORKSHOPS
             </Typography>
-            <Typography sx={{ margin: "10px" , color: 'black'}}>
+            <Typography
+              sx={{ margin: "10px", color: "black" }}
+              style={{ fontFamily: "Montserrat, sans-serif" }}
+            >
               Consultation is a process based on a plan-do-review framework. It
               works at the individual, group and whole school level. It is a
               solution focussed process which aims for agreed actions. It is
@@ -55,17 +57,20 @@ const ServiceSection = () => {
         <Grid item xs={6}>
           <Item>
             <Typography
+              style={{ fontFamily: "Montserrat, sans-serif" }}
               sx={{
                 fontSize: "21px",
                 fontWeight: "600",
                 color: "goldenrod",
-                fontFamily: "sans-serif",
               }}
               mb={3}
             >
               TEACHER MENTORING
             </Typography>
-            <Typography sx={{ margin: "10px", color: 'black' }}>
+            <Typography
+              style={{ fontFamily: "Montserrat, sans-serif" }}
+              sx={{ margin: "10px", color: "black" }}
+            >
               Consultation is a process based on a plan-do-review framework. It
               works at the individual, group and whole school level. It is a
               solution focussed process which aims for agreed actions. It is

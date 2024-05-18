@@ -1,14 +1,16 @@
 import React from "react";
-import HeaderSection from "./containers/Header";
+// import HeaderSection from "./containers/Header";
 import ExploreSection from "./containers/ExploreBox";
 import ServiceSection from "./containers/ServiceSection";
 import TestimonialSection from "./containers/TestimonialSection";
+import HomeSlider from "./containers/HomeSlider";
 
 const AppManagement = () => {
   return (
     <div>
       <>
-        <HeaderSection />
+      <HomeSlider/>
+        {/* <HeaderSection /> */}
         <ExploreSection />
         <ServiceSection />
         <TestimonialSection />

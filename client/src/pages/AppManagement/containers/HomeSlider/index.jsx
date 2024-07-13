@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Typography, TextField, Button } from "@mui/material";
+import { Grid } from "@mui/material";
 
 const HomeSlider = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

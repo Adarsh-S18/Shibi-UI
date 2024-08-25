@@ -3,9 +3,11 @@ import { Container, Grid, Paper, Typography, Chip, Box } from "@mui/material";
 
 const AboutSectionPage = () => {
   const roles = [
+    "LinkedIn Top Voice",
     "Founder: N'Able & AI Teacher Community",
     "Teacher Educator",
-    "MOC (Niti Ayog)",
+    // "MOC (Niti Ayog)",
+    'WEN Kottayam Core Committee Member',
     "Podcaster",
     "WICCIKMHC",
     "Digital Content Creator #life",

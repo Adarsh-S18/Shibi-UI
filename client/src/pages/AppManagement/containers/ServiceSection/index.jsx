@@ -1,16 +1,18 @@
-/* eslint-disable jsx-a11y/alt-text */
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import { Typography } from "@mui/material";
+import { Avatar, Box, Typography } from "@mui/material";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
-  padding: theme.spacing(1),
+  padding: theme.spacing(2), // Increased padding for better appearance
   textAlign: "center",
   color: theme.palette.text.secondary,
+  border: "1px solid #ddd", // Light gray border
+  borderRadius: "8px", // Rounded corners
+  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", // Soft shadow for better depth
 }));
 
 const ServiceSection = () => {
@@ -20,66 +22,102 @@ const ServiceSection = () => {
         style={{
           textAlign: "center",
           marginTop: "70px",
-          marginBottom: "60px",
+          marginBottom: "10px",
         }}
       >
-        What do we provide?
+        Initiatives
       </h1>
-      <Grid container spacing={2} mb={6}>
-        <Grid item xs={6}>
-          <Item>
+      <Grid container spacing={2} mb={6} sx={{ padding: "30px" }}>
+        <Grid item xs={12} md={6}>
+          <Item sx={{ minHeight: "350px" }}>
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              mb={2.5}
+            >
+              <Avatar
+                alt="N'Able Logo"
+                src="/nablelogo.jpg"
+                sx={{
+                  width: 90,
+                  height: 90,
+                  mr: 2,
+                  mb: 3,
+                  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", // Shadow for the avatar
+                }}
+              />
+              <Typography
+                style={{ fontFamily: "Montserrat, sans-serif" }}
+                sx={{
+                  fontSize: "24px",
+                  fontWeight: "700",
+                  color: "#6a00b9",
+                }}
+                mb={3}
+              >
+                N'Able By Shibi Anand
+              </Typography>
+            </Box>
             <Typography
               style={{ fontFamily: "Montserrat, sans-serif" }}
-              sx={{
-                fontSize: "21px",
-                fontWeight: "600",
-                color: "goldenrod",
-              }}
-              mb={3}
+              sx={{ margin: "10px", color: "black", fontWeight: 500 }}
             >
-              WORKSHOPS
+              N'Able was born from a deep desire to empower individuals to help
+              themselves, to become the best versions of who they are meant to
+              be. We recognize that everyone is unique, with their own path and
+              timeline in life. At N'Able, we work closely with both individuals
+              and communities, guiding them to uncover their true potential and
+              helping them to shine their inner light. Our mission is to support
+              you in your journey of self-discovery, growth, and achievement,
+              enabling you to pursue life on your own terms with confidence and
+              purpose.
             </Typography>
-            <Typography
-              sx={{ margin: "10px", color: "black" }}
-              style={{ fontFamily: "Montserrat, sans-serif" }}
-            >
-              Consultation is a process based on a plan-do-review framework. It
-              works at the individual, group and whole school level. It is a
-              solution focussed process which aims for agreed actions. It is
-              collaborative and is inclusive of teachers, parents and pupils.
-            </Typography>
-            <img
-              src="https://img.freepik.com/free-vector/model-posing-art-workshop_74855-5273.jpg?w=1060&t=st=1711466204~exp=1711466804~hmac=159fb05708bf506a4ec067570b3875008d29bf77f6f5c83f583de5c7d28c3c57"
-              width={490}
-            />
           </Item>
         </Grid>
-        <Grid item xs={6}>
-          <Item>
-            <Typography
-              style={{ fontFamily: "Montserrat, sans-serif" }}
-              sx={{
-                fontSize: "21px",
-                fontWeight: "600",
-                color: "goldenrod",
-              }}
-              mb={3}
+        <Grid item xs={12} md={6}>
+          <Item sx={{ minHeight: "350px" }}>
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              mb={2.5}
             >
-              TEACHER MENTORING
-            </Typography>
+              <Avatar
+                alt="AI Teacher Community Logo"
+                src="/AILOGO.jpeg"
+                sx={{
+                  width: 90,
+                  height: 90,
+                  mr: 2,
+                  mb: 3,
+                  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", // Shadow for the avatar
+                }}
+              />
+              <Typography
+                style={{ fontFamily: "Montserrat, sans-serif" }}
+                sx={{
+                  fontSize: "24px",
+                  fontWeight: "700",
+                  color: "#6a00b9",
+                }}
+                mb={3}
+              >
+                AI Teacher Community: An Initiative by N'Able
+              </Typography>
+            </Box>
             <Typography
+              sx={{ margin: "10px", color: "black", fontWeight: 500 }}
               style={{ fontFamily: "Montserrat, sans-serif" }}
-              sx={{ margin: "10px", color: "black" }}
             >
-              Consultation is a process based on a plan-do-review framework. It
-              works at the individual, group and whole school level. It is a
-              solution focussed process which aims for agreed actions. It is
-              collaborative and is inclusive of teachers, parents and pupils.
+              Launched in May 2021 by N'Able, the AI Teacher Community aims to
+              empower CBSE teachers across India to integrate AI as a skill
+              subject in their classrooms. With over 22 sessions organized to
+              date, the community has grown into a self-sustained network of
+              over 400 teachers worldwide. This collaborative platform enables
+              teachers to support each other in effectively implementing AI
+              education in schools.
             </Typography>
-            <img
-              src="https://img.freepik.com/free-vector/coach-speaking-before-audience-mentor-presenting-charts-reports-employees-meeting-business-training-seminar-conference-vector-illustration-presentation-lecture-education_74855-8294.jpg?t=st=1711466263~exp=1711469863~hmac=837d7333b53a90bc433fd027cb158af5f29519ce5a77f82f7344000272690223&w=900"
-              width={390}
-            />
           </Item>
         </Grid>
       </Grid>

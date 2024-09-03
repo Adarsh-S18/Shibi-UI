@@ -3,22 +3,21 @@ import React from "react";
 
 const VideoSection = () => {
   return (
-    <Box sx={{
-      flexGrow: 1,
-      background: "#f4d03f",
-      textAlign: "center",
-      color: "black",
-      fontSize: "22px",
-      fontWeight: 600,
-      padding: "30px",
-      borderRadius: '20px'
-    }}>
-      <Grid
-        container
-        spacing={2}
-      >
-        <Grid item xs={8} sx={{ textAlign: "center", marginTop: '10px' }}>
-          Take a deep dive into some of my daily vlogs packed with information!
+    <Box
+      sx={{
+        flexGrow: 1,
+        background: "#f4d03f",
+        textAlign: "center",
+        color: "black",
+        fontSize: "22px",
+        fontWeight: 600,
+        padding: "30px",
+        borderRadius: "20px",
+      }}
+    >
+      <Grid container spacing={2}>
+        <Grid item xs={8} sx={{ textAlign: "center", marginTop: "10px" }}>
+          Catch my insights and stories. Watch my vlogs Now!
         </Grid>
         <Grid item xs={4}>
           <Button

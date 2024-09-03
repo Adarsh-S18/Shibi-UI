@@ -47,5 +47,6 @@
     "@babel/eslint-parser": "^7.25.1",
     "@babel/plugin-proposal-optional-chaining": "^7.21.0",
     "cross-env": "^7.0.3"
-  }
+  },
+  "proxy": "http://localhost:5000/api/"
 }

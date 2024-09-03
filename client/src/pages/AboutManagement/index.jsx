@@ -1,13 +1,24 @@
 import React from "react";
-import { Container, Grid, Paper, Typography, Chip, Box } from "@mui/material";
+import {
+  Container,
+  Grid,
+  Paper,
+  Typography,
+  Chip,
+  Box,
+  IconButton,
+} from "@mui/material";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import EmailIcon from "@mui/icons-material/Email";
 
 const AboutSectionPage = () => {
   const roles = [
     "LinkedIn Top Voice",
     "Founder: N'Able & AI Teacher Community",
     "Teacher Educator",
-    // "MOC (Niti Ayog)",
-    'WEN Kottayam Core Committee Member',
+    "WEN Kottayam Core Committee Member",
     "Podcaster",
     "WICCIKMHC",
     "Digital Content Creator #life",
@@ -24,43 +35,22 @@ const AboutSectionPage = () => {
       <Grid
         container
         spacing={2}
-        style={{ height: "100vh", marginBottom: "160px" }}
+        style={{ height: "100vh", marginBottom: "60px" }} // Adjusted marginBottom from 160px to 60px
         justifyContent="center"
         alignItems="center"
-        mb={6}
       >
-        <Grid item xs={12} sx={{ textAlign: "center" }}>
-          <img
-            src="/personal.jpg"
-            style={{
-              borderRadius: "50%",
-              width: "400px",
-              height: "400px",
-              transition: "transform 0.5s ease",
-            }}
-            alt="Profile"
-            onMouseOver={(e) => (e.target.style.transform = "scale(1.1)")}
-            onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
-          />
-        </Grid>
-        <Grid item xs={12} sx={{ textAlign: "center" }}>
+        <Grid item xs={12} md={7} sx={{ textAlign: "center" }}>
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               padding: "40px",
-              marginLeft: "150px",
-              marginRight: "150px",
               borderRadius: "20px",
-              // backgroundColor: "#78c2ad", // Add your preferred background color here
-              boxShadow: "0px 10px 20px rgba(0.9, 0.9, 0.9, 0.9)",
+              boxShadow: "0px 10px 20px rgba(0.9, 0.9, 0.9, 0.3)",
+              backgroundColor: "white",
               gap: "20px",
               transition: "transform 0.3s",
-              "&:hover": {
-                transform: "translateY(-5px)",
-                boxShadow: "0px 15px 30px rgba(0, 0, 0, 0.2)",
-              },
             }}
           >
             <Box sx={{ flex: 2, textAlign: "center" }}>
@@ -69,7 +59,7 @@ const AboutSectionPage = () => {
                 variant="h3"
                 sx={{
                   marginBottom: "10px",
-                  color: "#333",
+                  color: "#404040", // Darker, elegant shade for the text
                   fontWeight: "bold",
                   letterSpacing: "0.05em",
                 }}
@@ -80,10 +70,10 @@ const AboutSectionPage = () => {
                 style={{ fontFamily: "Montserrat, sans-serif" }}
                 variant="body1"
                 sx={{
-                  color: "darkgoldenrod",
-                  fontSize: "24px",
+                  color: "#404040",
+                  fontSize: "22px",
                   marginBottom: "18px",
-                  fontWeight: 600,
+                  fontWeight: 700,
                 }}
               >
                 Edupreneur & Mentor | Founder of N'Able and AI Teacher Community
@@ -102,25 +92,56 @@ const AboutSectionPage = () => {
                     key={index}
                     label={role}
                     variant="outlined"
-                    color="primary"
                     style={{
                       fontFamily: "Montserrat, sans-serif",
                       margin: "5px",
                       fontSize: "16px",
-                      backgroundColor: "#f0f0f0",
-                      border: "1px solid #0066cc",
-                      color: "#0066cc",
+                      backgroundColor: "#6c01bb", // Light bluish color for the chips
+                      border: "1px solid #00008B", // Border color to complement the background
+                      color: "white", // Text color for the chips
                       fontWeight: "bold",
                     }}
                   />
                 ))}
               </div>
+
+              <Box sx={{ marginTop: "20px" }}>
+                <IconButton
+                  href="https://www.instagram.com/"
+                  target="_blank"
+                  style={{ color: "#90268d" }}
+                >
+                  <InstagramIcon fontSize="large" />
+                </IconButton>
+                <IconButton
+                  href="https://www.facebook.com/"
+                  target="_blank"
+                  style={{ color: "blue" }}
+                >
+                  <FacebookIcon fontSize="large" />
+                </IconButton>
+                <IconButton
+                  href="https://www.linkedin.com/"
+                  target="_blank"
+                  style={{ color: "darkblue" }}
+                >
+                  <LinkedInIcon fontSize="large" />
+                </IconButton>
+                <IconButton
+                  href="mailto:your-email@example.com"
+                  style={{ color: "red" }}
+                >
+                  <EmailIcon fontSize="large" />
+                </IconButton>
+              </Box>
+
               <Typography
                 style={{ fontFamily: "Montserrat, sans-serif" }}
                 variant="body1"
                 sx={{
-                  color: "#333",
-                  fontSize: "22px",
+                  color: "rgba(0, 0, 0, 0.7)", // Black fade effect for the description
+                  fontSize: "21px",
+                  fontWeight: 600,
                   marginTop: "50px",
                   marginBottom: "20px",
                   letterSpacing: "0.03em",
@@ -134,16 +155,32 @@ const AboutSectionPage = () => {
             </Box>
           </Box>
         </Grid>
+        <Grid item xs={12} md={3} sx={{ textAlign: "center" }}>
+          <img
+            src="/personal4.jpg"
+            style={{
+              borderRadius: "50%",
+              maxWidth: "100%",
+              maxHeight: "500px",
+              transition: "transform 0.5s ease",
+              objectFit: "cover",
+            }}
+            alt="Profile"
+            onMouseOver={(e) => (e.target.style.transform = "scale(1.1)")}
+            onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
+          />
+        </Grid>
       </Grid>
 
       <Container>
-        <Grid container spacing={2} mt={6} mb={6} sx={{ marginTop: "250px" }}>
+        <Grid container spacing={2} mb={6} sx={{ marginTop: "60px" }}>
+          {/* Adjusted marginTop from 250px to 60px */}
           <Grid item xs={12}>
             <Paper
               elevation={3}
               style={{
                 padding: "40px",
-                backgroundColor: "#F8F9FA",
+                backgroundColor: "#570080",
                 borderRadius: "10px",
                 boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.1)",
               }}
@@ -154,43 +191,171 @@ const AboutSectionPage = () => {
                 style={{
                   fontFamily: "Montserrat, sans-serif",
                   fontWeight: "bold",
-                  color: "#1976D2", // Material Design Primary Color
+                  color: "white",
                   marginBottom: "30px",
                   textAlign: "center",
                   textShadow: "1px 1px 2px rgba(0, 0, 0, 0.1)",
                 }}
               >
-                Know More about Me!
+                N'Able for you
               </Typography>
               <Typography
-                paragraph
+                variant="h6"
+                mb={6}
                 style={{
+                  textAlign: "center",
                   fontFamily: "Montserrat, sans-serif",
-                  fontSize: "18px",
-                  color: "#333333", // Material Design Text Color
-                  lineHeight: "1.8",
-                  textAlign: "justify",
-                  textIndent: "2rem",
+                  fontWeight: "bold",
+                  color: "white",
                 }}
               >
-                I am an Edupreneur & a change enabler. Born and brought up in
-                Ranchi, Jharkhand I did my Master's in IT from BITS, Mesra, a
-                pioneer institution. A Computer Science and AI Educator for the
-                past 19 years, I worked as Associate Vice Principal, IT Admin,
-                Programme Co-ordinator, Dept Head of Computer Science at
-                Excelsior English School Kottayam, Kerala. I am a Mentor of
-                Change (Atal Innovation Mission, Niti Ayog), was a Toastmaster,
-                Chairperson, ALL Ladies League, Kottayam, Council member of
-                WICCI Mental Health, Kerala chapter, a Podcaster, a content
-                curator, knowledge collaborator, an Edupreneur. I am the founder
-                of N'Able by Shibi Anand, a L & D platform for School
-                Stakeholders and AI Teacher Community, a forum for making AI
-                implementation in classrooms smoother. I believe in the mantra
-                "A teacher who dares to teach can never cease to learn". Open to
-                collaboration and willing to support Schools in improving their
-                quality by focusing on the most important stakeholders,
-                educators, students, and of course the leaders.
+                N'Able is dedicated to enhancing education and personal
+                development through <br></br>a variety of tailored services:
               </Typography>
+              <Grid container spacing={4}>
+                <Grid item xs={12} md={6}>
+                  <Box
+                    sx={{
+                      backgroundColor: "white",
+                      padding: "20px",
+                      borderRadius: "8px",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      gutterBottom
+                      style={{
+                        fontFamily: "Montserrat, sans-serif",
+                        fontWeight: "bold",
+                        color: "#2A003A",
+                      }}
+                    >
+                      1. Workshops
+                    </Typography>
+                    <Typography
+                      paragraph
+                      style={{
+                        fontFamily: "Montserrat, sans-serif",
+                        fontSize: "16px",
+                        color: "#333333",
+                        lineHeight: "1.6",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Engaging sessions designed to upskill teachers, students,
+                      and school leaders, fostering growth and innovation.
+                    </Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <Box
+                    sx={{
+                      backgroundColor: "white",
+                      padding: "20px",
+                      borderRadius: "8px",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      gutterBottom
+                      style={{
+                        fontFamily: "Montserrat, sans-serif",
+                        fontWeight: "bold",
+                        color: "#2A003A",
+                      }}
+                    >
+                      2. Professional Mentoring
+                    </Typography>
+                    <Typography
+                      paragraph
+                      style={{
+                        fontFamily: "Montserrat, sans-serif",
+                        fontSize: "16px",
+                        color: "#333333",
+                        lineHeight: "1.6",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Personalized guidance to help individuals excel in their
+                      roles, driving professional growth and development.
+                    </Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <Box
+                    sx={{
+                      backgroundColor: "white",
+                      padding: "20px",
+                      borderRadius: "8px",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      gutterBottom
+                      style={{
+                        fontFamily: "Montserrat, sans-serif",
+                        fontWeight: "bold",
+                        color: "#2A003A",
+                      }}
+                    >
+                      3. Training
+                    </Typography>
+                    <Typography
+                      paragraph
+                      style={{
+                        fontFamily: "Montserrat, sans-serif",
+                        fontSize: "16px",
+                        color: "#333333",
+                        lineHeight: "1.6",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Includes AI Integration Training, Empowerment Workshops,
+                      and Motivational Sessions to enhance skills and drive
+                      personal and professional growth.
+                    </Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <Box
+                    sx={{
+                      backgroundColor: "white",
+                      padding: "20px",
+                      borderRadius: "8px",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      gutterBottom
+                      style={{
+                        fontFamily: "Montserrat, sans-serif",
+                        fontWeight: "bold",
+                        color: "#2A003A",
+                      }}
+                    >
+                      4. Digital Content Creation
+                    </Typography>
+                    <Typography
+                      paragraph
+                      style={{
+                        fontFamily: "Montserrat, sans-serif",
+                        fontSize: "16px",
+                        color: "#333333",
+                        lineHeight: "1.6",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Crafting engaging and impactful content for digital
+                      platforms, enhancing educational outreach and
+                      communication.
+                    </Typography>
+                  </Box>
+                </Grid>
+              </Grid>
             </Paper>
           </Grid>
         </Grid>

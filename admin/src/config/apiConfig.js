@@ -1,12 +1,12 @@
 import axios from "axios";
 
-// You can set a base URL for your API if you have one
 const API = axios.create({
-  baseURL: "https://api.example.com", // Replace with your API URL
+  baseURL: "http://localhost:5000/api/",
 });
 
 // Example GET request
 export const fetchData = () => {
+  console.log("sajkdknjakjdsjknasdjnjksndjk.................");
   return API.get("/data-endpoint");
 };
 

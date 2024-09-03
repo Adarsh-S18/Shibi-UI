@@ -11,6 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { fetchData } from "../../config/apiConfig";
 
 const FeedbacksManagement = () => {
   const [state, setState] = useState(false);

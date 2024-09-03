@@ -1,6 +1,5 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import { Typography, Container, Grid, Paper } from "@mui/material";
+import { Typography, Container, Grid, Paper, Box } from "@mui/material";
 
 const testimonialsData = [
   {
@@ -13,133 +12,84 @@ const testimonialsData = [
     id: 2,
     name: "Dr. N Ajith Kumar",
     img: "/test2.jpeg",
-    text: "It gives me great happiness to give a testimonial to a very accomplished and  proactive person like SHIBI ANAND. In my fairly short association with her I have found her to be a “bundle full of energy.” She is one of the most proactive educational leaders I have had the occasion to associate with. Ready to take up any challenge and work really hard to make a mark in whatever she does is the hallmark of her character. Though basically an educational counsellor, she is far ahead of that adage since along with counselling she  has motivated a large number of students to greatness. For Shibi education is a religion and she is definitely destined to be a high priest in this field in the years to come. Modest to the core her willingness to learn despite being an authority in many areas shows her humility as an individual. A happy combination of beauty and brains her capacity to appreciate the achievements of others and feeling genuinely happy at their accomplishments are sterling virtues of her immaculate character. I wish SHIBI ANAND the very best in all her endeavors.",
+    text: "In my fairly short association with her I have found her to be a “bundle full of energy.” She is one of the most proactive educational leaders I have had the occasion to associate with. Ready to take up any challenge and work really hard to make a mark in whatever she does is the hallmark of her character. For Shibi education is a religion and she is definitely destined to be a high priest in this field in the years to come. Modest to the core her willingness to learn despite being an authority in many areas shows her humility as an individual. A happy combination of beauty and brains her capacity to appreciate the achievements of others and feeling genuinely happy at their accomplishments are sterling virtues of her immaculate character.",
   },
 ];
 
 const TestimonialSection = () => {
-  //   const [currentIndex, setCurrentIndex] = React.useState(0);
-
-  //   const handleNext = () => {
-  //     setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonialsData.length);
-  //   };
-
-  //   const handlePrev = () => {
-  //     setCurrentIndex(
-  //       (prevIndex) =>
-  //         (prevIndex - 1 + testimonialsData.length) % testimonialsData.length
-  //     );
-  //   };
-
   return (
-    <Container>
-      <h1
-        style={{ textAlign: "center", marginTop: "30px", marginBottom: "30px" }}
+    <Container sx={{ mb: 6 }}>
+      <Typography
+        variant="h4"
+        align="center"
+        gutterBottom
+        sx={{
+          fontWeight: 700,
+          marginTop: "40px",
+          marginBottom: "40px",
+        }}
       >
         Testimonials
-      </h1>
-      <Grid container justifyContent="center" sx={12} mb={2}>
-        <Grid item xs={12} md={12} lg={12}>
-          <Paper
-            elevation={3}
-            sx={{
-              padding: 2,
-              textAlign: "center",
-              borderRadius: "20px",
-              margin: "10px",
-            }}
-          >
-            <img
-              src={testimonialsData[0].img}
-              height={100}
-              width={100}
-              style={{ borderRadius: "50%" }}
-            />
-            <Typography
-              variant="h6"
-              gutterBottom
-              style={{ fontFamily: "Montserrat, sans-serif" }}
+      </Typography>
+      <Grid container justifyContent="center" spacing={4}>
+        {testimonialsData.map((testimonial) => (
+          <Grid item xs={12} md={6} key={testimonial.id}>
+            <Paper
+              sx={{
+                padding: "24px",
+                borderRadius: "8px",
+                margin: "10px",
+                minHeight: "490px",
+                border: "1px solid #cbcbcb", // Light gray border for a clean, professional look
+                backgroundColor: "#f9f9f9", // Soft background to enhance readability
+                transition: "box-shadow 0.3s ease-in-out",
+                "&:hover": {
+                  boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)", // Subtle shadow on hover for depth
+                },
+              }}
             >
-              {testimonialsData[0].name}
-            </Typography>
-            <Typography
-              variant="body1"
-              color="black"
-              paragraph
-              style={{ fontFamily: "Montserrat, sans-serif" }}
-            >
-              {testimonialsData[0].text}
-            </Typography>
-          </Paper>
-        </Grid>
-        {/* <Grid item xs={6} md={6} lg={6}>
-          <Paper
-            elevation={3}
-            sx={{
-              padding: 2,
-              textAlign: "center",
-              borderRadius: "20px",
-              margin: "10px",
-            }}
-          >
-            <img
-              src={testimonialsData[1].img}
-              height={100}
-              width={100}
-              style={{ borderRadius: "50%" }}
-            />
-            <Typography
-              variant="h6"
-              gutterBottom
-              style={{ fontFamily: "Montserrat, sans-serif" }}
-            >
-              {testimonialsData[1].name}
-            </Typography>
-            <Typography
-              variant="body1"
-              color="black"
-              paragraph
-              style={{ fontFamily: "Montserrat, sans-serif" }}
-            >
-              {testimonialsData[1].text}
-            </Typography>
-          </Paper>
-        </Grid> */}
-      </Grid>
-      <Grid container justifyContent="center" sx={12} mb={12}>
-        <Grid item xs={12} md={12} lg={12}>
-          <Paper
-            elevation={3}
-            sx={{
-              padding: 2,
-              textAlign: "center",
-              borderRadius: "20px",
-              margin: "10px",
-            }}
-          >
-            <img
-              src={testimonialsData[1].img}
-              height={100}
-              width={100}
-              style={{ borderRadius: "50%" }}
-            />
-            <Typography
-              variant="h6"
-              gutterBottom
-              style={{ fontFamily: "Montserrat, sans-serif" }}
-            >
-              {testimonialsData[1].name}
-            </Typography>
-            <Typography
-              variant="body1"
-              color="black"
-              paragraph
-              style={{ fontFamily: "Montserrat, sans-serif" }}
-            >
-              {testimonialsData[1].text}
-            </Typography>
-          </Paper>
-        </Grid>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "16px",
+                }}
+              >
+                <img
+                  src={testimonial.img}
+                  alt={testimonial.name}
+                  height={80}
+                  width={80}
+                  style={{ borderRadius: "50%", marginRight: "20px" }}
+                />
+                <Typography
+                  variant="h6"
+                  fontWeight={700}
+                  sx={{
+                    fontFamily: "Montserrat, sans-serif",
+                    color: "black",
+                  }}
+                >
+                  {testimonial.name}
+                </Typography>
+              </Box>
+              <Typography
+                variant="body1"
+                fontSize={16}
+                fontWeight={400}
+                color="text.primary"
+                sx={{
+                  fontFamily: "Montserrat, sans-serif", // Clean and modern sans-serif font
+                  lineHeight: 1.7,
+                  fontWeight: 500,
+                  color: "black", // Neutral dark gray for text
+                }}
+              >
+                {testimonial.text}
+              </Typography>
+            </Paper>
+          </Grid>
+        ))}
       </Grid>
     </Container>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   IconButton,
@@ -13,6 +13,14 @@ import { DataGrid } from "@mui/x-data-grid";
 
 const WorkshopsManagement = () => {
   const [state, setState] = useState(false);
+  const [rows, setRows] = useState([]);
+  const [file, setFile] = useState(null);
+  const [editId, setEditId] = useState(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+  });
+
   const columns = [
     { field: "name", headerName: "Name", width: 400 },
     { field: "description", headerName: "Description", width: 500 },
@@ -37,33 +45,83 @@ const WorkshopsManagement = () => {
     },
   ];
 
-  const rows = [
-    { id: 1, name: "Workshop 1", description: "Description for Workshop 1" },
-    { id: 2, name: "Workshop 2", description: "Description for Workshop 2" },
-  ];
+  useEffect(() => {
+    fetchWorkshops();
+  }, []);
 
-  const [field1, setField1] = useState("");
-  const [field2, setField2] = useState("");
-  const [file, setFile] = useState(null);
+  const fetchWorkshops = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/workshops/get-workshops"
+      );
+      const data = await response.json();
+      console.log(data);
+      setRows(data);
+    } catch (error) {
+      console.error("Error fetching workshops:", error);
+    }
+  };
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
   };
-  const handleSubmit = (event) => {
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission
-    console.log("Field 1:", field1);
-    console.log("Field 2:", field2);
-    // Close the modal after submission
-    setState(false);
+    const formDataToSend = new FormData();
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("description", formData.description);
+    if (file) formDataToSend.append("file", file);
+    try {
+      if (editId) {
+        await fetch(
+          `http://localhost:5000/api/workshops/update-workshop/${editId}`,
+          formDataToSend
+        );
+      } else {
+        await fetch("http://localhost:5000/api/workshops/add-workshop", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+      }
+      await fetchWorkshops();
+      setState(false);
+      setFormData({ name: "", description: "" });
+      setFile(null);
+      setEditId(null);
+    } catch (error) {
+      console.error("Error submitting workshop:", error);
+    }
   };
 
   const handleEdit = (id) => {
-    console.log(`Edit row with id ${id}`);
+    const workshop = rows.find((row) => row.id === id);
+    setFormData({
+      name: workshop.name,
+      description: workshop.description,
+    });
+    setEditId(id);
+    setState(true);
   };
 
-  const handleDelete = (id) => {
-    console.log(`Delete row with id ${id}`);
+  const handleDelete = async (id) => {
+    try {
+      await fetch(`/api/workshops/delete-workshop/${id}`);
+      await fetchWorkshops();
+    } catch (error) {
+      console.error("Error deleting workshop:", error);
+    }
   };
 
   return (
@@ -85,13 +143,21 @@ const WorkshopsManagement = () => {
       </Box>
 
       <div style={{ height: 400, width: "100%" }}>
-        <DataGrid rows={rows} columns={columns} pageSize={5} />
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={5}
+          getRowId={(row) => row._id}
+        />
       </div>
       {state && (
         <Modal
           open={state}
           onClose={() => {
             setState(false);
+            setFormData({ name: "", description: "" });
+            setFile(null);
+            setEditId(null);
           }}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
@@ -102,7 +168,7 @@ const WorkshopsManagement = () => {
               top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%)",
-              width: 400,
+              width: 900,
               bgcolor: "background.paper",
               borderRadius: 1,
               boxShadow: 24,
@@ -123,19 +189,23 @@ const WorkshopsManagement = () => {
                 label="Name"
                 variant="outlined"
                 margin="normal"
-                value={field1}
-                onChange={(e) => setField1(e.target.value)}
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
               />
               <TextField
                 fullWidth
                 label="Description"
                 variant="outlined"
                 margin="normal"
-                value={field2}
-                onChange={(e) => setField2(e.target.value)}
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                multiline
+                rows={4} // Adjusts the height of the textarea
               />
               <input
-                accept="*/*" // Allows all file types. Adjust as needed (e.g., "image/*" for images)
+                accept="*/*"
                 style={{ display: "none" }}
                 id="file-upload"
                 type="file"

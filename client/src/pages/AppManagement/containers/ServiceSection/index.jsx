@@ -2,7 +2,7 @@ import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import { Avatar, Box, Typography } from "@mui/material";
+import { Avatar, Box, Button, Typography } from "@mui/material";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -10,9 +10,9 @@ const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2), // Increased padding for better appearance
   textAlign: "center",
   color: theme.palette.text.secondary,
-  border: "1px solid #ddd", // Light gray border
+  border: "1px solid #6a00b9", // Thicker, more visible border with a pleasant blue color
   borderRadius: "8px", // Rounded corners
-  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", // Soft shadow for better depth
+  boxShadow: "0px 10px 10px rgba(0, 0, 0, 0.1)", // Soft shadow for better depth
 }));
 
 const ServiceSection = () => {
@@ -29,7 +29,7 @@ const ServiceSection = () => {
       </h1>
       <Grid container spacing={2} mb={6} sx={{ padding: "30px" }}>
         <Grid item xs={12} md={6}>
-          <Item sx={{ minHeight: "350px" }}>
+          <Item sx={{ minHeight: "400px" }}>
             <Box
               display="flex"
               alignItems="center"
@@ -73,10 +73,27 @@ const ServiceSection = () => {
               enabling you to pursue life on your own terms with confidence and
               purpose.
             </Typography>
+            <Box textAlign="center" mt={3}>
+              <Button
+                variant="contained"
+                color="secondary"
+                startIcon={<i className="fab fa-youtube" />}
+                sx={{
+                  backgroundColor: "#FF0000",
+                  borderRadius: "20px",
+                  padding: "15px",
+                  fontFamily: "Montserrat, sans-serif",
+                }}
+                href="https://www.youtube.com/@NableByShibiAnand/featured"
+                target="_blank"
+              >
+                Explore More
+              </Button>
+            </Box>
           </Item>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Item sx={{ minHeight: "350px" }}>
+          <Item sx={{ minHeight: "400px" }}>
             <Box
               display="flex"
               alignItems="center"
@@ -118,6 +135,23 @@ const ServiceSection = () => {
               teachers to support each other in effectively implementing AI
               education in schools.
             </Typography>
+            <Box textAlign="center" mt={9}>
+              <Button
+                variant="contained"
+                color="secondary"
+                startIcon={<i className="fab fa-youtube" />}
+                sx={{
+                  backgroundColor: "#FF0000",
+                  borderRadius: "20px",
+                  padding: "15px",
+                  fontFamily: "Montserrat, sans-serif",
+                }}
+                href="https://www.youtube.com/watch?v=0ET_Kzj5MY4&list=PLe_YFUGwCEm8qSxKcsiRtYoRM6rVpcm_v"
+                target="_blank"
+              >
+                Explore More
+              </Button>
+            </Box>
           </Item>
         </Grid>
       </Grid>

@@ -3,20 +3,19 @@
   align-items: center;
   justify-content: space-between;
   height: 150px;
-  background: 'white';
+  background-color: white;
   padding-right: 30px;
-  /* font-family: arial; */
+  padding-left: 30px;
 }
 
 .logo {
-  flex: 3;
+  flex: 1;
   text-align: left;
 }
 
 .logoImg {
-  height: 150px; 
-  width: auto; 
-  margin-left: 50px;
+  height: 100px; /* Adjusted height for responsiveness */
+  width: auto;
 }
 
 .links {
@@ -26,4 +25,56 @@
   gap: 30px;
   flex: 2;
   font-size: 19px;
+}
+
+@media screen and (max-width: 1024px) {
+  .containersz {
+    padding-right: 15px;
+    padding-left: 15px;
+    height: auto; /* Adjust height for smaller screens */
+    flex-direction: column; /* Stack logo and links vertically */
+  }
+
+  .logoImg {
+    height: 80px; /* Reduce the logo size on smaller screens */
+    margin-left: 0;
+  }
+
+  .links {
+    flex-direction: column; /* Stack the links vertically */
+    gap: 15px;
+    font-size: 17px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .containersz {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .logoImg {
+    height: 60px;
+  }
+
+  .links {
+    font-size: 16px;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .containersz {
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+
+  .logoImg {
+    height: 50px;
+  }
+
+  .links {
+    font-size: 14px;
+    gap: 5px;
+  }
 }

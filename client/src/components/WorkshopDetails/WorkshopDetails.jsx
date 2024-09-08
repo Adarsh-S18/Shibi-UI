@@ -4,6 +4,7 @@ import React from "react";
 const WorkshopDetails = () => {
   const containerStyle = {
     position: "relative",
+    marginTop: '20px',
     height: "20vh",
     overflow: "hidden",
   };
@@ -51,7 +52,7 @@ const WorkshopDetails = () => {
 
   return (
     <>
-      <div style={containerStyle}>
+      <div style={containerStyle} >
         <div style={imageStyle}></div>
         <div style={contentStyle}>
           <h1 style={headingStyle}>AI WORKSHOP</h1>

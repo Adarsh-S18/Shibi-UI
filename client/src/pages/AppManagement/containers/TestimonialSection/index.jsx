@@ -12,7 +12,7 @@ const testimonialsData = [
     id: 2,
     name: "Dr. N Ajith Kumar",
     img: "/test2.jpeg",
-    text: "In my fairly short association with her I have found her to be a “bundle full of energy.” She is one of the most proactive educational leaders I have had the occasion to associate with. Ready to take up any challenge and work really hard to make a mark in whatever she does is the hallmark of her character. For Shibi education is a religion and she is definitely destined to be a high priest in this field in the years to come. Modest to the core her willingness to learn despite being an authority in many areas shows her humility as an individual. A happy combination of beauty and brains her capacity to appreciate the achievements of others and feeling genuinely happy at their accomplishments are sterling virtues of her immaculate character.",
+    text: "In my fairly short association with her I have found her to be a bundle full of energy. She is one of the most proactive educational leaders I have had the occasion to associate with. Ready to take up any challenge and work really hard to make a mark in whatever she does is the hallmark of her character. For Shibi education is a religion and she is definitely destined to be a high priest in this field in the years to come. Modest to the core her willingness to learn despite being an authority in many areas shows her humility as an individual. A happy combination of beauty and brains her capacity to appreciate the achievements of others and feeling genuinely happy at their accomplishments are sterling virtues of her immaculate character.",
   },
 ];
 
@@ -37,14 +37,16 @@ const TestimonialSection = () => {
             <Paper
               sx={{
                 padding: "24px",
-                borderRadius: "8px",
+                borderRadius: "12px",
                 margin: "10px",
                 minHeight: "490px",
-                border: "1px solid #cbcbcb", // Light gray border for a clean, professional look
-                backgroundColor: "#f9f9f9", // Soft background to enhance readability
-                transition: "box-shadow 0.3s ease-in-out",
+                border: "2px solid #3f51b5", // Thicker, more visible border with a pleasant blue color
+                backgroundColor: "#ffffff", // Bright white background
+                boxShadow: "0px 4px 20px rgba(63, 81, 181, 0.15)", // Subtle shadow with a blue tint
+                transition: "all 0.3s ease-in-out",
                 "&:hover": {
-                  boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)", // Subtle shadow on hover for depth
+                  transform: "translateY(-5px)",
+                  boxShadow: "0px 6px 25px rgba(63, 81, 181, 0.25)", // Enhanced shadow on hover
                 },
               }}
             >
@@ -60,14 +62,14 @@ const TestimonialSection = () => {
                   alt={testimonial.name}
                   height={80}
                   width={80}
-                  style={{ borderRadius: "50%", marginRight: "20px" }}
+                  style={{ borderRadius: "50%", marginRight: "20px", border: "2px solid #3f51b5" }}
                 />
                 <Typography
                   variant="h6"
                   fontWeight={700}
                   sx={{
                     fontFamily: "Montserrat, sans-serif",
-                    color: "black",
+                    color: "#3f51b5", // Matching blue color for the name
                   }}
                 >
                   {testimonial.name}
@@ -76,13 +78,11 @@ const TestimonialSection = () => {
               <Typography
                 variant="body1"
                 fontSize={16}
-                fontWeight={400}
-                color="text.primary"
                 sx={{
-                  fontFamily: "Montserrat, sans-serif", // Clean and modern sans-serif font
+                  fontFamily: "Montserrat, sans-serif",
                   lineHeight: 1.7,
                   fontWeight: 500,
-                  color: "black", // Neutral dark gray for text
+                  color: "#333333", // Slightly darker text for better contrast on white
                 }}
               >
                 {testimonial.text}

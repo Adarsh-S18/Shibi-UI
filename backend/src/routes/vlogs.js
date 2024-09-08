@@ -5,6 +5,7 @@ const VlogsController = require("../controller/vlogsController");
 const vlogsController = new VlogsController();
 
 //ROUTES
-router.get("/vlogsController", vlogsController.getAllVlogs);
+router.get("/get-vlogs", vlogsController.getAllVlogs);
+router.post('/post-vlogs',vlogsController.postVlog)
 
-module.exports = { authRoutes: router };
+module.exports = { vlogRoutes: router };

@@ -6,7 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-export default function DetailsCard({ redirectTo }) {
+export default function DetailsCard({ name, description, redirectTo }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -16,12 +16,18 @@ export default function DetailsCard({ redirectTo }) {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          AI Workshop
+          {name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          In this day-long instructor-led workshop, participants will be
-          introduced to the fundamentals of data science theory, tools, and
-          practice...
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+          }}
+        >
+          {description}
         </Typography>
       </CardContent>
       <CardActions>

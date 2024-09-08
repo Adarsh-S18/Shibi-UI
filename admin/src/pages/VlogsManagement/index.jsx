@@ -7,12 +7,15 @@ import {
   Typography,
 } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const VlogsManagement = () => {
-  const [state, setState] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: "", link: "" });
+  const [rows, setRows] = useState([]);
+
   const columns = [
     { field: "name", headerName: "Description", width: 400 },
     { field: "link", headerName: "Link", width: 500 },
@@ -37,21 +40,55 @@ const VlogsManagement = () => {
     },
   ];
 
-  const rows = [
-    { id: 1, name: "Vlog 1", link: "https://youtu.be/V9rXjbq9e5A?si=HG_fBNbYTY1v1CZF" },
-    { id: 2, name: "Vlog 2", link: "https://youtu.be/V9rXjbq9e5A?si=HG_fBNbYTY1v1CZFs" },
-  ];
-
-  const [field1, setField1] = useState("");
-  const [field2, setField2] = useState("");
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission
-    console.log("Field 1:", field1);
-    console.log("Field 2:", field2);
-    // Close the modal after submission
-    setState(false);
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/vlogs/post-vlogs",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      console.log("Vlog added:", data);
+      fetchVlogs();
+      setModalOpen(false);
+      setFormData({ name: "", link: "" });
+    } catch (error) {
+      console.error("Error adding vlog:", error);
+    }
+  };
+
+  const fetchVlogs = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/vlogs/get-vlogs");
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      setRows(data);
+    } catch (error) {
+      console.error("Error fetching vlogs:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchVlogs();
+  }, []);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const handleEdit = (id) => {
@@ -61,6 +98,7 @@ const VlogsManagement = () => {
   const handleDelete = (id) => {
     console.log(`Delete row with id ${id}`);
   };
+
   return (
     <div>
       <Box
@@ -73,21 +111,24 @@ const VlogsManagement = () => {
         <Button
           variant="contained"
           color="primary"
-          onClick={() => setState(true)}
+          onClick={() => setModalOpen(true)}
         >
           Add
         </Button>
       </Box>
 
       <div style={{ height: 400, width: "100%" }}>
-        <DataGrid rows={rows} columns={columns} pageSize={5} />
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={5}
+          getRowId={(row) => row._id}
+        />
       </div>
-      {state && (
+      {modalOpen && (
         <Modal
-          open={state}
-          onClose={() => {
-            setState(false);
-          }}
+          open={modalOpen}
+          onClose={() => setModalOpen(false)}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
@@ -118,16 +159,18 @@ const VlogsManagement = () => {
                 label="Description"
                 variant="outlined"
                 margin="normal"
-                value={field1}
-                onChange={(e) => setField1(e.target.value)}
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
               />
               <TextField
                 fullWidth
                 label="Link"
                 variant="outlined"
                 margin="normal"
-                value={field2}
-                onChange={(e) => setField2(e.target.value)}
+                name="link"
+                value={formData.link}
+                onChange={handleChange}
               />
               <Button
                 type="submit"

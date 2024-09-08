@@ -9,13 +9,13 @@ import {
   IconButton,
 } from "@mui/material";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import YouTubeIcon from "@mui/icons-material/YouTube";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import EmailIcon from "@mui/icons-material/Email";
 
 const AboutSectionPage = () => {
   const roles = [
-    "LinkedIn Top Voice",
+    "LinkedIn Educational Top Voice",
     "Founder: N'Able & AI Teacher Community",
     "Teacher Educator",
     "WEN Kottayam Core Committee Member",
@@ -33,9 +33,10 @@ const AboutSectionPage = () => {
   return (
     <>
       <Grid
+      mt={14}
         container
         spacing={2}
-        style={{ height: "100vh", marginBottom: "60px" }} // Adjusted marginBottom from 160px to 60px
+        style={{ height: "100vh", marginBottom: "60px" }}
         justifyContent="center"
         alignItems="center"
       >
@@ -59,7 +60,7 @@ const AboutSectionPage = () => {
                 variant="h3"
                 sx={{
                   marginBottom: "10px",
-                  color: "#404040", // Darker, elegant shade for the text
+                  color: "#404040",
                   fontWeight: "bold",
                   letterSpacing: "0.05em",
                 }}
@@ -96,9 +97,9 @@ const AboutSectionPage = () => {
                       fontFamily: "Montserrat, sans-serif",
                       margin: "5px",
                       fontSize: "16px",
-                      backgroundColor: "#6c01bb", // Light bluish color for the chips
-                      border: "1px solid #00008B", // Border color to complement the background
-                      color: "white", // Text color for the chips
+                      backgroundColor: "#6c01bb",
+                      border: "1px solid #00008B",
+                      color: "white",
                       fontWeight: "bold",
                     }}
                   />
@@ -114,24 +115,24 @@ const AboutSectionPage = () => {
                   <InstagramIcon fontSize="large" />
                 </IconButton>
                 <IconButton
-                  href="https://www.facebook.com/"
+                  href="https://www.facebook.com/shibi.anand03"
                   target="_blank"
                   style={{ color: "blue" }}
                 >
                   <FacebookIcon fontSize="large" />
                 </IconButton>
                 <IconButton
-                  href="https://www.linkedin.com/"
+                  href="https://www.linkedin.com/in/shibi-anand/"
                   target="_blank"
                   style={{ color: "darkblue" }}
                 >
                   <LinkedInIcon fontSize="large" />
                 </IconButton>
                 <IconButton
-                  href="mailto:your-email@example.com"
+                  href="https://www.youtube.com/@NableByShibiAnand"
                   style={{ color: "red" }}
                 >
-                  <EmailIcon fontSize="large" />
+                  <YouTubeIcon fontSize="large" />
                 </IconButton>
               </Box>
 
@@ -139,7 +140,7 @@ const AboutSectionPage = () => {
                 style={{ fontFamily: "Montserrat, sans-serif" }}
                 variant="body1"
                 sx={{
-                  color: "rgba(0, 0, 0, 0.7)", // Black fade effect for the description
+                  color: "rgba(0, 0, 0, 0.7)",
                   fontSize: "21px",
                   fontWeight: 600,
                   marginTop: "50px",
@@ -155,20 +156,29 @@ const AboutSectionPage = () => {
             </Box>
           </Box>
         </Grid>
+
         <Grid item xs={12} md={3} sx={{ textAlign: "center" }}>
-          <img
-            src="/personal4.jpg"
-            style={{
-              borderRadius: "50%",
-              maxWidth: "100%",
-              maxHeight: "500px",
-              transition: "transform 0.5s ease",
-              objectFit: "cover",
+          <Box
+            sx={{
+              width: "450px",
+              height: "450px  ", // Set equal width and height for the circle
+              overflow: "hidden",
+              borderRadius: "50%", // Ensures the image is a circle
             }}
-            alt="Profile"
-            onMouseOver={(e) => (e.target.style.transform = "scale(1.1)")}
-            onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
-          />
+          >
+            <img
+              src="/personal4.jpg"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover", // Ensures the image covers the box
+                transition: "transform 0.5s ease",
+              }}
+              alt="Profile"
+              onMouseOver={(e) => (e.target.style.transform = "scale(1.1)")}
+              onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
+            />
+          </Box>
         </Grid>
       </Grid>
 
@@ -289,6 +299,7 @@ const AboutSectionPage = () => {
                       backgroundColor: "white",
                       padding: "20px",
                       borderRadius: "8px",
+                      minHeight: '180px',
                       marginBottom: "20px",
                     }}
                   >
@@ -349,9 +360,11 @@ const AboutSectionPage = () => {
                         fontWeight: 500,
                       }}
                     >
-                      Crafting engaging and impactful content for digital
-                      platforms, enhancing educational outreach and
-                      communication.
+                      At N'Able, we create socially relevant content through
+                      podcasts, interviews, reels, and write-ups. Our digital
+                      content aims to inspire, inform, and spark meaningful
+                      conversations, offering fresh perspectives on topics that
+                      matter most.
                     </Typography>
                   </Box>
                 </Grid>

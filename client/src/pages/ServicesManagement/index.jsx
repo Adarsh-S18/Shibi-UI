@@ -84,7 +84,7 @@ const ServiceManagement = () => {
   };
 
   return (
-    <Box sx={{ backgroundColor: "#6B5B95", py: 8 }}>
+    <Box sx={{ backgroundColor: "#6B5B95", py: 8 ,marginTop: '100px',marginBottom: '10px'}}>
       <Container maxWidth="lg">
         <Box sx={{ textAlign: "center", mb: 6 }}>
           <Typography

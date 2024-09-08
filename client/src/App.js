@@ -2,7 +2,6 @@ import TopBar from "./components/topbar/TopBar";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Contact from "./components/contact/Contact";
 import AppManagement from "./pages/AppManagement";
 import Footer from "./components/footer/Footer";
 import AboutSectionPage from "./pages/AboutManagement";
@@ -12,6 +11,7 @@ import FeedbackManagement from "./pages/FeedbackManagement";
 import "./App.css";
 import VlogsMangement from "./pages/VlogsManagement";
 import TestimonialsManagement from "./pages/TestimonialManagement";
+import ContactManagement from "./pages/ContactManagement";
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
           <Register />
         </Route>
         <Route path="/contact-form">
-          <Contact />
+          <ContactManagement />
         </Route>
         <Route path="/workshops">
           <WorkshopManagement />

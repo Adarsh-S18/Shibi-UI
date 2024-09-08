@@ -7,4 +7,4 @@ const feedbacksController = new FeedbacksController();
 //ROUTES
 router.get("/feedbacks", feedbacksController.getAllFeedbacks);
 
-module.exports = { authRoutes: router };
+module.exports = { feedbackRoutes: router };

@@ -5,6 +5,8 @@ const WorkshopsController = require("../controller/workshopsController");
 const workshopsController = new WorkshopsController();
 
 //ROUTES
-router.get("/workshops", workshopsController.getAllWorkshops);
+router.get("/get-workshops", workshopsController.getAllWorkshops);
+router.post("/add-workshop", workshopsController.addWorkshop);
 
-module.exports = { authRoutes: router };
+
+module.exports = { workshopRoutes: router };

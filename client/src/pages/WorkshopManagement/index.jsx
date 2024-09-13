@@ -55,6 +55,7 @@ const WorkshopManagement = () => {
               <DetailsCard
                 name={workshop.name}
                 description={workshop.description}
+                image={workshop?.images}
                 redirectTo={() => detailsViewRedirect(workshop)}
               />
             </Grid>

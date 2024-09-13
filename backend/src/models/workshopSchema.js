@@ -10,6 +10,7 @@ const workshopSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    images: [String], // Array of strings to store image paths
   },
   { timestamps: true }
 );

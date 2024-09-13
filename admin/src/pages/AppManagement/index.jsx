@@ -42,19 +42,19 @@ const AppManagement = () => {
           ADMIN PANEL
         </Typography>
         <List sx={{ margin: "10px" }}>
-          {/* <ListItem button component={Link} to="/dashboard">
+          {/* <ListItem  component={Link} to="/dashboard">
             <ListItemText primary="Dashboard" />
           </ListItem> */}
           <Divider />
-          <ListItem button component={Link} to="/vlogs">
+          <ListItem component={Link} to="/vlogs">
             <ListItemText primary="Vlogs" />
           </ListItem>
           <Divider />
-          <ListItem button component={Link} to="/workshops">
+          <ListItem component={Link} to="/workshops">
             <ListItemText primary="Workshops" />
           </ListItem>
           <Divider />
-          <ListItem button component={Link} to="/feedbacks">
+          <ListItem component={Link} to="/feedbacks">
             <ListItemText primary="Feedbacks" />
           </ListItem>
           <Divider />

@@ -95,10 +95,9 @@ export default function TopBar() {
           ))}
         </Box>
 
-        {/* For small screens */}
         <IconButton
           edge="start"
-          color="inherit"
+          color="secondary"
           aria-label="menu"
           sx={{ display: { xs: "block", md: "none" }, marginLeft: "auto" }}
           onClick={handleDrawerToggle}

@@ -10,13 +10,17 @@ const { vlogRoutes } = require("./routes/vlogs");
 const { workshopRoutes } = require("./routes/workshops");
 
 dotenv.config();
+
 app.use(express.json());
 app.use(cors());
-app.use("/images", express.static(path.join(__dirname, "/images")));
+app.use(express.urlencoded({ extended: true }));
 
-// Importing routesæ
+// Serve static files from the uploads folder
+app.use(
+  "/uploads",
+  express.static(path.join(__dirname, "routes", "static", "uploads"))
+);
 
-// Using routes
 app.use("/api/auth", authRoutes);
 app.use("/api/feedbacks", feedbackRoutes);
 app.use("/api/vlogs", vlogRoutes);
@@ -26,12 +30,23 @@ mongoose
   .connect("mongodb://localhost:27017/Shibi", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: true,
   })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
 
-app.listen("5000", () => {
-  console.log("Backend is running on port 5000.");
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
 });
+
+const PORT = process.env.PORT || 5000;
+const server = app.listen(PORT, () => {
+  console.log(`Backend is running on port ${PORT}.`);
+});
+
+// Graceful shutdown
+// process.on("SIGTERM", () => {
+//   server.close(() => {
+//     console.log("Process terminated");
+//   });
+// });

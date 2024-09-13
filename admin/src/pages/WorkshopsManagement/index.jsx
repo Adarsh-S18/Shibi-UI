@@ -6,6 +6,7 @@ import {
   Box,
   Modal,
   TextField,
+  Grid,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -13,13 +14,23 @@ import { DataGrid } from "@mui/x-data-grid";
 
 const WorkshopsManagement = () => {
   const [state, setState] = useState(false);
+  const [newUpdate, setNewUpdate] = useState(false);
   const [rows, setRows] = useState([]);
-  const [file, setFile] = useState(null);
+  const [filePreviews, setFilePreviews] = useState([]); // Preview URLs
+  const [files, setFiles] = useState([]); // Actual files
   const [editId, setEditId] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
   });
+
+  const [newUpdatesData, setNewUpdatesData] = useState({
+    youtubeLink: "",
+    image: null,
+  });
+
+  // const [youtubeLink, setYoutubeLink] = useState("");
+  // const [image, setImage] = useState(null);
 
   const columns = [
     { field: "name", headerName: "Name", width: 400 },
@@ -55,7 +66,6 @@ const WorkshopsManagement = () => {
         "http://localhost:5000/api/workshops/get-workshops"
       );
       const data = await response.json();
-      console.log(data);
       setRows(data);
     } catch (error) {
       console.error("Error fetching workshops:", error);
@@ -63,7 +73,10 @@ const WorkshopsManagement = () => {
   };
 
   const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
+    const selectedFiles = Array.from(event.target.files);
+    setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
+    const newPreviews = selectedFiles.map((file) => URL.createObjectURL(file));
+    setFilePreviews((prevPreviews) => [...prevPreviews, ...newPreviews]);
   };
 
   const handleChange = (event) => {
@@ -79,26 +92,32 @@ const WorkshopsManagement = () => {
     const formDataToSend = new FormData();
     formDataToSend.append("name", formData.name);
     formDataToSend.append("description", formData.description);
-    if (file) formDataToSend.append("file", file);
+
+    // Append multiple files to FormData
+    files.forEach((file) => {
+      formDataToSend.append("files[]", file);
+    });
+
     try {
       if (editId) {
         await fetch(
           `http://localhost:5000/api/workshops/update-workshop/${editId}`,
-          formDataToSend
+          {
+            method: "PUT",
+            body: formDataToSend,
+          }
         );
       } else {
         await fetch("http://localhost:5000/api/workshops/add-workshop", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+          body: formDataToSend,
         });
       }
       await fetchWorkshops();
       setState(false);
       setFormData({ name: "", description: "" });
-      setFile(null);
+      setFiles([]); // Reset file state
+      setFilePreviews([]); // Reset file previews
       setEditId(null);
     } catch (error) {
       console.error("Error submitting workshop:", error);
@@ -124,6 +143,41 @@ const WorkshopsManagement = () => {
     }
   };
 
+  const handleImageUpload = (event) => {
+    setNewUpdatesData({ ...newUpdatesData, image: event.target.files[0] });
+  };
+
+  const handleUpdatesSubmit = async () => {
+    const formData = new FormData();
+    formData.append("youtubeLink", newUpdatesData.youtubeLink);
+    if (newUpdatesData.image) {
+      formData.append("image", newUpdatesData.image);
+    }
+
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/workshops/new-updates",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        console.log("API Response:", data);
+        closeUpdatesModal();
+      } else {
+        console.error("Failed to upload update:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error uploading update:", error);
+    }
+  };
+
+  const closeUpdatesModal = () => {
+    setNewUpdate(false);
+  };
+
   return (
     <div>
       <Box
@@ -133,13 +187,22 @@ const WorkshopsManagement = () => {
         mb={2}
       >
         <Typography variant="h5">Workshops Management</Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => setState(true)}
-        >
-          Add
-        </Button>
+        <Box display="flex" justifyContent="flex-end" gap={2}>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={() => setNewUpdate(true)}
+          >
+            What's New
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setState(true)}
+          >
+            Add
+          </Button>
+        </Box>
       </Box>
 
       <div style={{ height: 400, width: "100%" }}>
@@ -156,7 +219,8 @@ const WorkshopsManagement = () => {
           onClose={() => {
             setState(false);
             setFormData({ name: "", description: "" });
-            setFile(null);
+            setFiles([]);
+            setFilePreviews([]);
             setEditId(null);
           }}
           aria-labelledby="modal-modal-title"
@@ -173,6 +237,8 @@ const WorkshopsManagement = () => {
               borderRadius: 1,
               boxShadow: 24,
               p: 4,
+              maxHeight: "90vh",
+              overflowY: "auto",
             }}
           >
             <Typography
@@ -204,11 +270,14 @@ const WorkshopsManagement = () => {
                 multiline
                 rows={4} // Adjusts the height of the textarea
               />
+
+              {/* File Input for Multiple File Selection */}
               <input
-                accept="*/*"
+                accept="image/*"
                 style={{ display: "none" }}
                 id="file-upload"
                 type="file"
+                multiple
                 onChange={handleFileChange}
               />
               <label htmlFor="file-upload">
@@ -219,9 +288,28 @@ const WorkshopsManagement = () => {
                   fullWidth
                   sx={{ mt: 2 }}
                 >
-                  Upload File
+                  Upload Files
                 </Button>
               </label>
+
+              {/* Preview Selected Images */}
+              <Grid container spacing={2} sx={{ mt: 2 }}>
+                {filePreviews.map((preview, index) => (
+                  <Grid item xs={4} key={index}>
+                    <img
+                      src={preview}
+                      alt={`Preview ${index + 1}`}
+                      style={{
+                        width: "100%",
+                        height: "150px",
+                        borderRadius: "8px",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+
               <Button
                 type="submit"
                 variant="contained"
@@ -232,6 +320,66 @@ const WorkshopsManagement = () => {
                 Submit
               </Button>
             </form>
+          </Box>
+        </Modal>
+      )}
+      {newUpdate && (
+        <Modal open={newUpdate} onClose={closeUpdatesModal}>
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: 400,
+              bgcolor: "background.paper",
+              borderRadius: "8px",
+              boxShadow: 24,
+              p: 4,
+            }}
+          >
+            <Typography variant="h6" mb={2}>
+              Add What's New Update
+            </Typography>
+            <TextField
+              fullWidth
+              label="YouTube Link"
+              variant="outlined"
+              value={newUpdatesData.youtubeLink}
+              onChange={(e) =>
+                setNewUpdatesData({
+                  ...newUpdatesData,
+                  youtubeLink: e.target.value,
+                })
+              }
+              margin="normal"
+            />
+            <Typography variant="h6" mb={2} sx={{ textAlign: "center" }}>
+              OR
+            </Typography>
+            <Button
+              variant="contained"
+              component="label"
+              color="error"
+              fullWidth
+              sx={{ mb: 2 }}
+            >
+              Upload Image
+              <input
+                type="file"
+                hidden
+                accept="image/*"
+                onChange={handleImageUpload}
+              />
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              onClick={handleUpdatesSubmit}
+            >
+              Submit
+            </Button>
           </Box>
         </Modal>
       )}

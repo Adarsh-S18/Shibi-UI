@@ -44,15 +44,15 @@ const AppManagement = () => {
         </Typography>
         <List sx={{ margin: "10px" }}>
           <Divider />
-          <ListItem component={Link} to="/vlogs">
+          <ListItem component={Link} to="admin/vlogs">
             <ListItemText primary="Vlogs" />
           </ListItem>
           <Divider />
-          <ListItem component={Link} to="/workshops">
+          <ListItem component={Link} to="admin/workshops">
             <ListItemText primary="Workshops" />
           </ListItem>
           <Divider />
-          <ListItem component={Link} to="/feedbacks">
+          <ListItem component={Link} to="admin/feedbacks">
             <ListItemText primary="Feedbacks" />
           </ListItem>
           <Divider />
@@ -61,11 +61,11 @@ const AppManagement = () => {
 
       <div style={{ flexGrow: 1, padding: "16px" }}>
         <Routes>
-          <Route path="login" element={<Login />} />
-          <Route path="dashboard" element={<WorkshopsManagement />} />
-          <Route path="vlogs" element={<VlogsManagement />} />
-          <Route path="feedbacks" element={<FeedbacksManagement />} />
-          <Route path="workshops" element={<WorkshopsManagement />} />
+          <Route path="admin/login" element={<Login />} />
+          <Route path="admin/dashboard" element={<WorkshopsManagement />} />
+          <Route path="admin/vlogs" element={<VlogsManagement />} />
+          <Route path="admin/feedbacks" element={<FeedbacksManagement />} />
+          <Route path="admin/workshops" element={<WorkshopsManagement />} />
         </Routes>
       </div>
     </div>

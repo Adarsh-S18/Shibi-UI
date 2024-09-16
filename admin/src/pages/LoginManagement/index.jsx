@@ -9,10 +9,9 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (username === "admin" && password === "admin123") {
+    if (username === "Shibi" && password === "Shibi@123") {
       localStorage.setItem("isAuthenticated", "true");
-      console.log("Navigating to /vlogs");
-      navigate("/vlogs");
+      navigate("admin/vlogs");
     } else {
       alert("Invalid credentials");
     }

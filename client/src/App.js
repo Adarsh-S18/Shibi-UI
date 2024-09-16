@@ -1,6 +1,4 @@
 import TopBar from "./components/topbar/TopBar";
-import Login from "./pages/login/Login";
-import Register from "./pages/register/Register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AppManagement from "./pages/AppManagement";
 import Footer from "./components/footer/Footer";
@@ -24,9 +22,6 @@ function App() {
         <Route path="/about-us">
           <AboutSectionPage />
         </Route>
-        <Route path="/register">
-          <Register />
-        </Route>
         <Route path="/contact-form">
           <ContactManagement />
         </Route>
@@ -44,9 +39,6 @@ function App() {
         </Route>
         <Route path="/testimonials">
           <TestimonialsManagement />
-        </Route>
-        <Route path="/login">
-          <Login />
         </Route>
       </Switch>
       <Footer />

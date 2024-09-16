@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DetailsCard from "../../components/DetailsCard/DetailsCard";
 import { Grid } from "@mui/material";
 import WorkshopDetails from "./containers/WorkshopDetails";
+import { baseURL } from "../../config/common";
 
 const WorkshopManagement = () => {
   const [detailsView, setdetailsView] = useState(false);
@@ -15,7 +16,7 @@ const WorkshopManagement = () => {
   const fetchWorkshops = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/workshops/get-workshops"
+        `${baseURL}/api/workshops/get-workshops`
       );
       const data = await response.json();
       setWorkshopDetails(data);

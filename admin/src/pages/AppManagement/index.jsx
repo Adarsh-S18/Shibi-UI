@@ -11,6 +11,7 @@ import {
 import WorkshopsManagement from "../WorkshopsManagement";
 import VlogsManagement from "../VlogsManagement";
 import FeedbacksManagement from "../FeedbacksManagement";
+import Login from "../LoginManagement";
 
 const AppManagement = () => {
   return (
@@ -42,9 +43,6 @@ const AppManagement = () => {
           ADMIN PANEL
         </Typography>
         <List sx={{ margin: "10px" }}>
-          {/* <ListItem  component={Link} to="/dashboard">
-            <ListItemText primary="Dashboard" />
-          </ListItem> */}
           <Divider />
           <ListItem component={Link} to="/vlogs">
             <ListItemText primary="Vlogs" />
@@ -63,6 +61,7 @@ const AppManagement = () => {
 
       <div style={{ flexGrow: 1, padding: "16px" }}>
         <Routes>
+          <Route path="login" element={<Login />} />
           <Route path="dashboard" element={<WorkshopsManagement />} />
           <Route path="vlogs" element={<VlogsManagement />} />
           <Route path="feedbacks" element={<FeedbacksManagement />} />

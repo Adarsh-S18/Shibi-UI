@@ -11,21 +11,12 @@ import {
   Typography,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { baseURL } from "../../config/common";
 
 const FeedbacksManagement = () => {
-  // Background images fetched from the DB (you will fetch these from your API)
-  const [dbImages, setDbImages] = useState([
-    "https://peoplemanagingpeople.com/wp-content/uploads/sites/3/2022/07/8-Effective-Ways-To-Get-Employee-Feedback-Featured-Image-1-1200x630.png",
-    "https://peoplemanagingpeople.com/wp-content/uploads/sites/3/2022/07/8-Effective-Ways-To-Get-Employee-Feedback-Featured-Image-1-1200x630.png",
-    "https://www.shutterstock.com/image-vector/customer-loyalty-consumer-satisfaction-giving-260nw-2437456199.jpg",
-    "https://www.newbreedrevenue.com/hs-fs/hubfs/shutterstock_695711272.jpg?width=5001&name=shutterstock_695711272.jpg",
-    "https://t3.ftcdn.net/jpg/03/76/66/16/360_F_376661672_OUk4ws66zUuVkOsb9hnbC5Mcg1NjrCI6.jpg",
-  ]);
-
-  // Modal state to handle new uploads
   const [state, setState] = useState(false);
-  const [newImages, setNewImages] = useState([]); // Store selected images inside the modal
-  const [newImagePreviews, setNewImagePreviews] = useState([]); // Preview images for the modal
+  const [newImages, setNewImages] = useState([]);
+  const [newImagePreviews, setNewImagePreviews] = useState([]);
   const [feedbackImages, setFeedbackImages] = useState([]);
 
   console.log(feedbackImages);
@@ -36,7 +27,7 @@ const FeedbacksManagement = () => {
   const fetchFeedbacks = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/feedbacks/get-feedbacks"
+        `${baseURL}/api/feedbacks/get-feedbacks`
       );
       const data = await response.json();
       setFeedbackImages(data);
@@ -63,7 +54,7 @@ const FeedbacksManagement = () => {
     });
     try {
       const response = await fetch(
-        "http://localhost:5000/api/feedbacks/add-feedback",
+        `${baseURL}/api/feedbacks/add-feedback`,
         {
           method: "POST",
           body: formData,
@@ -89,11 +80,6 @@ const FeedbacksManagement = () => {
     const updatedPreviews = newImagePreviews.filter((_, i) => i !== index);
     setNewImages(updatedImages);
     setNewImagePreviews(updatedPreviews);
-  };
-
-  const handleDeleteDbImage = (index) => {
-    const newDbImages = dbImages.filter((_, i) => i !== index);
-    setDbImages(newDbImages);
   };
 
   return (
@@ -124,7 +110,7 @@ const FeedbacksManagement = () => {
               <CardMedia
                 component="img"
                 height="200"
-                image={`http://localhost:5000${img}`}
+                image={`${baseURL}${img}`}
                 alt={`Feedback Image ${index + 1}`}
               />
               <CardActions
@@ -137,13 +123,13 @@ const FeedbacksManagement = () => {
                 }}
                 className="delete-btn"
               >
-                <IconButton
+                {/* <IconButton
                   color="error"
                   onClick={() => handleDeleteDbImage(index)}
                   sx={{ bgcolor: "rgba(255,255,255,0.8)" }}
                 >
                   <DeleteIcon />
-                </IconButton>
+                </IconButton> */}
               </CardActions>
             </Card>
           </Grid>

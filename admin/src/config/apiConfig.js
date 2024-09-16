@@ -1,7 +1,8 @@
 import axios from "axios";
+import { baseURL } from "./common";
 
 const API = axios.create({
-  baseURL: "http://167.71.235.26:5000/api/",
+  baseURL: `${baseURL}/api/`,
 });
 
 // Example GET request

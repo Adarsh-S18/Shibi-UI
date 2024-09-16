@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, Typography, Box } from "@mui/material";
+import { baseURL } from "../../../../config/common";
 
 const WorkshopDetails = ({ workshop }) => {
   const containerStyle = {
@@ -113,7 +114,7 @@ const WorkshopDetails = ({ workshop }) => {
             <Grid item xs={6} md={3} key={index}>
               <Box
                 component="img"
-                src={`http://localhost:5000${image}`}
+                src={`${baseURL}${image}`}
                 alt={`Gallery ${index + 1}`}
                 sx={galleryImageStyle}
               />

@@ -1,5 +1,6 @@
 import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { baseURL } from "../../config/common";
 
 const VlogsManagement = () => {
   const [vlogs, setVlogs] = useState([]);
@@ -11,7 +12,7 @@ const VlogsManagement = () => {
 
   const fetchVlogs = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/vlogs/get-vlogs");
+      const response = await fetch(`${baseURL}/api/vlogs/get-vlogs`);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }

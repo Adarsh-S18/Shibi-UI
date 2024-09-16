@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Grid, Typography, Box } from "@mui/material";
 import NewReleasesIcon from "@mui/icons-material/NewReleases";
+import { baseURL } from "../../../../config/common";
 
 const ExploreSection = () => {
   const [updateData, setUpdateData] = useState(null);
@@ -11,7 +12,7 @@ const ExploreSection = () => {
   const fetchWorkshops = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/workshops/get-new-updates"
+       `${baseURL}/api/workshops/get-new-updates`
       );
       const data = await response.json();
       setUpdateData(data);
@@ -91,7 +92,7 @@ const ExploreSection = () => {
                 ></iframe>
               ) : updateData.image ? (
                 <img
-                  src={`http://localhost:5000${updateData.image}`}
+                  src={`${baseURL}${updateData.image}`}
                   alt="What's New Update"
                   style={{
                     width: "100%",

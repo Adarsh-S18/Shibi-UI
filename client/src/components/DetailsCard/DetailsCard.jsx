@@ -5,6 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { baseURL } from "../../config/common";
 
 export default function DetailsCard({ name, description, image, redirectTo }) {
   console.log(image);
@@ -12,7 +13,7 @@ export default function DetailsCard({ name, description, image, redirectTo }) {
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         sx={{ height: 140 }}
-        image={`http://localhost:5000${image[0]}`}
+        image={`${baseURL}${image[0]}`}
         title="green iguana"
       />
       <CardContent>

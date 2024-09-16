@@ -11,6 +11,7 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { DataGrid } from "@mui/x-data-grid";
+import { baseURL } from "../../config/common";
 
 const WorkshopsManagement = () => {
   const [state, setState] = useState(false);
@@ -63,7 +64,7 @@ const WorkshopsManagement = () => {
   const fetchWorkshops = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/workshops/get-workshops"
+        `${baseURL}/api/workshops/get-workshops`
       );
       const data = await response.json();
       setRows(data);
@@ -74,6 +75,7 @@ const WorkshopsManagement = () => {
 
   const handleFileChange = (event) => {
     const selectedFiles = Array.from(event.target.files);
+
     setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
     const newPreviews = selectedFiles.map((file) => URL.createObjectURL(file));
     setFilePreviews((prevPreviews) => [...prevPreviews, ...newPreviews]);
@@ -101,14 +103,14 @@ const WorkshopsManagement = () => {
     try {
       if (editId) {
         await fetch(
-          `http://localhost:5000/api/workshops/update-workshop/${editId}`,
+          `${baseURL}/api/workshops/update-workshop/${editId}`,
           {
             method: "PUT",
             body: formDataToSend,
           }
         );
       } else {
-        await fetch("http://localhost:5000/api/workshops/add-workshop", {
+        await fetch(`${baseURL}/api/workshops/add-workshop`, {
           method: "POST",
           body: formDataToSend,
         });
@@ -156,7 +158,7 @@ const WorkshopsManagement = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/workshops/new-updates",
+        `${baseURL}/api/workshops/new-updates`,
         {
           method: "POST",
           body: formData,

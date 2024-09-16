@@ -1,7 +1,8 @@
 import axios from "axios";
+import { baseURL } from "./common";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api/",
+  baseURL: `${baseURL}/api/`,
 });
 
 // Example GET request

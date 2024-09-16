@@ -10,6 +10,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import React, { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { baseURL } from "../../config/common";
 
 const VlogsManagement = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -44,7 +45,7 @@ const VlogsManagement = () => {
     event.preventDefault();
     try {
       const response = await fetch(
-        "http://localhost:5000/api/vlogs/post-vlogs",
+        `${baseURL}/api/vlogs/post-vlogs`,
         {
           method: "POST",
           headers: {
@@ -68,7 +69,7 @@ const VlogsManagement = () => {
 
   const fetchVlogs = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/vlogs/get-vlogs");
+      const response = await fetch(`${baseURL}/api/vlogs/get-vlogs`);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }

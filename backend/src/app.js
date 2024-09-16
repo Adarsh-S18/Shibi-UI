@@ -27,7 +27,7 @@ app.use("/api/vlogs", vlogRoutes);
 app.use("/api/workshops", workshopRoutes);
 
 mongoose
-  .connect("mongodb://localhost:27017/Shibi", {
+  .connect("mongodb://127.0.0.1:27017/Shibi", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

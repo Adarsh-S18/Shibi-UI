@@ -7,7 +7,7 @@ const isAuthenticated = () => {
 
 const ProtectedRoute = ({ children }) => {
   if (!isAuthenticated()) {
-    return <Navigate to="admin-login" />;
+    return <Navigate to="admin/login" />;
   }
   return children;
 };

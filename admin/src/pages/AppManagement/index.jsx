@@ -47,15 +47,15 @@ const AppManagement = () => {
         </Typography>
         <List sx={{ margin: "10px" }}>
           <Divider />
-          <ListItem component={Link} to="manage-vlogs">
+          <ListItem component={Link} to="admin/manage-vlogs">
             <ListItemText primary="Vlogs" />
           </ListItem>
           <Divider />
-          <ListItem component={Link} to="manage-workshops">
+          <ListItem component={Link} to="admin/manage-workshops">
             <ListItemText primary="Workshops" />
           </ListItem>
           <Divider />
-          <ListItem component={Link} to="manage-feedbacks">
+          <ListItem component={Link} to="admin/manage-feedbacks">
             <ListItemText primary="Feedbacks" />
           </ListItem>
           <Divider />
@@ -63,7 +63,7 @@ const AppManagement = () => {
           sx={{cursor: 'pointer', backgroundColor: 'red',color: 'white', borderRadius: '10px'}}
             onClick={() => {
               localStorage.removeItem("isAuthenticated");
-              navigate('/admin-login')
+              navigate('admin/login')
             }}
           >
             <LogoutIcon/>
@@ -75,11 +75,11 @@ const AppManagement = () => {
 
       <div style={{ flexGrow: 1, padding: "16px" }}>
         <Routes>
-          <Route path="admin-login" element={<Login />} />
-          <Route path="manage-dashboard" element={<WorkshopsManagement />} />
-          <Route path="manage-vlogs" element={<VlogsManagement />} />
-          <Route path="manage-feedbacks" element={<FeedbacksManagement />} />
-          <Route path="manage-workshops" element={<WorkshopsManagement />} />
+          <Route path="admin/login" element={<Login />} />
+          <Route path="admin/manage-dashboard" element={<WorkshopsManagement />} />
+          <Route path="admin/manage-vlogs" element={<VlogsManagement />} />
+          <Route path="admin/manage-feedbacks" element={<FeedbacksManagement />} />
+          <Route path="admin/manage-workshops" element={<WorkshopsManagement />} />
         </Routes>
       </div>
     </div>

@@ -11,7 +11,7 @@ const Login = () => {
     e.preventDefault();
     if (username === "Shibi" && password === "Shibi@123") {
       localStorage.setItem("isAuthenticated", "true");
-      navigate("/manage-vlogs");
+      navigate("/admin/manage-vlogs");
     } else {
       alert("Invalid credentials");
     }

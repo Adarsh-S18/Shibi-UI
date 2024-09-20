@@ -17,7 +17,7 @@ class WorkshopsController {
     try {
       const { name, description } = req.body;
       const filePaths = req.files.map(
-        (file) => `/uploads/${file.filename}`
+        (file) => `/api/uploads/${file.filename}`
       );
       const newWorkshop = new Workshop({
         name,
@@ -36,7 +36,7 @@ class WorkshopsController {
       const { youtubeLink } = req.body;
       let newUpdateData = {};
       if (req.file) {
-        newUpdateData.image = `/uploads/${req.file.filename}`;
+        newUpdateData.image = `/api/uploads/${req.file.filename}`;
       }
       if (youtubeLink) {
         newUpdateData.youtubeLink = youtubeLink;

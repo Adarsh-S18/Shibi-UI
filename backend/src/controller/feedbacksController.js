@@ -12,7 +12,7 @@ class FeedbacksController {
 
   addFeedbacks = async (req, res, next) => {
     try {
-      const filePaths = req.files.map((file) => `/uploads/${file.filename}`);
+      const filePaths = req.files.map((file) => `/api/uploads/${file.filename}`);
       let feedback = await Feedback.findOne();
       if (feedback) {
         feedback.images.push(...filePaths);

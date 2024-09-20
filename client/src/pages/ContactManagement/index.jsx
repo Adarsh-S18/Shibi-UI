@@ -9,14 +9,7 @@ import {
   Box,
   Paper,
 } from "@mui/material";
-import {
-  Facebook,
-  Instagram,
-  Twitter,
-  Headset,
-  Email,
-  LocationOn,
-} from "@mui/icons-material";
+import { Headset, Email } from "@mui/icons-material";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -139,7 +132,7 @@ export default function ContactManagement() {
                   variant="body1"
                   sx={{ fontFamily: "Montserrat, sans-serif", fontWeight: 600 }}
                 >
-                  +91 99460 47574
+                  +91 8848496043
                 </Typography>
               </Box>
               <Box display="flex" alignItems="center" marginBottom={2}>
@@ -148,19 +141,10 @@ export default function ContactManagement() {
                   variant="body1"
                   sx={{ fontFamily: "Montserrat, sans-serif", fontWeight: 600 }}
                 >
-                  shibivi@gmail.com
+                  nablebyshibianand@gmail.com
                 </Typography>
               </Box>
-              {/* <Box display="flex" alignItems="center" marginBottom={2}>
-                <LocationOn color="primary" style={{ marginRight: "10px" }} />
-                <Typography
-                  variant="body1"
-                  sx={{ fontFamily: "Montserrat, sans-serif", fontWeight: 600 }}
-                >
-                  1000+ Travel partners and 65+ Service cities across India,
-                  USA, Canada & UAE
-                </Typography>
-              </Box> */}
+
               <Box mt={4} display="flex" justifyContent="center">
                 <IconButton
                   href="https://www.instagram.com/"

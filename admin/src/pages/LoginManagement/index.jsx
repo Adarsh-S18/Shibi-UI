@@ -5,13 +5,13 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   const handleLogin = (e) => {
     e.preventDefault();
     if (username === "Shibi" && password === "Shibi@123") {
       localStorage.setItem("isAuthenticated", "true");
-      navigate("admin/vlogs");
+      navigate("/manage-vlogs");
     } else {
       alert("Invalid credentials");
     }

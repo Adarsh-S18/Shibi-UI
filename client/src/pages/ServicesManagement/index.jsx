@@ -62,9 +62,9 @@ const ServiceManagement = () => {
       icon: <LeaderboardIcon fontSize="large" />,
     },
     {
-      name: "Event Hosting and MC Services",
+      name: "Event Hosting and Emcee Services",
       description:
-        "Professional hosting and MC services for educational and community events.",
+        "Professional hosting and MEmceeC services for educational and community events.",
       icon: <EventIcon fontSize="large" />,
     },
     {

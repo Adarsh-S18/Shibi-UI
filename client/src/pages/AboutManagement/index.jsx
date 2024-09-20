@@ -33,145 +33,163 @@ const AboutSectionPage = () => {
   return (
     <>
       <Grid
-      mt={14}
         container
         spacing={2}
-        style={{ height: "100vh", marginBottom: "60px" }}
+        sx={{ mt: 14, mb: 6, px: 2 }} // px adds padding to adjust content horizontally
         justifyContent="center"
         alignItems="center"
       >
-        <Grid item xs={12} md={7} sx={{ textAlign: "center" }}>
+        <Grid
+          item
+          xs={12}
+          md={7}
+          sx={{ textAlign: "center", mb: { xs: 4, md: 0 } }}
+        >
           <Box
             sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
               padding: "40px",
               borderRadius: "20px",
               boxShadow: "0px 10px 20px rgba(0.9, 0.9, 0.9, 0.3)",
               backgroundColor: "white",
-              gap: "20px",
               transition: "transform 0.3s",
             }}
           >
-            <Box sx={{ flex: 2, textAlign: "center" }}>
-              <Typography
-                style={{ fontFamily: "Montserrat, sans-serif" }}
-                variant="h3"
-                sx={{
-                  marginBottom: "10px",
-                  color: "#404040",
-                  fontWeight: "bold",
-                  letterSpacing: "0.05em",
-                }}
-              >
-                Shibi Anand
-              </Typography>
-              <Typography
-                style={{ fontFamily: "Montserrat, sans-serif" }}
-                variant="body1"
-                sx={{
-                  color: "#404040",
-                  fontSize: "22px",
-                  marginBottom: "18px",
-                  fontWeight: 700,
-                }}
-              >
-                Edupreneur & Mentor | Founder of N'Able and AI Teacher Community
-              </Typography>
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  justifyContent: "center",
-                  gap: "8px",
-                  marginTop: "10px",
-                }}
-              >
-                {roles.map((role, index) => (
-                  <Chip
-                    key={index}
-                    label={role}
-                    variant="outlined"
-                    style={{
-                      fontFamily: "Montserrat, sans-serif",
-                      margin: "5px",
-                      fontSize: "16px",
-                      backgroundColor: "#6c01bb",
-                      border: "1px solid #00008B",
-                      color: "white",
-                      fontWeight: "bold",
-                    }}
-                  />
-                ))}
-              </div>
+            <Typography
+              variant="h3"
+              sx={{
+                fontFamily: "Montserrat, sans-serif",
+                mb: "10px",
+                color: "#404040",
+                fontWeight: "bold",
+                letterSpacing: "0.05em",
+              }}
+            >
+              Shibi Anand
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                fontFamily: "Montserrat, sans-serif",
+                color: "#404040",
+                fontSize: "22px",
+                mb: "18px",
+                fontWeight: 700,
+              }}
+            >
+              Edupreneur & Mentor | Founder of N'Able and AI Teacher Community
+            </Typography>
 
-              <Box sx={{ marginTop: "20px" }}>
-                <IconButton
-                  href="https://www.instagram.com/"
-                  target="_blank"
-                  style={{ color: "#90268d" }}
-                >
-                  <InstagramIcon fontSize="large" />
-                </IconButton>
-                <IconButton
-                  href="https://www.facebook.com/shibi.anand03"
-                  target="_blank"
-                  style={{ color: "blue" }}
-                >
-                  <FacebookIcon fontSize="large" />
-                </IconButton>
-                <IconButton
-                  href="https://www.linkedin.com/in/shibi-anand/"
-                  target="_blank"
-                  style={{ color: "darkblue" }}
-                >
-                  <LinkedInIcon fontSize="large" />
-                </IconButton>
-                <IconButton
-                  href="https://www.youtube.com/@NableByShibiAnand"
-                  style={{ color: "red" }}
-                >
-                  <YouTubeIcon fontSize="large" />
-                </IconButton>
-              </Box>
-
-              <Typography
-                style={{ fontFamily: "Montserrat, sans-serif" }}
-                variant="body1"
-                sx={{
-                  color: "rgba(0, 0, 0, 0.7)",
-                  fontSize: "21px",
-                  fontWeight: 600,
-                  marginTop: "50px",
-                  marginBottom: "20px",
-                  letterSpacing: "0.03em",
-                  lineHeight: "1.5",
-                }}
-              >
-                Navigate the evolving landscape of education with N'Able by
-                Shibi Anand – Empowering minds, reshaping classrooms, and
-                seamlessly adapting to the dynamic future of learning.
-              </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                gap: "8px",
+                mt: "10px",
+              }}
+            >
+              {roles.map((role, index) => (
+                <Chip
+                  key={index}
+                  label={role}
+                  variant="outlined"
+                  sx={{
+                    fontFamily: "Montserrat, sans-serif",
+                    fontSize: "16px",
+                    backgroundColor: "#6c01bb",
+                    border: "1px solid #00008B",
+                    color: "white",
+                    fontWeight: "bold",
+                    m: "5px",
+                  }}
+                />
+              ))}
             </Box>
+
+            <Box sx={{ mt: 3 }}>
+              <IconButton
+                href="https://www.instagram.com/"
+                target="_blank"
+                sx={{ color: "#90268d" }}
+              >
+                <InstagramIcon fontSize="large" />
+              </IconButton>
+              <IconButton
+                href="https://www.facebook.com/shibi.anand03"
+                target="_blank"
+                sx={{ color: "blue" }}
+              >
+                <FacebookIcon fontSize="large" />
+              </IconButton>
+              <IconButton
+                href="https://www.linkedin.com/in/shibi-anand/"
+                target="_blank"
+                sx={{ color: "darkblue" }}
+              >
+                <LinkedInIcon fontSize="large" />
+              </IconButton>
+              <IconButton
+                href="https://www.youtube.com/@NableByShibiAnand"
+                target="_blank"
+                sx={{ color: "red" }}
+              >
+                <YouTubeIcon fontSize="large" />
+              </IconButton>
+
+              <IconButton
+                href="https://podcasters.spotify.com/pod/show/shibi-anand3"
+                target="_blank"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1.3em"
+                  height="1.3em"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="#03c200"
+                    d="M17.9 10.9C14.7 9 9.35 8.8 6.3 9.75c-.5.15-1-.15-1.15-.6c-.15-.5.15-1 .6-1.15c3.55-1.05 9.4-.85 13.1 1.35c.45.25.6.85.35 1.3c-.25.35-.85.5-1.3.25m-.1 2.8c-.25.35-.7.5-1.05.25c-2.7-1.65-6.8-2.15-9.95-1.15c-.4.1-.85-.1-.95-.5s.1-.85.5-.95c3.65-1.1 8.15-.55 11.25 1.35c.3.15.45.65.2 1m-1.2 2.75c-.2.3-.55.4-.85.2c-2.35-1.45-5.3-1.75-8.8-.95c-.35.1-.65-.15-.75-.45c-.1-.35.15-.65.45-.75c3.8-.85 7.1-.5 9.7 1.1c.35.15.4.55.25.85M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2"
+                  />
+                </svg>
+              </IconButton>
+            </Box>
+
+            <Typography
+              variant="body1"
+              sx={{
+                fontFamily: "Montserrat, sans-serif",
+                color: "rgba(0, 0, 0, 0.7)",
+                fontSize: "21px",
+                fontWeight: 600,
+                mt: 6,
+                letterSpacing: "0.03em",
+                lineHeight: "1.5",
+              }}
+            >
+              Navigate the evolving landscape of education with N'Able by Shibi
+              Anand – Empowering minds, reshaping classrooms, and seamlessly
+              adapting to the dynamic future of learning.
+            </Typography>
           </Box>
         </Grid>
 
         <Grid item xs={12} md={3} sx={{ textAlign: "center" }}>
           <Box
             sx={{
-              width: "450px",
-              height: "450px  ", // Set equal width and height for the circle
+              width: { xs: "70%", md: "100%" },
+              maxWidth: "450px",
+              height: "auto",
               overflow: "hidden",
-              borderRadius: "50%", // Ensures the image is a circle
+              borderRadius: "50%",
+              margin: "0 auto",
             }}
           >
             <img
-              src="/personal4.jpg"
+              src="/personal1.jpg"
               style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover", // Ensures the image covers the box
+                width: "85%",
+                height: "auto",
+                objectFit: "cover",
                 transition: "transform 0.5s ease",
               }}
               alt="Profile"
@@ -183,13 +201,12 @@ const AboutSectionPage = () => {
       </Grid>
 
       <Container>
-        <Grid container spacing={2} mb={6} sx={{ marginTop: "60px" }}>
-          {/* Adjusted marginTop from 250px to 60px */}
+        <Grid container spacing={2} mb={6} sx={{ mt: { xs: 6, md: 10 } }}>
           <Grid item xs={12}>
             <Paper
               elevation={3}
-              style={{
-                padding: "40px",
+              sx={{
+                p: 4,
                 backgroundColor: "#570080",
                 borderRadius: "10px",
                 boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.1)",
@@ -198,21 +215,22 @@ const AboutSectionPage = () => {
               <Typography
                 variant="h4"
                 gutterBottom
-                style={{
+                sx={{
                   fontFamily: "Montserrat, sans-serif",
                   fontWeight: "bold",
                   color: "white",
-                  marginBottom: "30px",
+                  mb: 4,
                   textAlign: "center",
                   textShadow: "1px 1px 2px rgba(0, 0, 0, 0.1)",
                 }}
               >
                 N'Able for you
               </Typography>
+
               <Typography
                 variant="h6"
                 mb={6}
-                style={{
+                sx={{
                   textAlign: "center",
                   fontFamily: "Montserrat, sans-serif",
                   fontWeight: "bold",
@@ -220,154 +238,68 @@ const AboutSectionPage = () => {
                 }}
               >
                 N'Able is dedicated to enhancing education and personal
-                development through <br></br>a variety of tailored services:
+                development through tailored services:
               </Typography>
+
               <Grid container spacing={4}>
-                <Grid item xs={12} md={6}>
-                  <Box
-                    sx={{
-                      backgroundColor: "white",
-                      padding: "20px",
-                      borderRadius: "8px",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    <Typography
-                      variant="h6"
-                      gutterBottom
-                      style={{
-                        fontFamily: "Montserrat, sans-serif",
-                        fontWeight: "bold",
-                        color: "#2A003A",
+                {[
+                  {
+                    title: "1. Workshops",
+                    content:
+                      "Engaging sessions designed to upskill teachers, students, and school leaders, fostering growth and innovation.",
+                  },
+                  {
+                    title: "2. Professional Mentoring",
+                    content:
+                      "Personalized guidance to help individuals excel in their roles, driving professional growth and development.",
+                  },
+                  {
+                    title: "3. Training",
+                    content:
+                      "Includes AI Integration Training, Empowerment Workshops, and Motivational Sessions to enhance skills.",
+                  },
+                  {
+                    title: "4. Digital Content Creation",
+                    content:
+                      "At N'Able, we create socially relevant content, inspiring and sparking meaningful conversations.",
+                  },
+                ].map((service, index) => (
+                  <Grid key={index} item xs={12} md={6}>
+                    <Box
+                      sx={{
+                        backgroundColor: "white",
+                        padding: "20px",
+                        borderRadius: "8px",
+                        minHeight: "180px",
+                        mb: "20px",
                       }}
                     >
-                      1. Workshops
-                    </Typography>
-                    <Typography
-                      paragraph
-                      style={{
-                        fontFamily: "Montserrat, sans-serif",
-                        fontSize: "16px",
-                        color: "#333333",
-                        lineHeight: "1.6",
-                        fontWeight: 500,
-                      }}
-                    >
-                      Engaging sessions designed to upskill teachers, students,
-                      and school leaders, fostering growth and innovation.
-                    </Typography>
-                  </Box>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <Box
-                    sx={{
-                      backgroundColor: "white",
-                      padding: "20px",
-                      borderRadius: "8px",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    <Typography
-                      variant="h6"
-                      gutterBottom
-                      style={{
-                        fontFamily: "Montserrat, sans-serif",
-                        fontWeight: "bold",
-                        color: "#2A003A",
-                      }}
-                    >
-                      2. Professional Mentoring
-                    </Typography>
-                    <Typography
-                      paragraph
-                      style={{
-                        fontFamily: "Montserrat, sans-serif",
-                        fontSize: "16px",
-                        color: "#333333",
-                        lineHeight: "1.6",
-                        fontWeight: 500,
-                      }}
-                    >
-                      Personalized guidance to help individuals excel in their
-                      roles, driving professional growth and development.
-                    </Typography>
-                  </Box>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <Box
-                    sx={{
-                      backgroundColor: "white",
-                      padding: "20px",
-                      borderRadius: "8px",
-                      minHeight: '180px',
-                      marginBottom: "20px",
-                    }}
-                  >
-                    <Typography
-                      variant="h6"
-                      gutterBottom
-                      style={{
-                        fontFamily: "Montserrat, sans-serif",
-                        fontWeight: "bold",
-                        color: "#2A003A",
-                      }}
-                    >
-                      3. Training
-                    </Typography>
-                    <Typography
-                      paragraph
-                      style={{
-                        fontFamily: "Montserrat, sans-serif",
-                        fontSize: "16px",
-                        color: "#333333",
-                        lineHeight: "1.6",
-                        fontWeight: 500,
-                      }}
-                    >
-                      Includes AI Integration Training, Empowerment Workshops,
-                      and Motivational Sessions to enhance skills and drive
-                      personal and professional growth.
-                    </Typography>
-                  </Box>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <Box
-                    sx={{
-                      backgroundColor: "white",
-                      padding: "20px",
-                      borderRadius: "8px",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    <Typography
-                      variant="h6"
-                      gutterBottom
-                      style={{
-                        fontFamily: "Montserrat, sans-serif",
-                        fontWeight: "bold",
-                        color: "#2A003A",
-                      }}
-                    >
-                      4. Digital Content Creation
-                    </Typography>
-                    <Typography
-                      paragraph
-                      style={{
-                        fontFamily: "Montserrat, sans-serif",
-                        fontSize: "16px",
-                        color: "#333333",
-                        lineHeight: "1.6",
-                        fontWeight: 500,
-                      }}
-                    >
-                      At N'Able, we create socially relevant content through
-                      podcasts, interviews, reels, and write-ups. Our digital
-                      content aims to inspire, inform, and spark meaningful
-                      conversations, offering fresh perspectives on topics that
-                      matter most.
-                    </Typography>
-                  </Box>
-                </Grid>
+                      <Typography
+                        variant="h6"
+                        gutterBottom
+                        sx={{
+                          fontFamily: "Montserrat, sans-serif",
+                          fontWeight: "bold",
+                          color: "#2A003A",
+                        }}
+                      >
+                        {service.title}
+                      </Typography>
+                      <Typography
+                        paragraph
+                        sx={{
+                          fontFamily: "Montserrat, sans-serif",
+                          fontSize: "16px",
+                          color: "#333333",
+                          lineHeight: "1.6",
+                          fontWeight: 500,
+                        }}
+                      >
+                        {service.content}
+                      </Typography>
+                    </Box>
+                  </Grid>
+                ))}
               </Grid>
             </Paper>
           </Grid>

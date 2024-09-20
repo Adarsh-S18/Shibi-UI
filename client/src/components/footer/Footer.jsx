@@ -39,7 +39,7 @@ const Footer = () => {
     { text: "About", link: "/about-us" },
     { text: "Services", link: "/services" },
     { text: "Workshops", link: "/workshops" },
-    { text: "Testimonials", link: "/testimonials" },
+    { text: "Feedbacks", link: "/feedbacks" },
     { text: "Contact", link: "/contact-form" },
   ];
 
@@ -48,10 +48,10 @@ const Footer = () => {
       <Container>
         <Grid container spacing={4} alignItems="center">
           {/* Left section: Logo and write-up */}
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={8}>
             <FooterSection>
               <img
-                src="/mainlogo.jpg"
+                src="/logo-png.png"
                 alt="Logo"
                 style={{ maxWidth: "150px", marginBottom: "20px" }}
               />
@@ -71,7 +71,7 @@ const Footer = () => {
           </Grid>
 
           {/* Right section: Quick Links and Get in Touch */}
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={4}>
             <Grid container spacing={4}>
               {/* Quick Links */}
               <Grid item xs={12} sm={6}>
@@ -105,50 +105,6 @@ const Footer = () => {
                       </ListItem>
                     ))}
                   </DownloadList>
-                </FooterSection>
-              </Grid>
-
-              {/* Get in Touch */}
-              <Grid item xs={12} sm={6}>
-                <FooterSection>
-                  <Typography
-                    variant="h6"
-                    gutterBottom
-                    style={{ fontFamily: "Montserrat, sans-serif" }}
-                  >
-                    Get in Touch
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    style={{
-                      fontFamily: "Montserrat, sans-serif",
-                      marginBottom: "10px",
-                    }}
-                  >
-                    Contact me for any further queries or concerns!
-                  </Typography>
-                  <SubscribeContainer>
-                    <TextField
-                      type="email"
-                      placeholder="Enter your email"
-                      variant="outlined"
-                      size="small"
-                      sx={{
-                        "& .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "white",
-                        },
-                        "& input": { color: "white" },
-                        width: "70%",
-                      }}
-                    />
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      sx={{ marginLeft: "10px" }}
-                    >
-                      Contact
-                    </Button>
-                  </SubscribeContainer>
                 </FooterSection>
               </Grid>
             </Grid>

@@ -120,7 +120,7 @@ const ServiceSection = () => {
                 }}
                 mb={3}
               >
-                AI Teacher Community: An Initiative by N'Able
+                AI Teacher Community
               </Typography>
             </Box>
             <Typography

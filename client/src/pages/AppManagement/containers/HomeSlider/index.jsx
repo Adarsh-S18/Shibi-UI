@@ -1,33 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Grid } from "@mui/material";
+import { Box, useTheme, useMediaQuery } from "@mui/material";
 
 const HomeSlider = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const styles = {
-    slideshowContainer: {
-      position: "relative",
-      maxWidth: "100%",
-      overflow: "hidden",
-    },
-    slide: {
-      display: "none",
-    },
-    activeSlide: {
-      display: "block",
-    },
-    image: {
-      width: "100%",
-      height: "auto",
-    },
-  };
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   const images = [
-    '/slider7.jpg',
-    '/slider2.jpg',
-    '/slider5.jpg',
-    '/slider1.jpg',
-    '/slider3.jpg',
-    '/slider6.jpg',
-    '/slider4.jpg',
+    '/sl5.jpg',
+    '/sl1.jpg',
+    '/sl2.jpg',
+    '/sl3.jpg',
+    '/sl4.jpg',
   ];
 
   useEffect(() => {
@@ -35,37 +19,56 @@ const HomeSlider = () => {
       setCurrentImageIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3000); // Change the interval as needed (currently set to 5 seconds)
+    }, 3000); // Change interval as needed (currently set to 3 seconds)
 
     return () => clearInterval(intervalId);
   }, [images.length]);
 
   return (
-    <div>
-      <Grid sx={{ paddingTop: { xs: 5 } }}>
-        <div
-          style={{
-            position: "relative",
-            maxHeight: "800px",
-            maxWidth: "100%",
-            overflow: "hidden",
+    <Box
+      sx={{
+        position: "relative",
+        width: "100%",
+        height: {
+          xs: "auto",
+          sm: "calc(100vh - 64px)",
+        },
+        overflow: "hidden",
+        mt: {lg: '120px', xs: "120px", sm: "64px" },
+        minHeight: { xs: "200px", sm: "auto" }, // Ensure a minimum height on all screens
+      }}
+    >
+      {images.map((image, index) => (
+        <Box
+          key={index}
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            opacity: index === currentImageIndex ? 1 : 0,
+            transition: "opacity 0.5s ease-in-out",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          {images.map((image, index) => (
-            <div
-              key={index}
-              style={
-                index === currentImageIndex
-                  ? { ...styles.slide, ...styles.activeSlide }
-                  : styles.slide
-              }
-            >
-              <img src={image} alt={`Slide ${index}`} style={styles.image} />
-            </div>
-          ))}
-        </div>
-      </Grid>
-    </div>
+          <Box
+            component="img"
+            src={image}
+            alt={`Slide ${index + 1}`}
+            sx={{
+              width: "100%",
+              height: isMobile ? "auto" : "100%",
+              objectFit: isMobile ? "contain" : "cover",
+              objectPosition: "center",
+              maxHeight: isMobile ? "calc(100vh - 56px)" : "none",
+            }}
+          />
+        </Box>
+      ))}
+    </Box>
   );
 };
 

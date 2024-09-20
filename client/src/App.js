@@ -10,10 +10,12 @@ import "./App.css";
 import VlogsMangement from "./pages/VlogsManagement";
 import TestimonialsManagement from "./pages/TestimonialManagement";
 import ContactManagement from "./pages/ContactManagement";
+import ScrollToTop from "./components/ScrollTop";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <TopBar />
       <Switch>
         <Route exact path="/">

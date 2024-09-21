@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from the uploads folder
 app.use(
-  "/uploads",
+  "/api/uploads",
   express.static(path.join(__dirname, "routes", "static", "uploads"))
 );
 

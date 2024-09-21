@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import {
   Button,
-  IconButton,
+  // IconButton,
   Typography,
   Box,
   Modal,
   TextField,
   Grid,
 } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
+// import EditIcon from "@mui/icons-material/Edit";
+// import DeleteIcon from "@mui/icons-material/Delete";
 import { DataGrid } from "@mui/x-data-grid";
 import { baseURL } from "../../config/common";
 import ReactQuill from "react-quill";
@@ -32,25 +32,37 @@ const WorkshopsManagement = () => {
     image: null,
   });
 
+  const stripHtmlTags = (html) => {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent || "";
+  };
+
   const columns = [
     { field: "name", headerName: "Name", width: 400 },
-    { field: "description", headerName: "Description", width: 500 },
+    {
+      field: "description",
+      headerName: "Description",
+      width: 500,
+      renderCell: (params) => (
+        <span>{stripHtmlTags(params.row.description)}</span>
+      ),
+    },
     {
       field: "actions",
       headerName: "Actions",
       width: 200,
       renderCell: (params) => (
         <>
-          <IconButton
+          {/* <IconButton
             color="primary"
             sx={{ margin: "10px" }}
             onClick={() => handleEdit(params.row.id)}
           >
             <EditIcon />
-          </IconButton>
-          <IconButton color="error" onClick={() => handleDelete(params.row.id)}>
+          </IconButton> */}
+          {/* <IconButton color="error" onClick={() => handleDelete(params.row.id)}>
             <DeleteIcon />
-          </IconButton>
+          </IconButton> */}
         </>
       ),
     },
@@ -128,24 +140,24 @@ const WorkshopsManagement = () => {
     }
   };
 
-  const handleEdit = (id) => {
-    const workshop = rows.find((row) => row.id === id);
-    setFormData({
-      name: workshop.name,
-      description: workshop.description,
-    });
-    setEditId(id);
-    setState(true);
-  };
+  // const handleEdit = (id) => {
+  //   const workshop = rows.find((row) => row.id === id);
+  //   setFormData({
+  //     name: workshop.name,
+  //     description: workshop.description,
+  //   });
+  //   setEditId(id);
+  //   setState(true);
+  // };
 
-  const handleDelete = async (id) => {
-    try {
-      await fetch(`/api/workshops/delete-workshop/${id}`);
-      await fetchWorkshops();
-    } catch (error) {
-      console.error("Error deleting workshop:", error);
-    }
-  };
+  // const handleDelete = async (id) => {
+  //   try {
+  //     await fetch(`/api/workshops/delete-workshop/${id}`);
+  //     await fetchWorkshops();
+  //   } catch (error) {
+  //     console.error("Error deleting workshop:", error);
+  //   }
+  // };
 
   const handleImageUpload = (event) => {
     setNewUpdatesData({ ...newUpdatesData, image: event.target.files[0] });

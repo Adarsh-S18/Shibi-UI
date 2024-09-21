@@ -8,13 +8,18 @@ import Typography from "@mui/material/Typography";
 import { baseURL } from "../../config/common";
 
 export default function DetailsCard({ name, description, image, redirectTo }) {
-  console.log(image);
+  // Function to remove HTML tags
+  const stripHtmlTags = (html) => {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent || "";
+  };
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         sx={{ height: 140 }}
         image={`${baseURL}${image[0]}`}
-        title="green iguana"
+        title="Image"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -29,7 +34,7 @@ export default function DetailsCard({ name, description, image, redirectTo }) {
             whiteSpace: "nowrap",
           }}
         >
-          {description}
+          {stripHtmlTags(description)} {/* Display plain text */}
         </Typography>
       </CardContent>
       <CardActions>
@@ -40,3 +45,4 @@ export default function DetailsCard({ name, description, image, redirectTo }) {
     </Card>
   );
 }
+

@@ -15,9 +15,7 @@ const WorkshopManagement = () => {
 
   const fetchWorkshops = async () => {
     try {
-      const response = await fetch(
-        `${baseURL}/api/workshops/get-workshops`
-      );
+      const response = await fetch(`${baseURL}/api/workshops/get-workshops`);
       const data = await response.json();
       setWorkshopDetails(data);
     } catch (error) {

@@ -12,6 +12,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { DataGrid } from "@mui/x-data-grid";
 import { baseURL } from "../../config/common";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css"; // Import the styles for Quill
 
 const WorkshopsManagement = () => {
   const [state, setState] = useState(false);
@@ -29,9 +31,6 @@ const WorkshopsManagement = () => {
     youtubeLink: "",
     image: null,
   });
-
-  // const [youtubeLink, setYoutubeLink] = useState("");
-  // const [image, setImage] = useState(null);
 
   const columns = [
     { field: "name", headerName: "Name", width: 400 },
@@ -61,11 +60,13 @@ const WorkshopsManagement = () => {
     fetchWorkshops();
   }, []);
 
+  const handleQuillChange = (value) => {
+    setFormData({ ...formData, description: value });
+  };
+
   const fetchWorkshops = async () => {
     try {
-      const response = await fetch(
-        `${baseURL}/api/workshops/get-workshops`
-      );
+      const response = await fetch(`${baseURL}/api/workshops/get-workshops`);
       const data = await response.json();
       setRows(data);
     } catch (error) {
@@ -90,25 +91,26 @@ const WorkshopsManagement = () => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    // Normalize the description to remove extra line breaks
+    const normalizedDescription = formData.description.replace(/\n{2,}/g, "\n");
+
+    // Create a new FormData instance
     const formDataToSend = new FormData();
     formDataToSend.append("name", formData.name);
-    formDataToSend.append("description", formData.description);
+
+    // Append the normalized description to FormData
+    formDataToSend.append("description", normalizedDescription);
 
     // Append multiple files to FormData
     files.forEach((file) => {
       formDataToSend.append("files[]", file);
     });
-
     try {
       if (editId) {
-        await fetch(
-          `${baseURL}/api/workshops/update-workshop/${editId}`,
-          {
-            method: "PUT",
-            body: formDataToSend,
-          }
-        );
+        await fetch(`${baseURL}/api/workshops/update-workshop/${editId}`, {
+          method: "PUT",
+          body: formDataToSend,
+        });
       } else {
         await fetch(`${baseURL}/api/workshops/add-workshop`, {
           method: "POST",
@@ -157,13 +159,10 @@ const WorkshopsManagement = () => {
     }
 
     try {
-      const response = await fetch(
-        `${baseURL}/api/workshops/new-updates`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch(`${baseURL}/api/workshops/new-updates`, {
+        method: "POST",
+        body: formData,
+      });
       if (response.ok) {
         const data = await response.json();
         console.log("API Response:", data);
@@ -261,16 +260,19 @@ const WorkshopsManagement = () => {
                 value={formData.name}
                 onChange={handleChange}
               />
-              <TextField
-                fullWidth
-                label="Description"
-                variant="outlined"
-                margin="normal"
-                name="description"
+              <ReactQuill
                 value={formData.description}
-                onChange={handleChange}
-                multiline
-                rows={4} // Adjusts the height of the textarea
+                onChange={handleQuillChange}
+                style={{ height: "200px", marginBottom: "20px" }}
+              />
+
+              <input
+                accept="image/*"
+                style={{ display: "none" }}
+                id="file-upload"
+                type="file"
+                multiple
+                onChange={(e) => setFiles([...e.target.files])}
               />
 
               {/* File Input for Multiple File Selection */}

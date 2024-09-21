@@ -49,7 +49,7 @@ const WorkshopDetails = ({ workshop }) => {
     lineHeight: 1.6,
     marginTop: "30px",
     color: "#444", // Softer text color for readability
-    textAlign: "center",
+    // textAlign: "center",
     margin: "0 auto",
     maxWidth: "80%",
   };
@@ -97,7 +97,9 @@ const WorkshopDetails = ({ workshop }) => {
             marginRight: "auto",
           }}
         >
-          <Typography sx={descriptionStyle}>{workshop?.description}</Typography>
+          <Typography sx={descriptionStyle} component="div">
+            <div dangerouslySetInnerHTML={{ __html: workshop?.description }} />
+          </Typography>
         </Grid>
       </Grid>
 

@@ -12,9 +12,7 @@ export default function FeedbackManagement() {
 
   const fetchFeedbacks = async () => {
     try {
-      const response = await fetch(
-        `${baseURL}/api/feedbacks/get-feedbacks`
-      );
+      const response = await fetch(`${baseURL}/api/feedbacks/get-feedbacks`);
       const data = await response.json();
       setFeedbackImages(data);
     } catch (error) {
@@ -25,7 +23,7 @@ export default function FeedbackManagement() {
   };
 
   return (
-    <div style={{ margin: "30px" }}>
+    <div style={{ marginTop: "130px", marginBottom: "30px" }}>
       <Typography
         fontSize={30}
         fontWeight={700}
@@ -36,7 +34,7 @@ export default function FeedbackManagement() {
         Feedbacks
       </Typography>
       <Grid container spacing={2} justifyContent="center">
-        {loading ? ( // Show loader while loading
+        {loading ? (
           <Box
             sx={{
               display: "flex",
@@ -45,7 +43,7 @@ export default function FeedbackManagement() {
               height: "300px",
             }}
           >
-            <CircularProgress color="error"/>
+            <CircularProgress color="error" />
           </Box>
         ) : (
           <>

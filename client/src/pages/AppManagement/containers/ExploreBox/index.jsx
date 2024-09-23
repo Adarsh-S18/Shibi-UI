@@ -109,7 +109,7 @@ console.log(updateData)
                   }}
                 />
               ) : (
-                <Typography variant="body1">Update Coming soon...</Typography>
+                <Typography sx={{textAlign: 'center'}} variant="body1">Update Coming soon...</Typography>
               )}
             </Box>
           ) : (

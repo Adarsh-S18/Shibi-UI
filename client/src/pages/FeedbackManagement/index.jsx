@@ -25,7 +25,7 @@ export default function FeedbackManagement() {
   };
 
   return (
-    <div style={{ margin: "30px" }}>
+    <div style={{ margin: "30px", marginTop: '130px' }}>
       <Typography
         fontSize={30}
         fontWeight={700}

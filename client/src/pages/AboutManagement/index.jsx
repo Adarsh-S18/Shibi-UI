@@ -243,26 +243,30 @@ const AboutSectionPage = () => {
 
               <Grid container spacing={4}>
                 {[
+                  // {
+                  //   title: "1. Workshops",
+                  //   content:
+                  //     "Engaging sessions designed to upskill teachers, students, and school leaders, fostering growth and innovation.",
+                  // },
                   {
-                    title: "1. Workshops",
-                    content:
-                      "Engaging sessions designed to upskill teachers, students, and school leaders, fostering growth and innovation.",
-                  },
-                  {
-                    title: "2. Professional Mentoring",
+                    title: "1. Professional Mentoring",
                     content:
                       "Personalized guidance to help individuals excel in their roles, driving professional growth and development.",
                   },
+                  // {
+                  //   title: "3. Training",
+                  //   content:
+                  //     "Includes AI Integration Training, Empowerment Workshops, and Motivational Sessions to enhance skills.",
+                  // },
                   {
-                    title: "3. Training",
-                    content:
-                      "Includes AI Integration Training, Empowerment Workshops, and Motivational Sessions to enhance skills.",
-                  },
-                  {
-                    title: "4. Digital Content Creation",
+                    title: "2. Digital Content Creation",
                     content:
                       "At N'Able, we create socially relevant content, inspiring and sparking meaningful conversations.",
                   },
+                  {
+                    title: '3. Personal Branding and Event Curation',
+                    content: 'Offer personalized branding and event planning services.'
+                  }
                 ].map((service, index) => (
                   <Grid key={index} item xs={12} md={6}>
                     <Box

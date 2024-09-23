@@ -64,11 +64,11 @@ const ServiceManagement = () => {
     {
       name: "Event Hosting and Emcee Services",
       description:
-        "Professional hosting and MEmceeC services for educational and community events.",
+        "Professional hosting and EmceeC services for educational and community events.",
       icon: <EventIcon fontSize="large" />,
     },
     {
-      name: "Collaborate and Organize Events",
+      name: "Personal Branding",
       description:
         "Partner with us to plan and execute impactful events, workshops, and educational programs.",
       icon: <UpdateIcon fontSize="large" />,

@@ -264,9 +264,15 @@ const AboutSectionPage = () => {
                       "At N'Able, we create socially relevant content, inspiring and sparking meaningful conversations.",
                   },
                   {
-                    title: '3. Personal Branding and Event Curation',
-                    content: 'Offer personalized branding and event planning services.'
-                  }
+                    title: "3. Personal Branding and Event Curation",
+                    content:
+                      "N’Able provides personal branding and event curation services to help you stand out and connect authentically. We work with individuals and teams to highlight their unique strengths, values, and skills, creating impactful personal brands and memorable events that resonate and open new opportunities.",
+                  },
+                  {
+                    title: "4. Workshops and Trainings",
+                    content:
+                      "At N'Able, we offer dynamic workshops and tailored training programs to empower individuals, teams, and organizations. Focused on skill development, self-discovery, and innovation, our sessions help participants thrive in today’s fast-changing world. Committed to personal growth and excellence, we customize each program to meet your unique needs.",
+                  },
                 ].map((service, index) => (
                   <Grid key={index} item xs={12} md={6}>
                     <Box

@@ -7,9 +7,10 @@ import {
   Modal,
   TextField,
   Grid,
+  IconButton,
 } from "@mui/material";
-// import EditIcon from "@mui/icons-material/Edit";
-// import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { DataGrid } from "@mui/x-data-grid";
 import { baseURL } from "../../config/common";
 import ReactQuill from "react-quill";
@@ -17,11 +18,13 @@ import "react-quill/dist/quill.snow.css"; // Import the styles for Quill
 
 const WorkshopsManagement = () => {
   const [state, setState] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const [newUpdate, setNewUpdate] = useState(false);
   const [rows, setRows] = useState([]);
   const [filePreviews, setFilePreviews] = useState([]); // Preview URLs
   const [files, setFiles] = useState([]); // Actual files
   const [editId, setEditId] = useState(null);
+  const [workshopToDelete, setWorkshopToDelete] = useState(null); // To store the workshop ID
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -56,13 +59,13 @@ const WorkshopsManagement = () => {
           {/* <IconButton
             color="primary"
             sx={{ margin: "10px" }}
-            onClick={() => handleEdit(params.row.id)}
+            onClick={() => handleEdit(params.id)}
           >
             <EditIcon />
           </IconButton> */}
-          {/* <IconButton color="error" onClick={() => handleDelete(params.row.id)}>
+          <IconButton color="error" onClick={() => handleDelete(params.id)}>
             <DeleteIcon />
-          </IconButton> */}
+          </IconButton>
         </>
       ),
     },
@@ -87,8 +90,8 @@ const WorkshopsManagement = () => {
   };
 
   const handleFileChange = (event) => {
+    console.log(event.target);
     const selectedFiles = Array.from(event.target.files);
-
     setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
     const newPreviews = selectedFiles.map((file) => URL.createObjectURL(file));
     setFilePreviews((prevPreviews) => [...prevPreviews, ...newPreviews]);
@@ -103,61 +106,65 @@ const WorkshopsManagement = () => {
   };
 
   const handleSubmit = async (event) => {
-    // Normalize the description to remove extra line breaks
-    const normalizedDescription = formData.description.replace(/\n{2,}/g, "\n");
+    event.preventDefault();
+    if (!formData.name || !formData.description || files.length === 0) {
+      alert("Please complete all fields before submitting.");
+      return;
+    }
 
-    // Create a new FormData instance
     const formDataToSend = new FormData();
     formDataToSend.append("name", formData.name);
-
-    // Append the normalized description to FormData
-    formDataToSend.append("description", normalizedDescription);
-
-    // Append multiple files to FormData
+    formDataToSend.append("description", formData.description);
     files.forEach((file) => {
       formDataToSend.append("files[]", file);
     });
+
     try {
-      if (editId) {
-        await fetch(`${baseURL}/api/workshops/update-workshop/${editId}`, {
-          method: "PUT",
-          body: formDataToSend,
-        });
+      const response = await fetch(`${baseURL}/api/workshops/add-workshop`, {
+        method: "POST",
+        body: formDataToSend,
+      });
+      if (response.ok) {
+        await fetchWorkshops();
+        setState(false);
+        setFormData({ name: "", description: "" });
+        setFiles([]);
+        setFilePreviews([]);
+        setEditId(null);
       } else {
-        await fetch(`${baseURL}/api/workshops/add-workshop`, {
-          method: "POST",
-          body: formDataToSend,
-        });
+        console.error("Failed to submit workshop:", response.statusText);
       }
-      await fetchWorkshops();
-      setState(false);
-      setFormData({ name: "", description: "" });
-      setFiles([]); // Reset file state
-      setFilePreviews([]); // Reset file previews
-      setEditId(null);
     } catch (error) {
       console.error("Error submitting workshop:", error);
     }
   };
 
-  // const handleEdit = (id) => {
-  //   const workshop = rows.find((row) => row.id === id);
-  //   setFormData({
-  //     name: workshop.name,
-  //     description: workshop.description,
-  //   });
-  //   setEditId(id);
-  //   setState(true);
-  // };
+  const handleEdit = (id) => {
+    const workshop = rows.find((row) => row.id === id);
+    setFormData({
+      name: workshop.name,
+      description: workshop.description,
+    });
+    setEditId(id);
+    setState(true);
+  };
 
-  // const handleDelete = async (id) => {
-  //   try {
-  //     await fetch(`/api/workshops/delete-workshop/${id}`);
-  //     await fetchWorkshops();
-  //   } catch (error) {
-  //     console.error("Error deleting workshop:", error);
-  //   }
-  // };
+  const handleDelete = async (id) => {
+    setDeleteModal(true);
+    setWorkshopToDelete(id);
+  };
+
+  const handleDeleteWorkshop = async () => {
+    await fetch(
+      `${baseURL}/api/workshops/delete-workshop/${workshopToDelete}`,
+      {
+        method: "DELETE",
+      }
+    );
+    setDeleteModal(false);
+    setWorkshopToDelete(null);
+    await fetchWorkshops();
+  };
 
   const handleImageUpload = (event) => {
     setNewUpdatesData({ ...newUpdatesData, image: event.target.files[0] });
@@ -218,11 +225,11 @@ const WorkshopsManagement = () => {
         </Box>
       </Box>
 
-      <div style={{ height: 400, width: "100%" }}>
+      <div style={{ height: 900, width: "100%" }}>
         <DataGrid
           rows={rows}
           columns={columns}
-          pageSize={5}
+          pageSize={20}
           getRowId={(row) => row._id}
         />
       </div>
@@ -278,15 +285,6 @@ const WorkshopsManagement = () => {
                 style={{ height: "200px", marginBottom: "20px" }}
               />
 
-              <input
-                accept="image/*"
-                style={{ display: "none" }}
-                id="file-upload"
-                type="file"
-                multiple
-                onChange={(e) => setFiles([...e.target.files])}
-              />
-
               {/* File Input for Multiple File Selection */}
               <input
                 accept="image/*"
@@ -294,7 +292,7 @@ const WorkshopsManagement = () => {
                 id="file-upload"
                 type="file"
                 multiple
-                onChange={handleFileChange}
+                onChange={handleFileChange} // Ensuring this is properly bound
               />
               <label htmlFor="file-upload">
                 <Button
@@ -325,7 +323,6 @@ const WorkshopsManagement = () => {
                   </Grid>
                 ))}
               </Grid>
-
               <Button
                 type="submit"
                 variant="contained"
@@ -395,6 +392,48 @@ const WorkshopsManagement = () => {
               onClick={handleUpdatesSubmit}
             >
               Submit
+            </Button>
+          </Box>
+        </Modal>
+      )}
+
+      {deleteModal && (
+        <Modal open={deleteModal} onClose={() => setDeleteModal(false)}>
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: 400,
+              bgcolor: "background.paper",
+              borderRadius: "8px",
+              boxShadow: 24,
+              p: 4,
+            }}
+          >
+            <Typography variant="h6" mb={2}>
+              Are you sure you want to delete this workshop ?
+            </Typography>
+            <Button
+              variant="contained"
+              component="label"
+              color="primary"
+              fullWidth
+              sx={{ mb: 2 }}
+              onClick={handleDeleteWorkshop}
+            >
+              Yes
+            </Button>
+            <Button
+              variant="contained"
+              component="label"
+              color="error"
+              fullWidth
+              onClick={() => setDeleteModal(false)}
+              sx={{ mb: 2 }}
+            >
+              No
             </Button>
           </Box>
         </Modal>

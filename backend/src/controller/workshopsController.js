@@ -15,6 +15,7 @@ class WorkshopsController {
 
   addWorkshop = async (req, res, next) => {
     try {
+      console.log( req.body)
       const { name, description } = req.body;
       const filePaths = req.files.map(
         (file) => `/api/uploads/${file.filename}`
@@ -60,6 +61,29 @@ class WorkshopsController {
         return res.status(404).json({ message: "No updates found." });
       }
       res.status(201).json(latestUpdateData);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  deleteWorkshop = async (req, res, next) => {
+    try {
+      const workshopId = req.params?.id;
+      if (!workshopId) {
+        return res.status(400).json({
+          message: "Workshop ID is required.",
+        });
+      }
+      const deletedWorkshop = await Workshop.findByIdAndDelete(workshopId);
+      if (!deletedWorkshop) {
+        return res.status(404).json({
+          message: "Workshop not found.",
+        });
+      }
+      return res.status(200).json({
+        message: "Workshop deleted successfully!",
+        workshop: deletedWorkshop,
+      });
     } catch (error) {
       next(error);
     }

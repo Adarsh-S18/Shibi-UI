@@ -18,11 +18,24 @@ export default function DetailsCard({ name, description, image, redirectTo }) {
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         sx={{ height: 140 }}
-        image={`${baseURL}${image[0]}`}
+        image={
+          image[0]
+            ? `${baseURL}${image[0]}`
+            : "https://media.licdn.com/dms/image/v2/D5612AQGzdmQBNdlU5g/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1681324548301?e=1732752000&v=beta&t=V6xKS-11OfqiI86N0S3jTjcGsH_VhGUAdnFEmQIBDDQ"
+        }
         title="Image"
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          sx={{
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+          }}
+        >
           {name}
         </Typography>
         <Typography
@@ -45,4 +58,3 @@ export default function DetailsCard({ name, description, image, redirectTo }) {
     </Card>
   );
 }
-

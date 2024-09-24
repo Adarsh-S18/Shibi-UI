@@ -15,6 +15,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { baseURL } from "../../config/common";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Import the styles for Quill
+import ClearIcon from "@mui/icons-material/Clear"; // Import Clear icon for delete
 
 const WorkshopsManagement = () => {
   const [state, setState] = useState(false);
@@ -23,7 +24,7 @@ const WorkshopsManagement = () => {
   const [rows, setRows] = useState([]);
   const [filePreviews, setFilePreviews] = useState([]); // Preview URLs
   const [files, setFiles] = useState([]); // Actual files
-  const [editId, setEditId] = useState(null);
+  const [editId, setEditId] = useState(null); // To track which workshop is being edited
   const [workshopToDelete, setWorkshopToDelete] = useState(null); // To store the workshop ID
   const [formData, setFormData] = useState({
     name: "",
@@ -56,13 +57,13 @@ const WorkshopsManagement = () => {
       width: 200,
       renderCell: (params) => (
         <>
-          {/* <IconButton
+          <IconButton
             color="primary"
             sx={{ margin: "10px" }}
-            onClick={() => handleEdit(params.id)}
+            onClick={() => handleEdit(params.row)}
           >
             <EditIcon />
-          </IconButton> */}
+          </IconButton>
           <IconButton color="error" onClick={() => handleDelete(params.id)}>
             <DeleteIcon />
           </IconButton>
@@ -90,7 +91,6 @@ const WorkshopsManagement = () => {
   };
 
   const handleFileChange = (event) => {
-    console.log(event.target);
     const selectedFiles = Array.from(event.target.files);
     setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
     const newPreviews = selectedFiles.map((file) => URL.createObjectURL(file));
@@ -105,8 +105,21 @@ const WorkshopsManagement = () => {
     });
   };
 
+  const handleEdit = (workshop) => {
+    setFormData({
+      name: workshop.name,
+      description: workshop.description,
+    });
+    setEditId(workshop._id);
+    setFiles(workshop.images || []);
+    setFilePreviews(workshop.images.map((file) => `${baseURL}${file}`)); // Update file previews
+    setState(true);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Check for name, description, and files
     if (!formData.name || !formData.description || files.length === 0) {
       alert("Please complete all fields before submitting.");
       return;
@@ -115,22 +128,32 @@ const WorkshopsManagement = () => {
     const formDataToSend = new FormData();
     formDataToSend.append("name", formData.name);
     formDataToSend.append("description", formData.description);
+
+    // Append existing and new files
     files.forEach((file) => {
-      formDataToSend.append("files[]", file);
+      if (typeof file === "string") {
+        // If the file is a URL (existing file), append it as a string
+        formDataToSend.append("files[]", file);
+      } else {
+        // If it's a new file object, append it directly
+        formDataToSend.append("files[]", file);
+      }
     });
 
     try {
-      const response = await fetch(`${baseURL}/api/workshops/add-workshop`, {
-        method: "POST",
+      const url = editId
+        ? `${baseURL}/api/workshops/update-workshop/${editId}`
+        : `${baseURL}/api/workshops/add-workshop`;
+
+      const response = await fetch(url, {
+        method: editId ? "PUT" : "POST",
         body: formDataToSend,
       });
+
       if (response.ok) {
-        await fetchWorkshops();
-        setState(false);
-        setFormData({ name: "", description: "" });
-        setFiles([]);
-        setFilePreviews([]);
-        setEditId(null);
+        await fetchWorkshops(); // Reload workshops after addition or update
+        setState(false); // Close modal after submission
+        resetForm(); // Reset form after successful submission
       } else {
         console.error("Failed to submit workshop:", response.statusText);
       }
@@ -139,14 +162,18 @@ const WorkshopsManagement = () => {
     }
   };
 
-  const handleEdit = (id) => {
-    const workshop = rows.find((row) => row.id === id);
-    setFormData({
-      name: workshop.name,
-      description: workshop.description,
-    });
-    setEditId(id);
-    setState(true);
+  const handleDeleteImage = (index) => {
+    const updatedFiles = files.filter((_, idx) => idx !== index);
+    const updatedPreviews = filePreviews.filter((_, idx) => idx !== index);
+    setFiles(updatedFiles);
+    setFilePreviews(updatedPreviews);
+  };
+
+  const resetForm = () => {
+    setFormData({ name: "", description: "" });
+    setFiles([]);
+    setFilePreviews([]);
+    setEditId(null); // Reset editId when form is reset
   };
 
   const handleDelete = async (id) => {
@@ -238,10 +265,11 @@ const WorkshopsManagement = () => {
           open={state}
           onClose={() => {
             setState(false);
+            resetForm(); // Reset form when modal is closed
             setFormData({ name: "", description: "" });
             setFiles([]);
             setFilePreviews([]);
-            setEditId(null);
+            setEditId(null); // Reset the editId when closing the modal
           }}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
@@ -309,7 +337,7 @@ const WorkshopsManagement = () => {
               {/* Preview Selected Images */}
               <Grid container spacing={2} sx={{ mt: 2 }}>
                 {filePreviews.map((preview, index) => (
-                  <Grid item xs={4} key={index}>
+                  <Grid item xs={4} key={index} position="relative">
                     <img
                       src={preview}
                       alt={`Preview ${index + 1}`}
@@ -320,6 +348,22 @@ const WorkshopsManagement = () => {
                         objectFit: "cover",
                       }}
                     />
+                    {/* <IconButton
+                      size="small"
+                      onClick={() => handleDeleteImage(index)}
+                      sx={{
+                        position: "absolute",
+                        top: 5,
+                        right: 5,
+                        bgcolor: "white",
+                        "&:hover": {
+                          bgcolor: "red",
+                          color: "white",
+                        },
+                      }}
+                    >
+                      <ClearIcon />
+                    </IconButton> */}
                   </Grid>
                 ))}
               </Grid>

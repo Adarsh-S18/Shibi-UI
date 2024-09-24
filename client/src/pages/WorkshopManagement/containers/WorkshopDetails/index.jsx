@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid, Typography, Box } from "@mui/material";
 import { baseURL } from "../../../../config/common";
 
@@ -47,6 +47,8 @@ const WorkshopDetails = ({ workshop }) => {
   const descriptionStyle = {
     fontSize: "1.1rem",
     lineHeight: 1.6,
+    fontFamily: "Montserrat, sans-serif",
+    fontWeight: 500,
     marginTop: "30px",
     color: "#444", // Softer text color for readability
     // textAlign: "center",
@@ -73,6 +75,13 @@ const WorkshopDetails = ({ workshop }) => {
       transform: "scale(1.05)", // Slight zoom on hover
     },
   };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   return (
     <>

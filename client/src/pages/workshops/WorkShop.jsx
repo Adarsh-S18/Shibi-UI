@@ -5,7 +5,6 @@ import WorkshopDetails from "../../components/WorkshopDetails/WorkshopDetails";
 
 const WorkShop = () => {
   const [detailsView, setdetailsView] = useState(false);
-  console.log(detailsView);
   const detailsViewRedirect = () => {
     setdetailsView(true);
   };

@@ -30,6 +30,11 @@ router.post(
   workshopsController.addNewUpdate
 );
 router.get("/get-new-updates", workshopsController.getNewUpdates);
-router.delete('/delete-workshop/:id', workshopsController.deleteWorkshop)
+router.delete("/delete-workshop/:id", workshopsController.deleteWorkshop);
+router.put(
+  "/update-workshop/:id",
+  upload.array("files[]", 10),
+  workshopsController.updateWorkshop
+);
 
 module.exports = { workshopRoutes: router };

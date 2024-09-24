@@ -7,9 +7,6 @@ const FormModal = (open, closeModal) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Field 1:", field1);
-    console.log("Field 2:", field2);
-    // Close the modal after submission
   };
 
   return (

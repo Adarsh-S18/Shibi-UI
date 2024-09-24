@@ -7,7 +7,6 @@ const API = axios.create({
 
 // Example GET request
 export const fetchData = () => {
-  console.log("sajkdknjakjdsjknasdjnjksndjk.................");
   return API.get("/data-endpoint");
 };
 

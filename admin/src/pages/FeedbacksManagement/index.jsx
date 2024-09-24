@@ -19,7 +19,6 @@ const FeedbacksManagement = () => {
   const [newImagePreviews, setNewImagePreviews] = useState([]);
   const [feedbackImages, setFeedbackImages] = useState([]);
 
-  console.log(feedbackImages);
   useEffect(() => {
     fetchFeedbacks();
   }, []);
@@ -45,10 +44,8 @@ const FeedbacksManagement = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(newImages);
     const formData = new FormData();
     formData.append("image", newImages);
-    console.log(formData);
     newImages.forEach((file) => {
       formData.append("files[]", file);
     });
@@ -62,7 +59,6 @@ const FeedbacksManagement = () => {
       );
       if (response.ok) {
         const data = await response.json();
-        console.log("API Response:", data);
         setState(false);
         setNewImages([]);
         setNewImagePreviews([]);

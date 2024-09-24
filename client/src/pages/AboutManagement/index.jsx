@@ -20,7 +20,7 @@ const AboutSectionPage = () => {
     "Teacher Educator",
     "WEN Kottayam Core Committee Member",
     "Podcaster",
-    "WICCIKMHC",
+    "Event Curator",
     "Digital Content Creator #life",
     "Edupreneur",
     "Resource Person",

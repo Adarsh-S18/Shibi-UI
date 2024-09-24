@@ -5,7 +5,6 @@ import { baseURL } from "../../../../config/common";
 
 const ExploreSection = () => {
   const [updateData, setUpdateData] = useState(null);
-console.log(updateData)
   useEffect(() => {
     fetchWorkshops();
   }, []);
@@ -15,7 +14,6 @@ console.log(updateData)
       const response = await fetch(`${baseURL}/api/workshops/get-new-updates`);
       const data = await response.json();
       setUpdateData(data);
-      console.log(data);
     } catch (error) {
       console.error("Error fetching workshops:", error);
     }

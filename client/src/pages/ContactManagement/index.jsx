@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Grid,
@@ -14,8 +14,38 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import emailjs from "emailjs-com";
 
 export default function ContactManagement() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    emailjs
+      .send(
+        "service_gfpumle",
+        "template_qegerps",
+        formData,
+        "I_Q1R90GG8T4kGGZS"
+      )
+      .then((response) => {
+        console.log("Email sent successfully:", response.status, response.text);
+        setFormData({ name: "", email: "", message: "" });
+      })
+      .catch((error) => {
+        console.error("Failed to send email:", error);
+      });
+  };
+
   return (
     <section
       className="contact_us"
@@ -57,10 +87,18 @@ export default function ContactManagement() {
                 Feel free to contact us anytime. We'll get back to you as soon
                 as possible!
               </Typography>
-              <Box component="form" noValidate autoComplete="off">
+              <Box
+                component="form"
+                noValidate
+                autoComplete="off"
+                onSubmit={handleSubmit}
+              >
                 <TextField
                   fullWidth
                   label="Name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   variant="outlined"
                   margin="normal"
                   style={{
@@ -72,6 +110,9 @@ export default function ContactManagement() {
                 <TextField
                   fullWidth
                   label="Email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   variant="outlined"
                   margin="normal"
                   style={{
@@ -83,6 +124,9 @@ export default function ContactManagement() {
                 <TextField
                   fullWidth
                   label="Message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   variant="outlined"
                   multiline
                   rows={4}
@@ -94,6 +138,7 @@ export default function ContactManagement() {
                   }}
                 />
                 <Button
+                  type="submit" // Ensure this is present
                   fullWidth
                   variant="contained"
                   color="primary"

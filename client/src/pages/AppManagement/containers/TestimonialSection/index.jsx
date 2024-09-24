@@ -16,6 +16,13 @@ const testimonialsData = [
     img: "/test2.jpeg",
     text: "In my fairly short association with her I have found her to be a bundle full of energy. She is one of the most proactive educational leaders I have had the occasion to associate with. Ready to take up any challenge and work really hard to make a mark in whatever she does is the hallmark of her character. For Shibi education is a religion and she is definitely destined to be a high priest in this field in the years to come. Modest to the core her willingness to learn despite being an authority in many areas shows her humility as an individual. A happy combination of beauty and brains her capacity to appreciate the achievements of others and feeling genuinely happy at their accomplishments are sterling virtues of her immaculate character.",
   },
+  {
+    id: 3,
+    name: "Rohitha Elizabeth Varghese",
+    desc: "Sustainble Designer, Art Storyteller, Founder - Kriyations.in",
+    img: "/test3.jpeg",
+    text: `N'Ablebyshibianand provided me with an incredible opportunity to showcase the talents I’ve honed over the past 28 years. While I’ve done several shows across various regions, this particular show "FEEL THE INNER ARTIST" in Kottayam, Kerala, truly stood out. The response from the audience was overwhelming, and through this event, my work was not only appreciated but embraced in a way that made me feel truly recognized and valued.Shibi’s unwavering dedication and remarkable ability to organize such a powerful and impactful event in such a short time are nothing short of extraordinary. Her passion for supporting and uplifting others is inspiring, and I deeply admire the energy and heart she puts into every endeavor. I wish her nothing but the best in her future ventures and have no doubt that she will continue to empower and elevate many more talented individuals, just as she has done for me.`,
+  },
 ];
 
 const TestimonialSection = () => {

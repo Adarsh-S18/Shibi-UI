@@ -26,14 +26,14 @@ const VlogsManagement = () => {
       width: 200,
       renderCell: (params) => (
         <>
-          <IconButton
+          {/* <IconButton
             color="primary"
             sx={{ margin: "10px" }}
             onClick={() => handleEdit(params.row.id)}
           >
             <EditIcon />
-          </IconButton>
-          <IconButton color="error" onClick={() => handleDelete(params.row.id)}>
+          </IconButton> */}
+          <IconButton color="error" onClick={() => handleDelete(params.id)}>
             <DeleteIcon />
           </IconButton>
         </>
@@ -44,16 +44,13 @@ const VlogsManagement = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(
-        `${baseURL}/api/vlogs/post-vlogs`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch(`${baseURL}/api/vlogs/post-vlogs`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -92,12 +89,21 @@ const VlogsManagement = () => {
     }));
   };
 
-  const handleEdit = (id) => {
-    console.log(`Edit row with id ${id}`);
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [vlogToDelete, setVlogToDelete] = useState(null);
+
+  const handleDelete = async (id) => {
+    setDeleteModal(true);
+    setVlogToDelete(id);
   };
 
-  const handleDelete = (id) => {
-    console.log(`Delete row with id ${id}`);
+  const handleDeleteVlog = async () => {
+    await fetch(`${baseURL}/api/vlogs/delete-vlogs/${vlogToDelete}`, {
+      method: "DELETE",
+    });
+    setDeleteModal(false);
+    setVlogToDelete(null);
+    await fetchVlogs();
   };
 
   return (
@@ -183,6 +189,47 @@ const VlogsManagement = () => {
                 Submit
               </Button>
             </form>
+          </Box>
+        </Modal>
+      )}
+      {deleteModal && (
+        <Modal open={deleteModal} onClose={() => setDeleteModal(false)}>
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: 400,
+              bgcolor: "background.paper",
+              borderRadius: "8px",
+              boxShadow: 24,
+              p: 4,
+            }}
+          >
+            <Typography variant="h6" mb={2}>
+              Are you sure you want to delete this vlog ?
+            </Typography>
+            <Button
+              variant="contained"
+              component="label"
+              color="primary"
+              fullWidth
+              sx={{ mb: 2 }}
+              onClick={handleDeleteVlog}
+            >
+              Yes
+            </Button>
+            <Button
+              variant="contained"
+              component="label"
+              color="error"
+              fullWidth
+              onClick={() => setDeleteModal(false)}
+              sx={{ mb: 2 }}
+            >
+              No
+            </Button>
           </Box>
         </Modal>
       )}

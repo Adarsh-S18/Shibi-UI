@@ -70,11 +70,12 @@ const WorkshopDetails = ({ workshop }) => {
     height: "100%",
     objectFit: "cover",
     borderRadius: "10px",
-    transition: "transform 0.3s ease-in-out", // Smooth hover effect
+    transition: "transform 0.3s ease-in-out", // Smooth transition
     "&:hover": {
-      transform: "scale(1.05)", // Slight zoom on hover
+      transform: "scale(1.60)", // Increase the scale for more pronounced zoom
     },
   };
+  
 
   useEffect(() => {
     window.scrollTo({

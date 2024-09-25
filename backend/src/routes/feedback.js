@@ -23,5 +23,6 @@ router.post(
   upload.array("files[]", 10),
   feedbacksController.addFeedbacks
 );
+router.delete('/delete-feedback/:id',feedbacksController.deleteFeedback)
 
 module.exports = { feedbackRoutes: router };

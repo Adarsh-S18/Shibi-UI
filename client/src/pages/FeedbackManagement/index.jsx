@@ -12,9 +12,7 @@ export default function FeedbackManagement() {
 
   const fetchFeedbacks = async () => {
     try {
-      const response = await fetch(
-        `${baseURL}/api/feedbacks/get-feedbacks`
-      );
+      const response = await fetch(`${baseURL}/api/feedbacks/get-feedbacks`);
       const data = await response.json();
       setFeedbackImages(data);
     } catch (error) {
@@ -25,7 +23,7 @@ export default function FeedbackManagement() {
   };
 
   return (
-    <div style={{ margin: "30px", marginTop: '130px' }}>
+    <div style={{ margin: "30px", marginTop: "130px" }}>
       <Typography
         fontSize={30}
         fontWeight={700}
@@ -45,16 +43,27 @@ export default function FeedbackManagement() {
               height: "300px",
             }}
           >
-            <CircularProgress color="error"/>
+            <CircularProgress color="error" />
           </Box>
         ) : (
           <>
             {feedbackImages.map((image, index) => (
-              <Grid item xs={6} md={3} key={index}>
+              <Grid
+                item
+                xs={12} // Full width on small screens
+                sm={6}  // Two in a row on small screens (576px and above)
+                md={4}  // Three in a row on medium screens (960px and above)
+                lg={3}  // Four in a row on large screens (1280px and above)
+                key={index}
+              >
                 <img
                   src={`${baseURL}${image}`}
                   alt={`Gallery ${index + 1}`}
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    objectFit: "cover",
+                  }}
                 />
               </Grid>
             ))}

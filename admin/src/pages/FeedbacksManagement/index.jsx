@@ -18,6 +18,7 @@ const FeedbacksManagement = () => {
   const [newImages, setNewImages] = useState([]);
   const [newImagePreviews, setNewImagePreviews] = useState([]);
   const [feedbackImages, setFeedbackImages] = useState([]);
+  console.log(feedbackImages);
 
   useEffect(() => {
     fetchFeedbacks();
@@ -25,9 +26,7 @@ const FeedbacksManagement = () => {
 
   const fetchFeedbacks = async () => {
     try {
-      const response = await fetch(
-        `${baseURL}/api/feedbacks/get-feedbacks`
-      );
+      const response = await fetch(`${baseURL}/api/feedbacks/get-feedbacks`);
       const data = await response.json();
       setFeedbackImages(data);
     } catch (error) {
@@ -50,15 +49,12 @@ const FeedbacksManagement = () => {
       formData.append("files[]", file);
     });
     try {
-      const response = await fetch(
-        `${baseURL}/api/feedbacks/add-feedback`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch(`${baseURL}/api/feedbacks/add-feedback`, {
+        method: "POST",
+        body: formData,
+      });
       if (response.ok) {
-        const data = await response.json();
+        await response.json();
         setState(false);
         setNewImages([]);
         setNewImagePreviews([]);
@@ -78,6 +74,13 @@ const FeedbacksManagement = () => {
     setNewImagePreviews(updatedPreviews);
   };
 
+  const handleDeleteDbImage = async (index) => {
+    console.log(index);
+    await fetch(`${baseURL}/api/feedbacks/delete-feedback/${index}`, {
+      method: "DELETE",
+    });
+    fetchFeedbacks();
+  };
   return (
     <Box sx={{ p: 4 }}>
       {/* Add Image Button */}
@@ -119,13 +122,13 @@ const FeedbacksManagement = () => {
                 }}
                 className="delete-btn"
               >
-                {/* <IconButton
+                <IconButton
                   color="error"
                   onClick={() => handleDeleteDbImage(index)}
                   sx={{ bgcolor: "rgba(255,255,255,0.8)" }}
                 >
                   <DeleteIcon />
-                </IconButton> */}
+                </IconButton>
               </CardActions>
             </Card>
           </Grid>

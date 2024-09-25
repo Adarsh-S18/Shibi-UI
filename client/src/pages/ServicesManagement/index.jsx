@@ -68,7 +68,7 @@ const ServiceManagement = () => {
       icon: <EventIcon fontSize="large" />,
     },
     {
-      name: "Personal Branding",
+      name: "Personal Branding and Event Curation",
       description:
         "Partner with us to plan and execute impactful events, workshops, and educational programs.",
       icon: <UpdateIcon fontSize="large" />,

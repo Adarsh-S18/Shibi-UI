@@ -21,7 +21,7 @@ const AboutSectionPage = () => {
     "WEN Kottayam Core Committee Member",
     "Podcaster",
     "Event Curator",
-    "Digital Content Creator #life",
+    "Digital Content Creator",
     "Edupreneur",
     "Resource Person",
     "Book Reviewer",
@@ -280,7 +280,7 @@ const AboutSectionPage = () => {
                         backgroundColor: "white",
                         padding: "20px",
                         borderRadius: "8px",
-                        minHeight: "180px",
+                        minHeight: "240px",
                         mb: "20px",
                       }}
                     >

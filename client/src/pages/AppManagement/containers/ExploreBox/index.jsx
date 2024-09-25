@@ -40,35 +40,39 @@ const ExploreSection = () => {
           >
             <Typography
               style={{ fontFamily: "Montserrat, sans-serif" }}
-              variant="h4" // Adjusted for responsiveness
+              variant="h4"
               fontWeight={700}
               mb={2}
               sx={{
-                fontSize: { xs: "1.8rem", sm: "2rem", md: "2.5rem" }, // Responsive font sizes
+                fontSize: { xs: "1.8rem", sm: "2rem", md: "2.5rem" },
+                textAlign: "center",
               }}
             >
-              <Box display="flex" alignItems="center">
-                <NewReleasesIcon
-                  fontSize="large"
-                  style={{ marginRight: "10px", color: "#ffda46" }}
-                />
-                What's New!
-              </Box>
+Discover the Latest at N'Able
             </Typography>
             <Typography
               style={{ fontFamily: "Montserrat, sans-serif" }}
-              variant="h6" // Adjusted to h6 for mobile readability
+              variant="h6"
               fontWeight={600}
               mb={3}
               sx={{
+                textAlign: "center",
                 fontSize: { xs: "1rem", sm: "1.2rem", md: "1.5rem" }, // Responsive font sizes
               }}
             >
-              Check out what's new at N'Able – an exciting update awaits!
+                            Check this out..
+
             </Typography>
           </Box>
         </Grid>
-        <Grid item xs={12} md={6} sx={{ textAlign: { xs: "center", md: "right" } }}> {/* Center align on mobile */}
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{ textAlign: { xs: "center", md: "right" } }}
+        >
+          {" "}
+          {/* Center align on mobile */}
           {updateData ? (
             <Box
               sx={{
@@ -107,7 +111,9 @@ const ExploreSection = () => {
                   }}
                 />
               ) : (
-                <Typography sx={{textAlign: 'center'}} variant="body1">Update Coming soon...</Typography>
+                <Typography sx={{ textAlign: "center" }} variant="body1">
+                  Update Coming soon...
+                </Typography>
               )}
             </Box>
           ) : (

@@ -32,10 +32,10 @@ export default function ContactManagement() {
     event.preventDefault();
     emailjs
       .send(
-        "service_gfpumle",
-        "template_qegerps",
+        "service_1f8u7r6",
+        "template_lfnog4p",
         formData,
-        "I_Q1R90GG8T4kGGZS"
+        "KQZqi1xsVhwJBlQbw"
       )
       .then((response) => {
         console.log("Email sent successfully:", response.status, response.text);

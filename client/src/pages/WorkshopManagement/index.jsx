@@ -23,7 +23,6 @@ const WorkshopManagement = () => {
     }
   };
 
-  // Handle redirect to details view with selected workshop data
   const detailsViewRedirect = (workshop) => {
     setSelectedWorkshop(workshop); // Set selected workshop
     setdetailsView(true);
@@ -47,10 +46,11 @@ const WorkshopManagement = () => {
         <Grid
           container
           spacing={2}
+          padding={5}
           sx={{ marginTop: "8rem", marginBottom: "8rem" }}
         >
-          {workshopDetails.map((workshop) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={workshop._id}>
+          {workshopDetails.slice().reverse().map((workshop) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={workshop._id} >
               <DetailsCard
                 name={workshop.name}
                 description={workshop.description}

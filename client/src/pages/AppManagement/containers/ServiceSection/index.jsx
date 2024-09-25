@@ -77,16 +77,15 @@ const ServiceSection = () => {
               <Button
                 variant="contained"
                 color="secondary"
-                startIcon={<i className="fab fa-youtube" />}
+                // startIcon={<i className="fab fa-youtube" />}
                 sx={{
                   backgroundColor: "#FF0000",
                   borderRadius: "20px",
                   padding: "15px",
                   fontFamily: "Montserrat, sans-serif",
                 }}
-                href="https://www.youtube.com/@NableByShibiAnand/featured"
-                target="_blank"
-              >
+                href="/services"
+                >
                 Explore More
               </Button>
             </Box>

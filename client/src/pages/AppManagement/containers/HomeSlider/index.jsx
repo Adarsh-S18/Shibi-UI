@@ -7,9 +7,9 @@ const HomeSlider = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const images = [
+    '/sl2.jpeg',
     '/sl5.jpg',
     '/sl1.jpg',
-    '/sl2.jpg',
     '/sl3.JPG',
     '/sl4.jpg',
   ];

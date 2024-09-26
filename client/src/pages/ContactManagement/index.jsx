@@ -172,15 +172,6 @@ export default function ContactManagement() {
                 Contact Info
               </Typography>
               <Box display="flex" alignItems="center" marginBottom={2}>
-                <Headset color="primary" style={{ marginRight: "10px" }} />
-                <Typography
-                  variant="body1"
-                  sx={{ fontFamily: "Montserrat, sans-serif", fontWeight: 600 }}
-                >
-                  +91 8848496043
-                </Typography>
-              </Box>
-              <Box display="flex" alignItems="center" marginBottom={2}>
                 <Email color="primary" style={{ marginRight: "10px" }} />
                 <Typography
                   variant="body1"

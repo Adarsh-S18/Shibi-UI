@@ -6,9 +6,14 @@ import {
   Grid,
   List,
   ListItem,
+  IconButton,
 } from "@mui/material";
 import { Link } from "react-router-dom"; // Import Link for routing
 import { styled } from "@mui/system";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const FooterContainer = styled("footer")({
   backgroundColor: "#282c34",
@@ -66,6 +71,53 @@ const Footer = () => {
                 seamlessly adapting to the dynamic future of learning.
               </Typography>
             </FooterSection>
+            <Box sx={{ mt: 3 }}>
+              <IconButton
+                href="https://www.instagram.com/"
+                target="_blank"
+                sx={{ color: "white" }}
+              >
+                <InstagramIcon fontSize="large" />
+              </IconButton>
+              <IconButton
+                href="https://www.facebook.com/shibi.anand03"
+                target="_blank"
+                sx={{ color: "blue" }}
+              >
+                <FacebookIcon fontSize="large" />
+              </IconButton>
+              <IconButton
+                href="https://www.linkedin.com/in/shibi-anand/"
+                target="_blank"
+                sx={{ color: "white" }}
+              >
+                <LinkedInIcon fontSize="large" />
+              </IconButton>
+              <IconButton
+                href="https://www.youtube.com/@NableByShibiAnand"
+                target="_blank"
+                sx={{ color: "red" }}
+              >
+                <YouTubeIcon fontSize="large" />
+              </IconButton>
+
+              <IconButton
+                href="https://podcasters.spotify.com/pod/show/shibi-anand3"
+                target="_blank"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1.3em"
+                  height="1.3em"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="#03c200"
+                    d="M17.9 10.9C14.7 9 9.35 8.8 6.3 9.75c-.5.15-1-.15-1.15-.6c-.15-.5.15-1 .6-1.15c3.55-1.05 9.4-.85 13.1 1.35c.45.25.6.85.35 1.3c-.25.35-.85.5-1.3.25m-.1 2.8c-.25.35-.7.5-1.05.25c-2.7-1.65-6.8-2.15-9.95-1.15c-.4.1-.85-.1-.95-.5s.1-.85.5-.95c3.65-1.1 8.15-.55 11.25 1.35c.3.15.45.65.2 1m-1.2 2.75c-.2.3-.55.4-.85.2c-2.35-1.45-5.3-1.75-8.8-.95c-.35.1-.65-.15-.75-.45c-.1-.35.15-.65.45-.75c3.8-.85 7.1-.5 9.7 1.1c.35.15.4.55.25.85M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2"
+                  />
+                </svg>
+              </IconButton>
+            </Box>
           </Grid>
 
           {/* Right section: Quick Links and Get in Touch */}

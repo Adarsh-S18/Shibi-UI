@@ -48,7 +48,7 @@ const ExploreSection = () => {
                 textAlign: "center",
               }}
             >
-Discover the Latest at N'Able
+              Discover the Latest at N'Able
             </Typography>
             <Typography
               style={{ fontFamily: "Montserrat, sans-serif" }}
@@ -57,11 +57,13 @@ Discover the Latest at N'Able
               mb={3}
               sx={{
                 textAlign: "center",
-                fontSize: { xs: "1rem", sm: "1.2rem", md: "1.5rem" }, // Responsive font sizes
+                fontSize: { xs: "1rem", sm: "1.2rem", md: "1.5rem" },
               }}
             >
-                            Check this out..
-
+              N'Able empowers individuals to discover their fullest potential
+              through personalized support and transformative experiences. We
+              are committed to helping people embrace their uniquenes  s and
+              achieve personal and professional growth.
             </Typography>
           </Box>
         </Grid>

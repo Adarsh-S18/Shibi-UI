@@ -9,7 +9,7 @@ const HomeSlider = () => {
   const images = [
     '/sl2.jpeg',
     '/sl5.jpg',
-    '/sl1.jpg',
+    '/sl03.jpg',
     '/sl3.JPG',
     '/sl4.jpg',
   ];

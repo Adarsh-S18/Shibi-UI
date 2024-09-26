@@ -5,11 +5,15 @@ import { baseURL } from "../../../../config/common";
 const WorkshopDetails = ({ workshop }) => {
   const containerStyle = {
     position: "relative",
-    height: "20vh",
+    minHeight: "20vh", // Minimum height to accommodate content
     marginTop: "40px",
     overflow: "hidden",
     borderRadius: "10px",
     boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+    display: "flex", // Flex display for centering
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "20px",
   };
 
   const imageStyle = {
@@ -24,17 +28,18 @@ const WorkshopDetails = ({ workshop }) => {
     backgroundPosition: "center",
     filter: "brightness(0.8)",
     borderRadius: "10px",
+    zIndex: -1,
   };
 
   const contentStyle = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
     textAlign: "center",
     color: "white",
     zIndex: 1,
     padding: "20px",
+    display: "flex", // Flex display for centering
+    flexDirection: "column", // Stack heading and description vertically
+    alignItems: "center",
+    justifyContent: "center",
   };
 
   const headingStyle = {
@@ -42,6 +47,8 @@ const WorkshopDetails = ({ workshop }) => {
     fontWeight: 600,
     marginBottom: "20px",
     textShadow: "2px 2px 6px rgba(0,0,0,0.6)", // More pronounced shadow for contrast
+    wordBreak: "break-word", // Ensure long text wraps
+    padding: "0 10px", // Add padding for better appearance
   };
 
   const descriptionStyle = {
@@ -51,7 +58,6 @@ const WorkshopDetails = ({ workshop }) => {
     fontWeight: 500,
     marginTop: "30px",
     color: "#444", // Softer text color for readability
-    // textAlign: "center",
     margin: "0 auto",
     maxWidth: "80%",
   };
@@ -75,7 +81,6 @@ const WorkshopDetails = ({ workshop }) => {
       transform: "scale(1.60)", // Increase the scale for more pronounced zoom
     },
   };
-  
 
   useEffect(() => {
     window.scrollTo({

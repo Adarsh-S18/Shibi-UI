@@ -62,7 +62,7 @@ const ExploreSection = () => {
             >
               N'Able empowers individuals to discover their fullest potential
               through personalized support and transformative experiences. We
-              are committed to helping people embrace their uniquenes  s and
+              are committed to helping people embrace their uniqueness and
               achieve personal and professional growth.
             </Typography>
           </Box>

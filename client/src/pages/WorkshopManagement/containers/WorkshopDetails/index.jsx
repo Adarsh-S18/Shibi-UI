@@ -43,7 +43,7 @@ const WorkshopDetails = ({ workshop }) => {
   };
 
   const headingStyle = {
-    fontSize: "2.5rem",
+    fontSize: "2rem",
     fontWeight: 600,
     marginBottom: "20px",
     textShadow: "2px 2px 6px rgba(0,0,0,0.6)", // More pronounced shadow for contrast

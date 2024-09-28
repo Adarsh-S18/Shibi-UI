@@ -31,6 +31,8 @@ export default function DetailsCard({ name, description, image, redirectTo }) {
           variant="h5"
           component="div"
           sx={{
+            fontFamily: "Montserrat, sans-serif",
+            fontWeight: 500,
             overflow: "hidden",
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",
@@ -42,6 +44,8 @@ export default function DetailsCard({ name, description, image, redirectTo }) {
           variant="body2"
           color="text.secondary"
           sx={{
+            fontFamily: "Montserrat, sans-serif",
+            fontWeight: 500,
             overflow: "hidden",
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",

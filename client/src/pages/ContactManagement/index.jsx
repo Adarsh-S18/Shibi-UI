@@ -8,6 +8,10 @@ import {
   IconButton,
   Box,
   Paper,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
 } from "@mui/material";
 import { Headset, Email } from "@mui/icons-material";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -16,12 +20,48 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import emailjs from "emailjs-com";
 
+// List of services as options for the dropdown
+const services = [
+  {
+    name: "Empowerment Workshops",
+  },
+  {
+    name: "Personal Mentoring",
+  },
+  {
+    name: "School Mentoring Programs",
+  },
+  {
+    name: "AI Training for Educators",
+  },
+  {
+    name: "Motivational Sessions",
+  },
+  {
+    name: "Leadership Development Trainings",
+  },
+  {
+    name: "CBSE Workshops",
+  },
+  {
+    name: "Event Hosting and Emcee Services",
+  },
+  {
+    name: "Personal Branding and Event Curation",
+  },
+  {
+    name: "Others",
+  },
+];
+
 export default function ContactManagement() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
+    service: "",
   });
+  console.log(formData)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,7 +79,7 @@ export default function ContactManagement() {
       )
       .then((response) => {
         console.log("Email sent successfully:", response.status, response.text);
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "", message: "", service: "" });
       })
       .catch((error) => {
         console.error("Failed to send email:", error);
@@ -121,6 +161,23 @@ export default function ContactManagement() {
                     fontWeight: 600,
                   }}
                 />
+                <FormControl fullWidth margin="normal">
+                  <InputLabel id="service-label">Select Service</InputLabel>
+                  <Select
+                    labelId="service-label"
+                    id="service"
+                    name="service"
+                    value={formData.service}
+                    onChange={handleChange}
+                    label="Select Service"
+                  >
+                    {services.map((service, index) => (
+                      <MenuItem key={index} value={service.name}>
+                        {service.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
                 <TextField
                   fullWidth
                   label="Message"
@@ -138,7 +195,7 @@ export default function ContactManagement() {
                   }}
                 />
                 <Button
-                  type="submit" // Ensure this is present
+                  type="submit"
                   fullWidth
                   variant="contained"
                   color="primary"

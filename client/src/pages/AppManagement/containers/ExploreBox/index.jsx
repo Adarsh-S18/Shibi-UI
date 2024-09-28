@@ -60,10 +60,12 @@ const ExploreSection = () => {
                 fontSize: { xs: "1rem", sm: "1.2rem", md: "1.5rem" },
               }}
             >
-              N'Able empowers individuals to discover their fullest potential
-              through personalized support and transformative experiences. We
-              are committed to helping people embrace their uniqueness and
-              achieve personal and professional growth.
+              N'Able empowers individuals and schools to reach their fullest
+              potential through personalized support, transformative
+              experiences, and expert consultation. We help people embrace their
+              uniqueness and achieve growth while partnering with educational
+              institutions to improve quality and effectiveness through
+              mentoring and guidance.
             </Typography>
           </Box>
         </Grid>

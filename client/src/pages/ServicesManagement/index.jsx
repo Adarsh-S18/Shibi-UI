@@ -6,6 +6,7 @@ import {
   CardContent,
   Typography,
   Box,
+  Button,
 } from "@mui/material";
 import BuildIcon from "@mui/icons-material/Build";
 import SchoolIcon from "@mui/icons-material/School";
@@ -93,32 +94,60 @@ const ServiceManagement = () => {
       }}
     >
       <Container maxWidth="lg">
-        <Box sx={{ textAlign: "center", mb: 6 }}>
-          <Typography
-            variant="h4"
-            component="h2"
-            fontFamily="Montserrat, sans-serif"
-            sx={{
-              color: "white",
-              fontWeight: 800,
-              mb: 2,
-            }}
+        <Box sx={{ textAlign: "center", mb: 6, p: 2 }}>
+          <Grid
+            container
+            alignItems="center"
+            justifyContent="center"
+            spacing={2}
           >
-            Our Services
-          </Typography>
-          <Typography
-            variant="h6"
-            component="p"
-            fontSize={22}
-            fontFamily="Montserrat, sans-serif"
-            sx={{
-              color: "white",
-              fontWeight: 600,
-            }}
-          >
-            N'Able offers a comprehensive range of services aimed at enhancing
-            education and personal development.
-          </Typography>
+            <Grid item xs={12} md={8} textAlign={{ xs: "center", md: "left" }}>
+              <Typography
+                variant="h4"
+                component="h2"
+                fontFamily="Montserrat, sans-serif"
+                sx={{
+                  color: "white",
+                  fontWeight: 800,
+                  mb: 2,
+                }}
+              >
+                Our Services
+              </Typography>
+              <Typography
+                variant="h6"
+                component="p"
+                fontSize={22}
+                fontFamily="Montserrat, sans-serif"
+                sx={{
+                  color: "white",
+                  fontWeight: 600,
+                }}
+              >
+                N'Able offers a comprehensive range of services aimed at
+                enhancing education and personal development.
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={4} textAlign={{ xs: "center", md: "right" }}>
+              <Button
+                variant="contained"
+                size="large"
+                href="/contact-form"
+                sx={{
+                  background: "#f4d03f",
+                  color: "black",
+                  fontWeight: 700,
+                  fontFamily: "Montserrat, sans-serif",
+                  textTransform: "none",
+                  "&:hover": {
+                    background: "#f4d03f", // Same color to prevent change on hover
+                  },
+                }}
+              >
+                Book an Appointment
+              </Button>
+            </Grid>
+          </Grid>
         </Box>
         <Grid container spacing={4}>
           {services.map((service, index) => (

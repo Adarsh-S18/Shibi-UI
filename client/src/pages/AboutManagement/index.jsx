@@ -35,10 +35,34 @@ const AboutSectionPage = () => {
       <Grid
         container
         spacing={2}
-        sx={{ mt: 14, mb: 6, px: 2 }} // px adds padding to adjust content horizontally
+        sx={{ mt: 14, mb: 6, px: 2 }}
         justifyContent="center"
-        alignItems="center"
       >
+        <Grid item xs={12} md={3} sx={{ textAlign: "center" }}>
+          <Box
+            sx={{
+              width: { xs: "70%", md: "100%" },
+              maxWidth: "450px",
+              height: "auto",
+              overflow: "hidden",
+              borderRadius: "50%",
+              margin: "0 auto",
+            }}
+          >
+            <img
+              src="/personal1.jpg"
+              style={{
+                width: "85%",
+                height: "auto",
+                objectFit: "cover",
+                transition: "transform 0.5s ease",
+              }}
+              alt="Profile"
+              onMouseOver={(e) => (e.target.style.transform = "scale(1.1)")}
+              onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
+            />
+          </Box>
+        </Grid>
         <Grid
           item
           xs={12}
@@ -170,32 +194,6 @@ const AboutSectionPage = () => {
               Anand – Empowering minds, reshaping classrooms, and seamlessly
               adapting to the dynamic future of learning.
             </Typography>
-          </Box>
-        </Grid>
-
-        <Grid item xs={12} md={3} sx={{ textAlign: "center" }}>
-          <Box
-            sx={{
-              width: { xs: "70%", md: "100%" },
-              maxWidth: "450px",
-              height: "auto",
-              overflow: "hidden",
-              borderRadius: "50%",
-              margin: "0 auto",
-            }}
-          >
-            <img
-              src="/personal1.jpg"
-              style={{
-                width: "85%",
-                height: "auto",
-                objectFit: "cover",
-                transition: "transform 0.5s ease",
-              }}
-              alt="Profile"
-              onMouseOver={(e) => (e.target.style.transform = "scale(1.1)")}
-              onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
-            />
           </Box>
         </Grid>
       </Grid>

@@ -15,6 +15,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const AboutSectionPage = () => {
   const roles = [
+    "Top Educational Leadership Voice",
     "LinkedIn Educational Top Voice",
     "Founder: N'Able & AI Teacher Community",
     "Teacher Educator",

@@ -68,7 +68,7 @@ const AboutSectionPage = () => {
             }}
           >
             <img
-              src={`${baseURL}${accountDetails?.images}` || "/personal1.jpg"}
+              src={"/personal1.jpg"}
               style={{
                 width: "85%",
                 height: "auto",

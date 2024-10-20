@@ -8,6 +8,8 @@ const { authRoutes } = require("./routes/auth");
 const { feedbackRoutes } = require("./routes/feedback");
 const { vlogRoutes } = require("./routes/vlogs");
 const { workshopRoutes } = require("./routes/workshops");
+const { sliderRoutes } = require("./routes/sliders");
+const { accountRoutes } = require("./routes/account");
 
 dotenv.config();
 
@@ -25,6 +27,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/feedbacks", feedbackRoutes);
 app.use("/api/vlogs", vlogRoutes);
 app.use("/api/workshops", workshopRoutes);
+app.use("/api/sliders", sliderRoutes);
+app.use("/api/accounts", accountRoutes);
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/Shibi", {

@@ -58,10 +58,11 @@ export default function ContactManagement() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phoneNumber: "",
     message: "",
     service: "",
   });
-  console.log(formData)
+  console.log(formData);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -79,7 +80,13 @@ export default function ContactManagement() {
       )
       .then((response) => {
         console.log("Email sent successfully:", response.status, response.text);
-        setFormData({ name: "", email: "", message: "", service: "" });
+        setFormData({
+          name: "",
+          email: "",
+          phoneNumber: "",
+          message: "",
+          service: "",
+        });
       })
       .catch((error) => {
         console.error("Failed to send email:", error);
@@ -154,6 +161,21 @@ export default function ContactManagement() {
                   value={formData.email}
                   onChange={handleChange}
                   variant="outlined"
+                  margin="normal"
+                  style={{
+                    marginBottom: "20px",
+                    fontFamily: "Montserrat, sans-serif",
+                    fontWeight: 600,
+                  }}
+                />
+                <TextField
+                  fullWidth
+                  label="Phone Number"
+                  name="phoneNumber"
+                  value={formData.phoneNumber}
+                  onChange={handleChange}
+                  variant="outlined"
+                  rows={4}
                   margin="normal"
                   style={{
                     marginBottom: "20px",

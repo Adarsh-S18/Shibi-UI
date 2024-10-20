@@ -1,32 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, IconButton, useTheme, useMediaQuery } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { baseURL } from "../../../../config/common";
 
 const HomeSlider = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [sliderImages, setSliderImages] = useState([]);
 
-  const images = [
-    "/sl2.jpeg",
-    "/sl5.jpg",
-    "/sl03.jpg",
-    "/sl3.JPG",
-    "/sl4.jpg",
-  ];
+  useEffect(() => {
+    fetchSliders();
+  }, []);
+
+  
+  // const dummysliderImage = [
+  //   "/sl2.jpeg",
+  //   "/sl5.jpg",
+  //   "/sl03.jpg",
+  //   "/sl3.JPG",
+  //   "/sl4.jpg",
+  // ];
+
+  const fetchSliders = async () => {
+    try {
+      const response = await fetch(`${baseURL}/api/sliders/get-sliders`);
+      const data = await response.json();
+      setSliderImages(data);
+    } catch (error) {
+      console.error("Error fetching feedbacks:", error);
+    }
+  };
 
   // Function to handle next button click
   const handleNext = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      prevIndex === sliderImages.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   // Function to handle previous button click
   const handlePrev = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+      prevIndex === 0 ? sliderImages.length - 1 : prevIndex - 1
     );
   };
 
@@ -44,7 +61,7 @@ const HomeSlider = () => {
         minHeight: { xs: "200px", sm: "auto" }, // Ensure a minimum height on all screens
       }}
     >
-      {images.map((image, index) => (
+      {sliderImages.map((image, index) => (
         <Box
           key={index}
           sx={{
@@ -62,7 +79,7 @@ const HomeSlider = () => {
         >
           <Box
             component="img"
-            src={image}
+            src={`${baseURL}${image}`}
             alt={`Slide ${index + 1}`}
             sx={{
               width: "100%",
@@ -74,8 +91,6 @@ const HomeSlider = () => {
           />
         </Box>
       ))}
-
-      {/* Left Button */}
       <IconButton
         onClick={handlePrev}
         sx={{

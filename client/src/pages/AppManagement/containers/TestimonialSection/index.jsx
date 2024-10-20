@@ -23,6 +23,13 @@ const testimonialsData = [
     img: "/test3.jpeg",
     text: `N'Ablebyshibianand provided me with an incredible opportunity to showcase the talents I’ve honed over the past 28 years. While I’ve done several shows across various regions, this particular show "FEEL THE INNER ARTIST" in Kottayam, Kerala, truly stood out. The response from the audience was overwhelming, and through this event, my work was not only appreciated but embraced in a way that made me feel truly recognized and valued.Shibi’s unwavering dedication and remarkable ability to organize such a powerful and impactful event in such a short time are nothing short of extraordinary. Her passion for supporting and uplifting others is inspiring, and I deeply admire the energy and heart she puts into every endeavor. I wish her nothing but the best in her future ventures and have no doubt that she will continue to empower and elevate many more talented individuals, just as she has done for me.`,
   },
+  {
+    id: 4,
+    name: " Rebecca Baby Ipe",
+    desc: "Mentor and Educational Leader",
+    img: "/tsti4.jpeg",
+    text: `An Educator with over two decades in education in the capacity of Teacher, Administrator and Trainer .Shibi Anand, is an extraordinary woman brimming with competencies, common sense, confidence and compassion. Shibi has an adventurous spirit, loves challenges and tries unchartered waters, offering guidance and inspiration but with an open mind ever so willing to learn from others - all qualities that make her a good leader and a great team player. I am impressed by her vision, thought process and objective assessment of experiences seeing the positive and suggesting proactive measures where she finds room for improvement. Shibi Anand has courage of conviction standing on a base of solid varied experiences but is not rigid. In her portfolio, technology and creativity, imagination and practicality, are well balanced. Her willingness to constantly upscale her skills and enhance her outlook inspire. I wish Shibi the very best as she forges ahead in her varied roles as Trainer, Motivator, Counselor, Mentor and of course Teacher.`,
+  },
 ];
 
 const TestimonialSection = () => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Grid,
@@ -12,24 +12,41 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { baseURL } from "../../config/common";
 
 const AboutSectionPage = () => {
-  const roles = [
-    "Top Educational Leadership Voice",
-    "LinkedIn Educational Top Voice",
-    "Founder: N'Able & AI Teacher Community",
-    "Teacher Educator",
-    "WEN Kottayam Core Committee Member",
-    "Podcaster",
-    "Event Curator",
-    "Digital Content Creator",
-    "Edupreneur",
-    "Resource Person",
-    "Book Reviewer",
-    "SDG Advocate",
-    "Collaborator",
-    "SEL Advocate",
-  ];
+  // const roles = [
+  //   "Top Educational Leadership Voice",
+  //   "LinkedIn Educational Top Voice",
+  //   "Founder: N'Able & AI Teacher Community",
+  //   "Teacher Educator",
+  //   "WEN Kottayam Core Committee Member",
+  //   "Podcaster",
+  //   "Event Curator",
+  //   "Digital Content Creator",
+  //   "Edupreneur",
+  //   "Resource Person",
+  //   "Book Reviewer",
+  //   "SDG Advocate",
+  //   "Collaborator",
+  //   "SEL Advocate",
+  // ];
+
+  const [accountDetails, setAccountDetails] = useState([]);
+  useEffect(() => {
+    fetchAccountDetails();
+  }, []);
+
+  const fetchAccountDetails = async () => {
+    try {
+      const response = await fetch(`${baseURL}/api/accounts/get-details`); // Mocked for simplicity
+      const data = await response.json();
+      console.log(data);
+      setAccountDetails(data);
+    } catch (error) {
+      console.error("Error fetching Account details:", error);
+    }
+  };
 
   return (
     <>
@@ -51,7 +68,7 @@ const AboutSectionPage = () => {
             }}
           >
             <img
-              src="/personal1.jpg"
+              src={`${baseURL}${accountDetails?.images}` || "/personal1.jpg"}
               style={{
                 width: "85%",
                 height: "auto",
@@ -113,7 +130,7 @@ const AboutSectionPage = () => {
                 mt: "10px",
               }}
             >
-              {roles.map((role, index) => (
+              {accountDetails?.details?.map((role, index) => (
                 <Chip
                   key={index}
                   label={role}
@@ -252,25 +269,25 @@ const AboutSectionPage = () => {
                     content:
                       "Personalized guidance to help individuals excel in their roles, driving professional growth and development.",
                   },
+                  {
+                    title: "2. Workshops and Trainings",
+                    content:
+                      "At N'Able, we offer dynamic workshops and tailored training programs to empower individuals, teams, and organizations. Focused on skill development, self-discovery, and innovation, our sessions help participants thrive in today’s fast-changing world. Committed to personal growth and excellence, we customize each program to meet your unique needs.",
+                  },
                   // {
                   //   title: "3. Training",
                   //   content:
                   //     "Includes AI Integration Training, Empowerment Workshops, and Motivational Sessions to enhance skills.",
                   // },
                   {
-                    title: "2. Digital Content Creation",
-                    content:
-                      "At N'Able, we create socially relevant content, inspiring and sparking meaningful conversations.",
-                  },
-                  {
                     title: "3. Personal Branding and Event Curation",
                     content:
                       "N’Able provides personal branding and event curation services to help you stand out and connect authentically. We work with individuals and teams to highlight their unique strengths, values, and skills, creating impactful personal brands and memorable events that resonate and open new opportunities.",
                   },
                   {
-                    title: "4. Workshops and Trainings",
+                    title: "4. Digital Content Creation",
                     content:
-                      "At N'Able, we offer dynamic workshops and tailored training programs to empower individuals, teams, and organizations. Focused on skill development, self-discovery, and innovation, our sessions help participants thrive in today’s fast-changing world. Committed to personal growth and excellence, we customize each program to meet your unique needs.",
+                      "At N'Able, we create socially relevant content, inspiring and sparking meaningful conversations.",
                   },
                 ].map((service, index) => (
                   <Grid key={index} item xs={12} md={6}>

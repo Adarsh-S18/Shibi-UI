@@ -12,10 +12,12 @@ import WorkshopsManagement from "../WorkshopsManagement";
 import VlogsManagement from "../VlogsManagement";
 import FeedbacksManagement from "../FeedbacksManagement";
 import Login from "../LoginManagement";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
+import SliderManagement from "../SliderManagement";
+import AccountManagement from "../AccountManagement";
 
 const AppManagement = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   return (
     <div style={{ display: "flex" }}>
@@ -59,14 +61,27 @@ const AppManagement = () => {
             <ListItemText primary="Feedbacks" />
           </ListItem>
           <Divider />
+          <ListItem component={Link} to="admin/manage-sliders">
+            <ListItemText primary="Sliders" />
+          </ListItem>
+          <Divider />
+          <ListItem component={Link} to="admin/manage-account">
+            <ListItemText primary="Account" />
+          </ListItem>
+          <Divider />
           <ListItem
-          sx={{cursor: 'pointer', backgroundColor: 'red',color: 'white', borderRadius: '10px'}}
+            sx={{
+              cursor: "pointer",
+              backgroundColor: "red",
+              color: "white",
+              borderRadius: "10px",
+            }}
             onClick={() => {
               localStorage.removeItem("isAuthenticated");
-              navigate('admin/login')
+              navigate("admin/login");
             }}
           >
-            <LogoutIcon/>
+            <LogoutIcon />
             <ListItemText primary="Logout" />
           </ListItem>
           <Divider />
@@ -76,10 +91,21 @@ const AppManagement = () => {
       <div style={{ flexGrow: 1, padding: "16px" }}>
         <Routes>
           <Route path="admin/login" element={<Login />} />
-          <Route path="admin/manage-dashboard" element={<WorkshopsManagement />} />
+          <Route
+            path="admin/manage-dashboard"
+            element={<WorkshopsManagement />}
+          />
           <Route path="admin/manage-vlogs" element={<VlogsManagement />} />
-          <Route path="admin/manage-feedbacks" element={<FeedbacksManagement />} />
-          <Route path="admin/manage-workshops" element={<WorkshopsManagement />} />
+          <Route
+            path="admin/manage-feedbacks"
+            element={<FeedbacksManagement />}
+          />
+          <Route
+            path="admin/manage-workshops"
+            element={<WorkshopsManagement />}
+          />
+          <Route path="admin/manage-sliders" element={<SliderManagement />} />
+          <Route path="admin/manage-account" element={<AccountManagement />} />
         </Routes>
       </div>
     </div>

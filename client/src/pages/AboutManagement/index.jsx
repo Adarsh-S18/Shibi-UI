@@ -61,24 +61,43 @@ const AboutSectionPage = () => {
             sx={{
               width: { xs: "70%", md: "100%" },
               maxWidth: "450px",
+              // make a square container so borderRadius: '50%' becomes a circle
+              aspectRatio: { xs: "1 / 1", md: "1 / 1" },
               height: "auto",
               overflow: "hidden",
               borderRadius: "50%",
               margin: "0 auto",
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              // ensure background is neutral when image doesn't fully fill
+              backgroundColor: '#fff',
             }}
           >
-            <img
-              src={"/personal1.jpg"}
-              style={{
-                width: "85%",
-                height: "auto",
-                objectFit: "cover",
-                transition: "transform 0.5s ease",
+            <Box
+              sx={{
+                width: '95%',
+                height: '95%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'transform 0.5s ease',
+                '&:hover': { transform: 'scale(1.05)' },
               }}
-              alt="Profile"
-              onMouseOver={(e) => (e.target.style.transform = "scale(1.1)")}
-              onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
-            />
+            >
+              <img
+                src={'/pers.jpg'}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  // use contain so the whole image is visible inside the circular mask
+                  objectFit: 'contain',
+                  objectPosition: 'center',
+                  display: 'block',
+                }}
+                alt="Profile"
+              />
+            </Box>
           </Box>
         </Grid>
         <Grid

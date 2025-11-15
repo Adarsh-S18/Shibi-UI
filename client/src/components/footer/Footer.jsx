@@ -167,7 +167,22 @@ const Footer = () => {
             fontFamily: "Montserrat, sans-serif",
           }}
         >
-          © 2024 Shibi Anand. All Rights Reserved.
+          <Typography variant="body2">© 2026 Shibi Anand. All Rights Reserved.</Typography>
+          <Typography
+            variant="caption"
+            component="div"
+            sx={{ mt: 1 }}
+          >
+            Developed by{' '}
+            <a
+              href="https://www.pixlverse.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: '#90caf9', textDecoration: 'none', fontWeight: 500 }}
+            >
+              Pixlverse
+            </a>
+          </Typography>
         </Box>
       </Container>
     </FooterContainer>

@@ -1,109 +1,133 @@
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
+import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import React from "react";
 
 const VideoSection = () => {
   return (
-    <Box
-      sx={{
-        flexGrow: 1,
-        background: "#f4d03f",
-        textAlign: "center",
-        color: "black",
-        fontSize: "22px",
-        fontWeight: 600,
-        padding: "30px",
-        borderRadius: "20px",
-      }}
-    >
-      <Grid container spacing={2}>
-        <Grid item xs={8} sx={{ textAlign: "center", marginTop: "10px" }}>
-          Catch my insights and stories. Watch my vlogs Now!
-        </Grid>
-        <Grid item xs={4}>
-          <Button
-            variant="contained"
-            href="/vlogs"
-            color="secondary"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
+    <Container maxWidth="lg" sx={{ mb: { xs: 6, md: 10 } }}>
+      <Box
+        sx={{
+          position: "relative",
+          overflow: "hidden",
+          background: "var(--grad-sunrise)",
+          borderRadius: { xs: "20px", md: "32px" },
+          p: { xs: 4, md: 6 },
+          boxShadow: "var(--shadow-glow-warm)",
+          display: "flex",
+          alignItems: "center",
+          flexDirection: { xs: "column", md: "row" },
+          justifyContent: "space-between",
+          gap: 3,
+        }}
+      >
+        {/* decorative shapes */}
+        <Box
+          aria-hidden
+          sx={{
+            position: "absolute",
+            width: 220,
+            height: 220,
+            borderRadius: "50%",
+            background: "rgba(255,255,255,0.25)",
+            top: -80,
+            left: -60,
+            filter: "blur(30px)",
+          }}
+        />
+        <Box
+          aria-hidden
+          sx={{
+            position: "absolute",
+            width: 180,
+            height: 180,
+            borderRadius: "50%",
+            background: "rgba(91, 42, 134, 0.15)",
+            bottom: -60,
+            right: -30,
+            filter: "blur(40px)",
+          }}
+        />
+
+        <Box sx={{ position: "relative", zIndex: 1, textAlign: { xs: "center", md: "left" }, flex: 1 }}>
+          <Box
             sx={{
-              borderRadius: "25px",
-              padding: "15px 30px",
-              fontWeight: 600,
-              "&:hover": {
-                backgroundColor: "orange",
-              },
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 1,
+              background: "rgba(26, 16, 51, 0.12)",
+              color: "var(--color-ink)",
+              borderRadius: "999px",
+              px: 2,
+              py: 0.75,
+              fontSize: "13px",
+              fontWeight: 700,
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              mb: 2,
             }}
           >
-            Check Out
-          </Button>
-        </Grid>
-      </Grid>
-    </Box>
-    // <Grid
-    //   item
-    //   xs={12}
-    //   md={12}
-    //   sx={{
-    //     backgroundColor: "red",
-    //     margin: "20px",
-    //     textAlign: "center",
-    //     borderRadius: "10px",
-    //   }}
-    // >
-    //   <Grid item xs={8}>
-    //     <Item>xs=8</Item>
-    //   </Grid>
-    //   <Grid item xs={4}>
-    //     <Item>xs=4</Item>
-    //   </Grid>
-    //   {/* <Grid sx={{ padding: "10px" }} xs={8} md={8}>
-    //     Have a look into some informative vlogs!
-    //   </Grid>
-    //   <Grid xs={3} md={3}>
-    //     <Button>Check out</Button>
-    //   </Grid> */}
-    // </Grid>
-    // <>
-    /* <h1
-        style={{ textAlign: "center", marginTop: "30px", marginBottom: "30px" }}
-      >
-        Testimonials
-      </h1>
-      <Grid container spacing={2}>
-        <Grid item xs={4}>
-          <iframe
-            width="500"
-            height="300"
-            src="https://www.youtube.com/embed/irLeMeF3u1A?si=yJaHBteMmbgp9YAU"
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </Grid>
-        <Grid item xs={4}>
-          <iframe
-            width="500"
-            height="300"
-            src="https://www.youtube.com/embed/auTqZHCCtYw?si=MzlqAwEsjoCEW_ia"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </Grid>
-        <Grid item xs={4}>
-          <iframe
-            width="500"
-            height="300"
-            src="https://www.youtube.com/embed/wV49o69vito?si=HTBRlMpv6Jrj9Veb"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </Grid>
-      </Grid>
-    </> */
+            <PlayCircleFilledIcon sx={{ fontSize: 16 }} />
+            Now Streaming
+          </Box>
+          <Typography
+            sx={{
+              fontFamily: "Sora, sans-serif",
+              fontWeight: 700,
+              fontSize: { xs: "1.7rem", sm: "2rem", md: "2.4rem" },
+              color: "var(--color-ink)",
+              lineHeight: 1.2,
+              letterSpacing: "-0.02em",
+              mb: 1.5,
+            }}
+          >
+            Insights, stories &amp; reflections.
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: "Plus Jakarta Sans, sans-serif",
+              fontSize: { xs: "0.98rem", md: "1.05rem" },
+              color: "rgba(26, 16, 51, 0.75)",
+              fontWeight: 500,
+              maxWidth: 540,
+              lineHeight: 1.7,
+              mx: { xs: "auto", md: 0 },
+            }}
+          >
+            Catch the latest vlogs — bite-sized perspectives on education,
+            growth and the journey of being unapologetically you.
+          </Typography>
+        </Box>
+
+        <Button
+          variant="contained"
+          href="/vlogs"
+          endIcon={<ArrowForwardIcon />}
+          sx={{
+            position: "relative",
+            zIndex: 1,
+            background: "var(--color-ink)",
+            color: "#fff",
+            borderRadius: "999px",
+            px: 4,
+            py: 1.75,
+            fontFamily: "Plus Jakarta Sans, sans-serif",
+            fontWeight: 700,
+            fontSize: "15px",
+            textTransform: "none",
+            boxShadow: "0 14px 36px rgba(26, 16, 51, 0.28)",
+            transition: "transform .3s var(--ease-out), box-shadow .3s var(--ease-out)",
+            "&:hover": {
+              background: "var(--color-primary)",
+              transform: "translateY(-2px)",
+              boxShadow: "0 18px 44px rgba(26, 16, 51, 0.35)",
+            },
+          }}
+        >
+          Watch Vlogs
+        </Button>
+      </Box>
+    </Container>
   );
 };
 

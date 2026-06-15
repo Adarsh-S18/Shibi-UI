@@ -1,145 +1,175 @@
 import React, { useEffect } from "react";
-import { Grid, Typography, Box } from "@mui/material";
+import { Container, Grid, Typography, Box } from "@mui/material";
 import { baseURL } from "../../../../config/common";
 
 const WorkshopDetails = ({ workshop }) => {
-  const containerStyle = {
-    position: "relative",
-    minHeight: "20vh", // Minimum height to accommodate content
-    marginTop: "40px",
-    overflow: "hidden",
-    borderRadius: "10px",
-    boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
-    display: "flex", // Flex display for centering
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "20px",
-  };
-
-  const imageStyle = {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    background:
-      "linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url(https://wallpapers.com/images/hd/solid-purple-1920-x-1200-background-u09ilxc0nn1deksl.jpg)",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    filter: "brightness(0.8)",
-    borderRadius: "10px",
-    zIndex: -1,
-  };
-
-  const contentStyle = {
-    textAlign: "center",
-    color: "white",
-    zIndex: 1,
-    padding: "20px",
-    display: "flex", // Flex display for centering
-    flexDirection: "column", // Stack heading and description vertically
-    alignItems: "center",
-    justifyContent: "center",
-  };
-
-  const headingStyle = {
-    fontSize: "2rem",
-    fontWeight: 600,
-    marginBottom: "20px",
-    textShadow: "2px 2px 6px rgba(0,0,0,0.6)", // More pronounced shadow for contrast
-    wordBreak: "break-word", // Ensure long text wraps
-    padding: "0 10px", // Add padding for better appearance
-  };
-
-  const descriptionStyle = {
-    fontSize: "1.1rem",
-    lineHeight: 1.6,
-    fontFamily: "Montserrat, sans-serif",
-    fontWeight: 500,
-    marginTop: "30px",
-    color: "#444", // Softer text color for readability
-    margin: "0 auto",
-    maxWidth: "80%",
-  };
-
-  const galleryContainerStyle = {
-    margin: "50px auto", // Center the gallery
-    padding: "20px",
-    backgroundColor: "#f9f9f9",
-    borderRadius: "10px",
-    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
-    maxWidth: "1200px",
-  };
-
-  const galleryImageStyle = {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-    borderRadius: "10px",
-    transition: "transform 0.3s ease-in-out", // Smooth transition
-    "&:hover": {
-      transform: "scale(1.60)", // Increase the scale for more pronounced zoom
-    },
-  };
-
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
-    <>
-      <Box sx={containerStyle}>
-        <Box sx={imageStyle} />
-        <Box sx={contentStyle}>
-          <Typography variant="h1" sx={headingStyle}>
+    <Container maxWidth="lg">
+      {/* Hero banner */}
+      <Box
+        sx={{
+          position: "relative",
+          minHeight: { xs: "240px", md: "300px" },
+          borderRadius: { xs: "20px", md: "28px" },
+          overflow: "hidden",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "var(--grad-twilight)",
+          boxShadow: "var(--shadow-glow)",
+          mb: 5,
+        }}
+      >
+        <Box
+          aria-hidden
+          sx={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage:
+              workshop?.images?.[0]
+                ? `url(${baseURL}${workshop.images[0]})`
+                : "none",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.4,
+          }}
+        />
+        <Box
+          aria-hidden
+          sx={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(135deg, rgba(26,16,51,0.85) 0%, rgba(91,42,134,0.7) 60%, rgba(255,111,145,0.55) 100%)",
+          }}
+        />
+        <Box
+          sx={{
+            position: "relative",
+            zIndex: 1,
+            textAlign: "center",
+            color: "#fff",
+            px: 4,
+            py: 6,
+          }}
+        >
+          <Box
+            className="section-eyebrow"
+            sx={{
+              background: "rgba(255,255,255,0.18) !important",
+              color: "#FFE3B0 !important",
+            }}
+          >
+            Workshop
+          </Box>
+          <Typography
+            sx={{
+              fontFamily: "Sora, sans-serif",
+              fontWeight: 800,
+              fontSize: { xs: "1.9rem", md: "2.8rem" },
+              letterSpacing: "-0.02em",
+              lineHeight: 1.15,
+              mt: 2,
+              textShadow: "0 4px 24px rgba(0,0,0,0.3)",
+              wordBreak: "break-word",
+            }}
+          >
             {workshop?.name}
           </Typography>
         </Box>
       </Box>
 
-      <Grid container spacing={2} justifyContent="center" alignItems="center">
-        <Grid
-          item
-          xs={12}
-          mt={6}
+      {/* Description */}
+      <Box
+        sx={{
+          background: "var(--color-surface)",
+          border: "1px solid var(--color-line)",
+          borderRadius: { xs: "16px", md: "24px" },
+          p: { xs: 3, md: 5 },
+          boxShadow: "var(--shadow-sm)",
+          mb: 6,
+        }}
+      >
+        <Box
           sx={{
-            marginBottom: "40px",
-            maxWidth: "900px",
-            marginLeft: "auto",
-            marginRight: "auto",
+            fontFamily: "Plus Jakarta Sans, sans-serif",
+            fontSize: { xs: "15px", md: "16px" },
+            color: "var(--color-ink-soft)",
+            lineHeight: 1.85,
+            "& h1, & h2, & h3, & h4": {
+              fontFamily: "Sora, sans-serif",
+              color: "var(--color-ink)",
+              letterSpacing: "-0.01em",
+            },
+            "& a": { color: "var(--color-primary)" },
+            "& img": { maxWidth: "100%", borderRadius: "12px" },
           }}
         >
-          <Typography sx={descriptionStyle} component="div">
-            <div dangerouslySetInnerHTML={{ __html: workshop?.description }} />
-          </Typography>
-        </Grid>
-      </Grid>
-
-      <Box sx={galleryContainerStyle}>
-        <Typography
-          fontSize={30}
-          fontWeight={700}
-          sx={{ textAlign: "center", marginBottom: "30px" }}
-        >
-          Gallery
-        </Typography>
-        <Grid container spacing={3} justifyContent="center">
-          {workshop?.images.map((image, index) => (
-            <Grid item xs={6} md={3} key={index}>
-              <Box
-                component="img"
-                src={`${baseURL}${image}`}
-                alt={`Gallery ${index + 1}`}
-                sx={galleryImageStyle}
-              />
-            </Grid>
-          ))}
-        </Grid>
+          <div dangerouslySetInnerHTML={{ __html: workshop?.description }} />
+        </Box>
       </Box>
-    </>
+
+      {/* Gallery */}
+      {workshop?.images?.length > 0 && (
+        <Box
+          sx={{
+            mt: 4,
+            p: { xs: 3, md: 5 },
+            background: "var(--color-surface-tint)",
+            borderRadius: { xs: "20px", md: "28px" },
+            border: "1px solid var(--color-line)",
+          }}
+        >
+          <Box sx={{ textAlign: "center", mb: 4 }}>
+            <span className="section-eyebrow">Gallery</span>
+            <Typography
+              sx={{
+                fontFamily: "Sora, sans-serif",
+                fontWeight: 700,
+                fontSize: { xs: "1.6rem", md: "2rem" },
+                letterSpacing: "-0.01em",
+                color: "var(--color-ink)",
+                mt: 1.5,
+              }}
+            >
+              A look inside
+            </Typography>
+          </Box>
+          <Grid container spacing={2.5} justifyContent="center">
+            {workshop.images.map((image, index) => (
+              <Grid item xs={6} md={3} key={index}>
+                <Box
+                  sx={{
+                    overflow: "hidden",
+                    borderRadius: "14px",
+                    aspectRatio: "1 / 1",
+                    boxShadow: "var(--shadow-sm)",
+                    "&:hover img": { transform: "scale(1.08)" },
+                  }}
+                >
+                  <Box
+                    component="img"
+                    src={`${baseURL}${image}`}
+                    alt={`Gallery ${index + 1}`}
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      transition: "transform .6s var(--ease-out)",
+                      display: "block",
+                    }}
+                  />
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      )}
+    </Container>
   );
 };
 

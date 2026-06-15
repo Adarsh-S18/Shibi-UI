@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   Container,
   Grid,
-  Paper,
   Typography,
   Chip,
   Box,
@@ -14,24 +13,34 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { baseURL } from "../../config/common";
 
-const AboutSectionPage = () => {
-  // const roles = [
-  //   "Top Educational Leadership Voice",
-  //   "LinkedIn Educational Top Voice",
-  //   "Founder: N'Able & AI Teacher Community",
-  //   "Teacher Educator",
-  //   "WEN Kottayam Core Committee Member",
-  //   "Podcaster",
-  //   "Event Curator",
-  //   "Digital Content Creator",
-  //   "Edupreneur",
-  //   "Resource Person",
-  //   "Book Reviewer",
-  //   "SDG Advocate",
-  //   "Collaborator",
-  //   "SEL Advocate",
-  // ];
+const socials = [
+  {
+    href: "https://www.instagram.com/",
+    icon: <InstagramIcon fontSize="medium" />,
+    label: "Instagram",
+    color: "#E1306C",
+  },
+  {
+    href: "https://www.facebook.com/shibi.anand03",
+    icon: <FacebookIcon fontSize="medium" />,
+    label: "Facebook",
+    color: "#1877F2",
+  },
+  {
+    href: "https://www.linkedin.com/in/shibi-anand/",
+    icon: <LinkedInIcon fontSize="medium" />,
+    label: "LinkedIn",
+    color: "#0A66C2",
+  },
+  {
+    href: "https://www.youtube.com/@NableByShibiAnand",
+    icon: <YouTubeIcon fontSize="medium" />,
+    label: "YouTube",
+    color: "#FF0000",
+  },
+];
 
+const AboutSectionPage = () => {
   const [accountDetails, setAccountDetails] = useState([]);
   useEffect(() => {
     fetchAccountDetails();
@@ -39,9 +48,8 @@ const AboutSectionPage = () => {
 
   const fetchAccountDetails = async () => {
     try {
-      const response = await fetch(`${baseURL}/api/accounts/get-details`); // Mocked for simplicity
+      const response = await fetch(`${baseURL}/api/accounts/get-details`);
       const data = await response.json();
-      console.log(data);
       setAccountDetails(data);
     } catch (error) {
       console.error("Error fetching Account details:", error);
@@ -49,308 +57,358 @@ const AboutSectionPage = () => {
   };
 
   return (
-    <>
-      <Grid
-        container
-        spacing={2}
-        sx={{ mt: 14, mb: 6, px: 2 }}
-        justifyContent="center"
-      >
-        <Grid item xs={12} md={3} sx={{ textAlign: "center" }}>
-          <Box
-            sx={{
-              width: { xs: "70%", md: "100%" },
-              maxWidth: "450px",
-              // make a square container so borderRadius: '50%' becomes a circle
-              aspectRatio: { xs: "1 / 1", md: "1 / 1" },
-              height: "auto",
-              overflow: "hidden",
-              borderRadius: "50%",
-              margin: "0 auto",
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              // ensure background is neutral when image doesn't fully fill
-              backgroundColor: '#fff',
-            }}
-          >
+    <Box sx={{ overflow: "hidden" }}>
+      {/* Hero with profile */}
+      <Container maxWidth="lg" sx={{ pt: { xs: "120px", md: "150px" }, pb: { xs: 6, md: 10 }, position: "relative" }}>
+        <Box
+          aria-hidden
+          className="bg-decor"
+          sx={{
+            width: 420,
+            height: 420,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, #9C6AE0 0%, transparent 70%)",
+            top: -60,
+            right: -120,
+            opacity: 0.3,
+          }}
+        />
+        <Box
+          aria-hidden
+          className="bg-decor"
+          sx={{
+            width: 340,
+            height: 340,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, #FFB547 0%, transparent 70%)",
+            bottom: -80,
+            left: -100,
+            opacity: 0.25,
+          }}
+        />
+
+        <Grid container spacing={6} alignItems="center" sx={{ position: "relative", zIndex: 1 }}>
+          <Grid item xs={12} md={5} sx={{ textAlign: "center" }}>
             <Box
               sx={{
-                width: '95%',
-                height: '95%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'transform 0.5s ease',
-                '&:hover': { transform: 'scale(1.05)' },
+                width: { xs: "85%", sm: "70%", md: "100%" },
+                maxWidth: 420,
+                aspectRatio: "1 / 1",
+                mx: "auto",
+                position: "relative",
+                borderRadius: "50%",
+                padding: "8px",
+                background: "var(--grad-aurora)",
+                boxShadow: "var(--shadow-glow)",
               }}
             >
-              <img
-                src={'/pers.jpg'}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  // use contain so the whole image is visible inside the circular mask
-                  objectFit: 'contain',
-                  objectPosition: 'center',
-                  display: 'block',
+              <Box
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  background: "#fff",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  transition: "transform .6s var(--ease-out)",
+                  "&:hover": { transform: "scale(1.03)" },
                 }}
-                alt="Profile"
-              />
+              >
+                <Box
+                  component="img"
+                  src="/pers.jpg"
+                  alt="Shibi Anand"
+                  sx={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                    objectPosition: "center",
+                  }}
+                />
+              </Box>
             </Box>
-          </Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={7}
-          sx={{ textAlign: "center", mb: { xs: 4, md: 0 } }}
-        >
-          <Box
-            sx={{
-              padding: "40px",
-              borderRadius: "20px",
-              boxShadow: "0px 10px 20px rgba(0.9, 0.9, 0.9, 0.3)",
-              backgroundColor: "white",
-              transition: "transform 0.3s",
-            }}
-          >
+          </Grid>
+
+          <Grid item xs={12} md={7}>
+            <Box className="section-eyebrow">About</Box>
             <Typography
-              variant="h3"
               sx={{
-                fontFamily: "Montserrat, sans-serif",
-                mb: "10px",
-                color: "#404040",
-                fontWeight: "bold",
-                letterSpacing: "0.05em",
+                fontFamily: "Sora, sans-serif",
+                fontSize: { xs: "2.4rem", md: "3.4rem" },
+                fontWeight: 800,
+                letterSpacing: "-0.025em",
+                color: "var(--color-ink)",
+                lineHeight: 1.05,
+                mt: 2,
+                mb: 1.5,
               }}
             >
               Shibi Anand
             </Typography>
             <Typography
-              variant="body1"
               sx={{
-                fontFamily: "Montserrat, sans-serif",
-                color: "#404040",
-                fontSize: "22px",
-                mb: "18px",
-                fontWeight: 700,
+                fontFamily: "Plus Jakarta Sans, sans-serif",
+                color: "var(--color-primary)",
+                fontSize: { xs: "1.05rem", md: "1.2rem" },
+                fontWeight: 600,
+                mb: 3,
               }}
             >
-              Edupreneur & Mentor | Founder of N'Able and AI Teacher Community
+              Edupreneur &amp; Mentor — Founder of N'Able and AI Teacher Community
+            </Typography>
+            <Typography
+              sx={{
+                fontFamily: "Plus Jakarta Sans, sans-serif",
+                color: "var(--color-muted)",
+                fontSize: { xs: "1rem", md: "1.1rem" },
+                lineHeight: 1.8,
+                fontWeight: 400,
+                mb: 3,
+              }}
+            >
+              Navigate the evolving landscape of education with N'Able by Shibi
+              Anand — empowering minds, reshaping classrooms, and seamlessly
+              adapting to the dynamic future of learning.
             </Typography>
 
-            <Box
-              sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                gap: "8px",
-                mt: "10px",
-              }}
-            >
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mb: 3 }}>
               {accountDetails?.details?.map((role, index) => (
                 <Chip
                   key={index}
                   label={role}
-                  variant="outlined"
                   sx={{
-                    fontFamily: "Montserrat, sans-serif",
-                    fontSize: "16px",
-                    backgroundColor: "#6c01bb",
-                    border: "1px solid #00008B",
-                    color: "white",
-                    fontWeight: "bold",
-                    m: "5px",
+                    fontFamily: "Plus Jakarta Sans, sans-serif",
+                    fontSize: "13px",
+                    fontWeight: 600,
+                    background: "var(--color-primary-50)",
+                    color: "var(--color-primary)",
+                    border: "1px solid var(--color-line-strong)",
+                    borderRadius: "999px",
+                    px: 0.5,
+                    transition: "all .3s var(--ease-out)",
+                    "&:hover": {
+                      background: "var(--grad-aurora)",
+                      color: "#fff",
+                      transform: "translateY(-2px)",
+                    },
                   }}
                 />
               ))}
             </Box>
 
-            <Box sx={{ mt: 3 }}>
-              <IconButton
-                href="https://www.instagram.com/"
-                target="_blank"
-                sx={{ color: "#90268d" }}
-              >
-                <InstagramIcon fontSize="large" />
-              </IconButton>
-              <IconButton
-                href="https://www.facebook.com/shibi.anand03"
-                target="_blank"
-                sx={{ color: "blue" }}
-              >
-                <FacebookIcon fontSize="large" />
-              </IconButton>
-              <IconButton
-                href="https://www.linkedin.com/in/shibi-anand/"
-                target="_blank"
-                sx={{ color: "darkblue" }}
-              >
-                <LinkedInIcon fontSize="large" />
-              </IconButton>
-              <IconButton
-                href="https://www.youtube.com/@NableByShibiAnand"
-                target="_blank"
-                sx={{ color: "red" }}
-              >
-                <YouTubeIcon fontSize="large" />
-              </IconButton>
-
+            <Box sx={{ display: "flex", gap: 1.25, flexWrap: "wrap" }}>
+              {socials.map((s) => (
+                <IconButton
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  aria-label={s.label}
+                  sx={{
+                    background: "var(--color-surface)",
+                    boxShadow: "var(--shadow-sm)",
+                    border: "1px solid var(--color-line)",
+                    color: s.color,
+                    width: 48,
+                    height: 48,
+                    transition: "all .3s var(--ease-spring)",
+                    "&:hover": {
+                      background: s.color,
+                      color: "#fff",
+                      transform: "translateY(-3px)",
+                      boxShadow: "var(--shadow-md)",
+                    },
+                  }}
+                >
+                  {s.icon}
+                </IconButton>
+              ))}
               <IconButton
                 href="https://podcasters.spotify.com/pod/show/shibi-anand3"
                 target="_blank"
+                aria-label="Spotify Podcast"
+                sx={{
+                  background: "var(--color-surface)",
+                  boxShadow: "var(--shadow-sm)",
+                  border: "1px solid var(--color-line)",
+                  color: "#1DB954",
+                  width: 48,
+                  height: 48,
+                  transition: "all .3s var(--ease-spring)",
+                  "&:hover": {
+                    background: "#1DB954",
+                    color: "#fff",
+                    transform: "translateY(-3px)",
+                    boxShadow: "var(--shadow-md)",
+                  },
+                }}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="1.3em"
-                  height="1.3em"
-                  viewBox="0 0 24 24"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24">
                   <path
-                    fill="#03c200"
+                    fill="currentColor"
                     d="M17.9 10.9C14.7 9 9.35 8.8 6.3 9.75c-.5.15-1-.15-1.15-.6c-.15-.5.15-1 .6-1.15c3.55-1.05 9.4-.85 13.1 1.35c.45.25.6.85.35 1.3c-.25.35-.85.5-1.3.25m-.1 2.8c-.25.35-.7.5-1.05.25c-2.7-1.65-6.8-2.15-9.95-1.15c-.4.1-.85-.1-.95-.5s.1-.85.5-.95c3.65-1.1 8.15-.55 11.25 1.35c.3.15.45.65.2 1m-1.2 2.75c-.2.3-.55.4-.85.2c-2.35-1.45-5.3-1.75-8.8-.95c-.35.1-.65-.15-.75-.45c-.1-.35.15-.65.45-.75c3.8-.85 7.1-.5 9.7 1.1c.35.15.4.55.25.85M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2"
                   />
                 </svg>
               </IconButton>
             </Box>
-
-            <Typography
-              variant="body1"
-              sx={{
-                fontFamily: "Montserrat, sans-serif",
-                color: "rgba(0, 0, 0, 0.7)",
-                fontSize: "21px",
-                fontWeight: 600,
-                mt: 6,
-                letterSpacing: "0.03em",
-                lineHeight: "1.5",
-              }}
-            >
-              Navigate the evolving landscape of education with N'Able by Shibi
-              Anand – Empowering minds, reshaping classrooms, and seamlessly
-              adapting to the dynamic future of learning.
-            </Typography>
-          </Box>
-        </Grid>
-      </Grid>
-
-      <Container>
-        <Grid container spacing={2} mb={6} sx={{ mt: { xs: 6, md: 10 } }}>
-          <Grid item xs={12}>
-            <Paper
-              elevation={3}
-              sx={{
-                p: 4,
-                backgroundColor: "#570080",
-                borderRadius: "10px",
-                boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.1)",
-              }}
-            >
-              <Typography
-                variant="h4"
-                gutterBottom
-                sx={{
-                  fontFamily: "Montserrat, sans-serif",
-                  fontWeight: "bold",
-                  color: "white",
-                  mb: 4,
-                  textAlign: "center",
-                  textShadow: "1px 1px 2px rgba(0, 0, 0, 0.1)",
-                }}
-              >
-                N'Able for you
-              </Typography>
-
-              <Typography
-                variant="h6"
-                mb={6}
-                sx={{
-                  textAlign: "center",
-                  fontFamily: "Montserrat, sans-serif",
-                  fontWeight: "bold",
-                  color: "white",
-                }}
-              >
-                N'Able is dedicated to enhancing education and personal
-                development through tailored services:
-              </Typography>
-
-              <Grid container spacing={4}>
-                {[
-                  // {
-                  //   title: "1. Workshops",
-                  //   content:
-                  //     "Engaging sessions designed to upskill teachers, students, and school leaders, fostering growth and innovation.",
-                  // },
-                  {
-                    title: "1. Professional Mentoring",
-                    content:
-                      "Personalized guidance to help individuals excel in their roles, driving professional growth and development.",
-                  },
-                  {
-                    title: "2. Workshops and Trainings",
-                    content:
-                      "At N'Able, we offer dynamic workshops and tailored training programs to empower individuals, teams, and organizations. Focused on skill development, self-discovery, and innovation, our sessions help participants thrive in today’s fast-changing world. Committed to personal growth and excellence, we customize each program to meet your unique needs.",
-                  },
-                  // {
-                  //   title: "3. Training",
-                  //   content:
-                  //     "Includes AI Integration Training, Empowerment Workshops, and Motivational Sessions to enhance skills.",
-                  // },
-                  {
-                    title: "3. Personal Branding and Event Curation",
-                    content:
-                      "N’Able provides personal branding and event curation services to help you stand out and connect authentically. We work with individuals and teams to highlight their unique strengths, values, and skills, creating impactful personal brands and memorable events that resonate and open new opportunities.",
-                  },
-                  {
-                    title: "4. Digital Content Creation",
-                    content:
-                      "At N'Able, we create socially relevant content, inspiring and sparking meaningful conversations.",
-                  },
-                ].map((service, index) => (
-                  <Grid key={index} item xs={12} md={6}>
-                    <Box
-                      sx={{
-                        backgroundColor: "white",
-                        padding: "20px",
-                        borderRadius: "8px",
-                        minHeight: "240px",
-                        mb: "20px",
-                      }}
-                    >
-                      <Typography
-                        variant="h6"
-                        gutterBottom
-                        sx={{
-                          fontFamily: "Montserrat, sans-serif",
-                          fontWeight: "bold",
-                          color: "#2A003A",
-                        }}
-                      >
-                        {service.title}
-                      </Typography>
-                      <Typography
-                        paragraph
-                        sx={{
-                          fontFamily: "Montserrat, sans-serif",
-                          fontSize: "16px",
-                          color: "#333333",
-                          lineHeight: "1.6",
-                          fontWeight: 500,
-                        }}
-                      >
-                        {service.content}
-                      </Typography>
-                    </Box>
-                  </Grid>
-                ))}
-              </Grid>
-            </Paper>
           </Grid>
         </Grid>
       </Container>
-    </>
+
+      {/* N'Able for you */}
+      <Container maxWidth="lg" sx={{ pb: { xs: 8, md: 12 } }}>
+        <Box
+          sx={{
+            position: "relative",
+            overflow: "hidden",
+            background: "var(--grad-twilight)",
+            borderRadius: { xs: "20px", md: "32px" },
+            p: { xs: 4, md: 6 },
+            color: "#fff",
+            boxShadow: "var(--shadow-glow)",
+          }}
+        >
+          <Box
+            aria-hidden
+            className="bg-decor"
+            sx={{
+              width: 340,
+              height: 340,
+              borderRadius: "50%",
+              background: "radial-gradient(circle, #FF6F91 0%, transparent 70%)",
+              top: -100,
+              right: -80,
+              opacity: 0.4,
+            }}
+          />
+
+          <Box sx={{ textAlign: "center", mb: 5, position: "relative", zIndex: 1 }}>
+            <Box
+              className="section-eyebrow"
+              sx={{
+                background: "rgba(255,255,255,0.15) !important",
+                color: "#FFE3B0 !important",
+              }}
+            >
+              Our offering
+            </Box>
+            <Typography
+              sx={{
+                fontFamily: "Sora, sans-serif",
+                fontWeight: 700,
+                fontSize: { xs: "2rem", md: "2.8rem" },
+                lineHeight: 1.15,
+                letterSpacing: "-0.02em",
+                color: "#fff",
+                mt: 2,
+                mb: 1.5,
+              }}
+            >
+              N'Able for you
+            </Typography>
+            <Typography
+              sx={{
+                fontFamily: "Plus Jakarta Sans, sans-serif",
+                color: "rgba(255,255,255,0.85)",
+                fontSize: { xs: "1rem", md: "1.1rem" },
+                maxWidth: 720,
+                mx: "auto",
+                lineHeight: 1.7,
+              }}
+            >
+              N'Able is dedicated to enhancing education and personal
+              development through tailored services.
+            </Typography>
+          </Box>
+
+          <Grid container spacing={3} sx={{ position: "relative", zIndex: 1 }}>
+            {[
+              {
+                title: "Professional Mentoring",
+                content:
+                  "Personalized guidance to help individuals excel in their roles, driving professional growth and development.",
+              },
+              {
+                title: "Workshops and Trainings",
+                content:
+                  "Dynamic workshops and tailored training programs to empower individuals, teams, and organizations — focused on skill development, self-discovery and innovation.",
+              },
+              {
+                title: "Personal Branding & Event Curation",
+                content:
+                  "We help individuals and teams highlight their unique strengths, values and skills — creating impactful personal brands and memorable events.",
+              },
+              {
+                title: "Digital Content Creation",
+                content:
+                  "Socially relevant content that inspires and sparks meaningful conversations across the community.",
+              },
+            ].map((service, index) => (
+              <Grid key={index} item xs={12} md={6}>
+                <Box
+                  sx={{
+                    background: "rgba(255,255,255,0.97)",
+                    color: "var(--color-ink)",
+                    padding: { xs: "24px", md: "28px" },
+                    borderRadius: "20px",
+                    height: "100%",
+                    border: "1px solid rgba(255,255,255,0.4)",
+                    transition: "transform .4s var(--ease-out), box-shadow .4s var(--ease-out)",
+                    "&:hover": {
+                      transform: "translateY(-6px)",
+                      boxShadow: "0 30px 60px rgba(0,0,0,0.25)",
+                    },
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: "inline-flex",
+                      width: 44,
+                      height: 44,
+                      borderRadius: "12px",
+                      background: "var(--grad-aurora)",
+                      color: "#fff",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontFamily: "Sora, sans-serif",
+                      fontWeight: 700,
+                      fontSize: "18px",
+                      mb: 2,
+                    }}
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </Box>
+                  <Typography
+                    sx={{
+                      fontFamily: "Sora, sans-serif",
+                      fontWeight: 700,
+                      fontSize: "1.2rem",
+                      color: "var(--color-ink)",
+                      mb: 1,
+                      letterSpacing: "-0.01em",
+                    }}
+                  >
+                    {service.title}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: "Plus Jakarta Sans, sans-serif",
+                      fontSize: "15px",
+                      color: "var(--color-muted)",
+                      lineHeight: 1.75,
+                      fontWeight: 400,
+                    }}
+                  >
+                    {service.content}
+                  </Typography>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      </Container>
+    </Box>
   );
 };
 

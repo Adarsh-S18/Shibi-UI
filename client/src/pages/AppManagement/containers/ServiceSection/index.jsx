@@ -1,160 +1,152 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import { Avatar, Box, Button, Typography } from "@mui/material";
+import { Avatar, Box, Button, Typography, Container } from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(2), // Increased padding for better appearance
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-  border: "1px solid #6a00b9", // Thicker, more visible border with a pleasant blue color
-  borderRadius: "8px", // Rounded corners
-  boxShadow: "0px 10px 10px rgba(0, 0, 0, 0.1)", // Soft shadow for better depth
-}));
+const InitiativeCard = ({ logo, title, body, href, external = false, accent = "var(--grad-aurora)" }) => (
+  <Box
+    sx={{
+      position: "relative",
+      height: "100%",
+      background: "var(--color-surface)",
+      borderRadius: "24px",
+      p: { xs: 3, md: 4 },
+      border: "1px solid var(--color-line)",
+      boxShadow: "var(--shadow-md)",
+      transition: "transform .45s var(--ease-out), box-shadow .45s var(--ease-out)",
+      overflow: "hidden",
+      display: "flex",
+      flexDirection: "column",
+      "&:hover": {
+        transform: "translateY(-8px)",
+        boxShadow: "var(--shadow-lg)",
+      },
+      "&::before": {
+        content: '""',
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        height: "5px",
+        background: accent,
+      },
+    }}
+  >
+    <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, mb: 2 }}>
+      <Box
+        sx={{
+          width: 80,
+          height: 80,
+          borderRadius: "20px",
+          padding: "3px",
+          background: accent,
+          flexShrink: 0,
+        }}
+      >
+        <Avatar
+          alt={title}
+          src={logo}
+          sx={{
+            width: "100%",
+            height: "100%",
+            borderRadius: "17px",
+            background: "#fff",
+          }}
+        />
+      </Box>
+      <Typography
+        sx={{
+          fontFamily: "Sora, sans-serif",
+          fontSize: { xs: "1.25rem", md: "1.5rem" },
+          fontWeight: 700,
+          color: "var(--color-ink)",
+          lineHeight: 1.2,
+          letterSpacing: "-0.01em",
+        }}
+      >
+        {title}
+      </Typography>
+    </Box>
+    <Typography
+      sx={{
+        fontFamily: "Plus Jakarta Sans, sans-serif",
+        fontSize: "15.5px",
+        color: "var(--color-muted)",
+        lineHeight: 1.75,
+        fontWeight: 400,
+        flex: 1,
+      }}
+    >
+      {body}
+    </Typography>
+    <Box mt={3}>
+      <Button
+        href={href}
+        target={external ? "_blank" : undefined}
+        rel={external ? "noopener noreferrer" : undefined}
+        endIcon={external ? <OpenInNewIcon sx={{ fontSize: 16 }} /> : <ArrowForwardIcon sx={{ fontSize: 18 }} />}
+        sx={{
+          background: accent,
+          color: "#fff",
+          borderRadius: "999px",
+          textTransform: "none",
+          fontFamily: "Plus Jakarta Sans, sans-serif",
+          fontWeight: 700,
+          fontSize: "14px",
+          px: 3,
+          py: 1.25,
+          boxShadow: "0 10px 30px rgba(91, 42, 134, 0.25)",
+          transition: "transform .3s var(--ease-out), box-shadow .3s var(--ease-out)",
+          "&:hover": {
+            background: accent,
+            transform: "translateY(-2px)",
+            boxShadow: "0 14px 36px rgba(91, 42, 134, 0.35)",
+          },
+        }}
+      >
+        Explore More
+      </Button>
+    </Box>
+  </Box>
+);
 
 const ServiceSection = () => {
   return (
-    <>
-      <h1
-        style={{
-          textAlign: "center",
-          marginTop: "70px",
-          marginBottom: "10px",
-        }}
-      >
-        Initiatives
-      </h1>
-      <Grid container spacing={2} mb={6} sx={{ padding: "30px" }}>
+    <Container maxWidth="lg" sx={{ mb: { xs: 6, md: 10 }, mt: { xs: 2, md: 4 } }}>
+      <Box sx={{ textAlign: "center", mb: { xs: 5, md: 7 } }}>
+        <span className="section-eyebrow">Initiatives</span>
+        <Typography className="section-title" sx={{ mt: 2 }}>
+          Programs crafted to <span className="accent">empower</span>
+        </Typography>
+        <Typography className="section-subtitle">
+          From individual mentoring to teacher communities, every initiative is
+          designed to spark growth, build confidence and create lasting impact.
+        </Typography>
+      </Box>
+
+      <Grid container spacing={4}>
         <Grid item xs={12} md={6}>
-          <Item sx={{ minHeight: "400px" }}>
-            <Box
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              mb={2.5}
-            >
-              <Avatar
-                alt="N'Able Logo"
-                src="/nablelogo.jpg"
-                sx={{
-                  width: 90,
-                  height: 90,
-                  mr: 2,
-                  mb: 3,
-                  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", // Shadow for the avatar
-                }}
-              />
-              <Typography
-                style={{ fontFamily: "Montserrat, sans-serif" }}
-                sx={{
-                  fontSize: "24px",
-                  fontWeight: "700",
-                  color: "#6a00b9",
-                }}
-                mb={3}
-              >
-                N'Able By Shibi Anand
-              </Typography>
-            </Box>
-            <Typography
-              style={{ fontFamily: "Montserrat, sans-serif" }}
-              sx={{ margin: "10px", color: "black", fontWeight: 500 }}
-            >
-              N'Able was born from a deep desire to empower individuals to help
-              themselves, to become the best versions of who they are meant to
-              be. We recognize that everyone is unique, with their own path and
-              timeline in life. At N'Able, we work closely with both individuals
-              and communities, guiding them to uncover their true potential and
-              helping them to shine their inner light. Our mission is to support
-              you in your journey of self-discovery, growth, and achievement,
-              enabling you to pursue life on your own terms with confidence and
-              purpose.
-            </Typography>
-            <Box textAlign="center" mt={3}>
-              <Button
-                variant="contained"
-                color="secondary"
-                // startIcon={<i className="fab fa-youtube" />}
-                sx={{
-                  backgroundColor: "#FF0000",
-                  borderRadius: "20px",
-                  padding: "15px",
-                  fontFamily: "Montserrat, sans-serif",
-                }}
-                href="/services"
-                >
-                Explore More
-              </Button>
-            </Box>
-          </Item>
+          <InitiativeCard
+            logo="/nablelogo.jpg"
+            title="N'Able by Shibi Anand"
+            accent="var(--grad-aurora)"
+            body="N'Able was born from a deep desire to empower individuals to help themselves, to become the best versions of who they are meant to be. We recognize that everyone is unique, with their own path and timeline in life. We work closely with both individuals and communities, guiding them to uncover their true potential and helping them shine their inner light."
+            href="/services"
+          />
         </Grid>
         <Grid item xs={12} md={6}>
-          <Item sx={{ minHeight: "400px" }}>
-            <Box
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              mb={2.5}
-            >
-              <Avatar
-                alt="AI Teacher Community Logo"
-                src="/AILOGO.jpeg"
-                sx={{
-                  width: 90,
-                  height: 90,
-                  mr: 2,
-                  mb: 3,
-                  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", // Shadow for the avatar
-                }}
-              />
-              <Typography
-                style={{ fontFamily: "Montserrat, sans-serif" }}
-                sx={{
-                  fontSize: "24px",
-                  fontWeight: "700",
-                  color: "#6a00b9",
-                }}
-                mb={3}
-              >
-                AI Teacher Community
-              </Typography>
-            </Box>
-            <Typography
-              sx={{ margin: "10px", color: "black", fontWeight: 500 }}
-              style={{ fontFamily: "Montserrat, sans-serif" }}
-            >
-              Launched in May 2021 by N'Able, the AI Teacher Community aims to
-              empower CBSE teachers across India to integrate AI as a skill
-              subject in their classrooms. With over 22 sessions organized to
-              date, the community has grown into a self-sustained network of
-              over 400 teachers worldwide. This collaborative platform enables
-              teachers to support each other in effectively implementing AI
-              education in schools.
-            </Typography>
-            <Box textAlign="center" mt={9}>
-              <Button
-                variant="contained"
-                color="secondary"
-                startIcon={<i className="fab fa-youtube" />}
-                sx={{
-                  backgroundColor: "#FF0000",
-                  borderRadius: "20px",
-                  padding: "15px",
-                  fontFamily: "Montserrat, sans-serif",
-                }}
-                href="https://www.youtube.com/watch?v=0ET_Kzj5MY4&list=PLe_YFUGwCEm8qSxKcsiRtYoRM6rVpcm_v"
-                target="_blank"
-              >
-                Explore More
-              </Button>
-            </Box>
-          </Item>
+          <InitiativeCard
+            logo="/AILOGO.jpeg"
+            title="AI Teacher Community"
+            accent="var(--grad-sunrise)"
+            body="Launched in May 2021, the AI Teacher Community empowers CBSE teachers across India to integrate AI as a skill subject in their classrooms. With over 22 sessions to date, the community has grown into a self-sustained network of 400+ teachers worldwide — collaborating to bring AI into schools."
+            href="https://www.youtube.com/watch?v=0ET_Kzj5MY4&list=PLe_YFUGwCEm8qSxKcsiRtYoRM6rVpcm_v"
+            external
+          />
         </Grid>
       </Grid>
-    </>
+    </Container>
   );
 };
 
